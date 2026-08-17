@@ -11,5 +11,6 @@
   "react-navigation",
   "rtl",
   "ripple-effect",
+  "scroll-visibility",
   "migration"
 ]

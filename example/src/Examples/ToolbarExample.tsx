@@ -1,12 +1,17 @@
 import * as React from 'react';
-import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import {
   Chip,
   Divider,
   IconButton,
+  List,
+  ScrollVisibilityProvider,
+  Switch,
   Text,
   Toolbar,
+  useScrollVisibility,
+  useScrollVisibilityHandler,
   useTheme,
 } from 'react-native-paper';
 import type {
@@ -14,6 +19,7 @@ import type {
   ToolbarOrientation,
   ToolbarVariant,
 } from 'react-native-paper';
+import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const variants: ToolbarVariant[] = ['floating', 'docked'];
@@ -75,16 +81,22 @@ const ChipRow = <T extends string>({
   </View>
 );
 
-const ToolbarExample = () => {
+const ToolbarExampleContent = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const onScroll = useScrollVisibilityHandler();
+  const scrollVisibility = useScrollVisibility();
 
   const [variant, setVariant] = React.useState<ToolbarVariant>('floating');
   const [orientation, setOrientation] =
     React.useState<ToolbarOrientation>('horizontal');
   const [colorScheme, setColorScheme] =
     React.useState<ToolbarColorScheme>('standard');
+  const [hideOnScroll, setHideOnScroll] = React.useState(false);
 
+  // The toggle only opts the toolbar into reacting to scroll — `Toolbar`
+  // itself just takes a plain `visible` prop, same as `FAB`.
+  const toolbarVisible = !hideOnScroll || !scrollVisibility?.hidden;
   const isFloating = variant === 'floating';
   const isVertical = isFloating && orientation === 'vertical';
 
@@ -134,12 +146,21 @@ const ToolbarExample = () => {
           value={colorScheme}
           onChange={setColorScheme}
         />
+        <List.Item
+          title="Hide on scroll"
+          right={() => (
+            <View pointerEvents="none">
+              <Switch value={hideOnScroll} />
+            </View>
+          )}
+          onPress={() => setHideOnScroll((value) => !value)}
+        />
         <Divider
           bold
           style={[styles.divider, { backgroundColor: theme.colors.outline }]}
         />
       </View>
-      <FlatList
+      <Animated.FlatList
         style={styles.list}
         data={rows}
         renderItem={renderItem}
@@ -152,6 +173,8 @@ const ToolbarExample = () => {
               ? { paddingBottom: insets.bottom + 24 }
               : { paddingBottom: insets.bottom + 96 },
         ]}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
       />
       {isFloating ? (
         // `floating` doesn't anchor itself (same as `FAB`)—position it with
@@ -168,6 +191,7 @@ const ToolbarExample = () => {
             variant={variant}
             colorScheme={colorScheme}
             orientation={orientation}
+            visible={toolbarVisible}
           >
             {toolbarChildren}
           </Toolbar>
@@ -178,6 +202,7 @@ const ToolbarExample = () => {
           variant={variant}
           colorScheme={colorScheme}
           orientation={orientation}
+          visible={toolbarVisible}
         >
           {toolbarChildren}
         </Toolbar>
@@ -185,6 +210,12 @@ const ToolbarExample = () => {
     </View>
   );
 };
+
+const ToolbarExample = () => (
+  <ScrollVisibilityProvider>
+    <ToolbarExampleContent />
+  </ScrollVisibilityProvider>
+);
 
 ToolbarExample.title = 'Toolbar';
 

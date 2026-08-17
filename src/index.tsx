@@ -9,6 +9,12 @@ export {
 
 export { useLocale, LocaleProvider } from './core/locale';
 
+export {
+  useScrollVisibility,
+  useScrollVisibilityHandler,
+  ScrollVisibilityProvider,
+} from './core/scrollVisibility';
+
 export * from './theme/schemes';
 
 export { default as Provider } from './core/PaperProvider';
@@ -147,6 +153,7 @@ export type { Props as TextProps } from './components/Typography/Text';
 export type { Props as SegmentedButtonsProps } from './components/SegmentedButtons/SegmentedButtons';
 export type { Props as ListImageProps } from './components/List/ListImage';
 export type { Props as ToolbarProps } from './components/Toolbar/Toolbar';
+export type { ScrollVisibility } from './core/scrollVisibility';
 export type {
   Variant as ToolbarVariant,
   ColorScheme as ToolbarColorScheme,

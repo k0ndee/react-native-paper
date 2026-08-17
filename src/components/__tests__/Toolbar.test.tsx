@@ -127,6 +127,66 @@ it("applies `style` to the docked variant's self-anchoring container", async () 
   expect(screen.getByTestId('docked-container')).toHaveStyle({ bottom: 10 });
 });
 
+it('renders visible by default', async () => {
+  await render(
+    <Toolbar testID="toolbar">
+      <ToolbarChildren />
+    </Toolbar>
+  );
+
+  expect(screen.getByTestId('toolbar')).toHaveProp('pointerEvents', 'auto');
+  expect(screen.getByTestId('toolbar')).toHaveProp('aria-hidden', false);
+});
+
+it('marks itself hidden from touches and screen readers when visible={false}', async () => {
+  await render(
+    <Toolbar testID="toolbar" visible={false}>
+      <ToolbarChildren />
+    </Toolbar>
+  );
+
+  // `aria-hidden` makes RNTL's queries skip it by default — it's exactly
+  // what's under test here, so opt back in explicitly.
+  const toolbar = screen.getByTestId('toolbar', {
+    includeHiddenElements: true,
+  });
+  expect(toolbar).toHaveProp('pointerEvents', 'none');
+  expect(toolbar).toHaveProp('aria-hidden', true);
+});
+
+// Unlike `FAB`'s scale+alpha (resolved synchronously by the reanimated
+// mock), the hide distance here depends on measuring the toolbar's real
+// on-screen position, which happens on the UI thread on a later frame — so
+// this snapshot only captures the pre-measurement frame, same as it would
+// immediately after a real toggle.
+it('renders Toolbar transitioning to not visible', async () => {
+  const { rerender, toJSON } = await render(
+    <Toolbar>
+      <ToolbarChildren />
+    </Toolbar>
+  );
+  await rerender(
+    <Toolbar visible={false}>
+      <ToolbarChildren />
+    </Toolbar>
+  );
+  expect(toJSON()).toMatchSnapshot();
+});
+
+it('renders Toolbar transitioning to visible', async () => {
+  const { rerender, toJSON } = await render(
+    <Toolbar visible={false}>
+      <ToolbarChildren />
+    </Toolbar>
+  );
+  await rerender(
+    <Toolbar visible>
+      <ToolbarChildren />
+    </Toolbar>
+  );
+  expect(toJSON()).toMatchSnapshot();
+});
+
 it('renders floating Toolbar with vibrant colorScheme', async () => {
   const tree = (
     await render(

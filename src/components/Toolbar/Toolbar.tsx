@@ -2,16 +2,26 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { ColorValue, StyleProp, ViewStyle } from 'react-native';
 
+import Reanimated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ToolbarTokens } from './tokens';
 import type { ColorScheme, Orientation, Variant } from './tokens';
 import { ToolbarColorContext } from './ToolbarColorContext';
+import { useVisibility } from './useVisibility';
 import { getSpacing, resolveContainerColor, resolveElevation } from './utils';
 import { useInternalTheme } from '../../core/theming';
 import { resolveCornerRadius } from '../../theme/utils/shape';
 import type { ThemeProp } from '../../types';
 import Surface from '../Surface';
+
+// `docked`'s background bleeds this far past the true bottom edge (compensated
+// so the content itself doesn't shift — see `dockedInsetMargin` below).
+// Invisible at rest, since it's below the visible viewport; it only matters
+// when the show/hide spring slightly overshoots past its resting position,
+// where it reads as more background sliding in rather than a gap opening up
+// onto whatever's behind the toolbar.
+const DOCKED_BLEED = 24;
 
 export type Props = {
   /**
@@ -39,6 +49,15 @@ export type Props = {
    * Override the container (background) color.
    */
   containerColor?: ColorValue;
+  /**
+   * Whether the toolbar is currently visible. Toggling animates an offscreen
+   * slide + fade, paired spatial/effects springs like `FAB`'s own `visible`
+   * prop (see `useVisibility`). Drive this yourself from whatever decides
+   * visibility — e.g. `useScrollVisibility()`'s `hidden` (see
+   * `ScrollVisibilityProvider`) for a scroll-driven toolbar. Defaults to
+   * `true`.
+   */
+  visible?: boolean;
   /**
    * Style for positioning `floating`'s pill, or overriding `docked`'s
    * default anchoring.
@@ -120,6 +139,7 @@ const Toolbar = ({
   orientation = 'horizontal',
   colorScheme = 'standard',
   containerColor,
+  visible = true,
   style,
   contentContainerStyle,
   testID,
@@ -170,19 +190,33 @@ const Toolbar = ({
   // its content stays clear of them, via margin outside `Surface`'s own
   // fixed-size box (so `Surface` grows to wrap it, keeping the icon row's
   // 64dp band untouched). `floating` doesn't self-anchor, so it has no
-  // insets to account for.
+  // insets to account for. `DOCKED_BLEED` is added on top of the real inset
+  // so `Surface`'s box (and thus its background) extends exactly as far
+  // past the true edge as `dockedContainer`'s own negative `bottom` pushes
+  // the whole wrapper — the two cancel out, so the content itself doesn't
+  // shift (see `DOCKED_BLEED`'s own doc comment above).
   const dockedInsetMargin = isDocked
     ? {
-        marginBottom: insets.bottom,
+        marginBottom: insets.bottom + DOCKED_BLEED,
         marginLeft: insets.left,
         marginRight: insets.right,
       }
     : null;
 
+  const { ref: visibilityRef, style: hideStyle } = useVisibility({
+    visible,
+    theme,
+  });
+
   const pill = (
     <Surface
-      ref={isDocked ? undefined : ref}
+      // `docked`'s public `ref` lives on the wrapper below instead, freeing
+      // this one up for `useVisibility` to measure the toolbar's resting
+      // on-screen position (needed to compute how far offscreen is).
+      ref={isDocked ? visibilityRef : ref}
       elevation={elevation}
+      pointerEvents={visible ? 'auto' : 'none'}
+      aria-hidden={!visible}
       style={[
         {
           backgroundColor,
@@ -224,24 +258,30 @@ const Toolbar = ({
     </Surface>
   );
 
-  // `floating` is positioned directly via `style` (like `FAB`'s `Shell`),
-  // no wrapper needed. `docked` anchors to its nearest positioned
-  // ancestor, which needs the wrapping `View` below.
+  // `floating` is positioned directly via `style` on `Surface` itself (like
+  // `FAB`'s `Shell`) — this wrapper carries nothing but the `visible`
+  // transform, so it doesn't disturb that positioning contract. `docked`
+  // anchors to its nearest positioned ancestor via the wrapping view below,
+  // which now also carries the transform directly.
   if (!isDocked) {
-    return pill;
+    return (
+      <Reanimated.View ref={visibilityRef} style={hideStyle}>
+        {pill}
+      </Reanimated.View>
+    );
   }
 
   return (
-    <View
+    <Reanimated.View
       ref={ref}
       // `box-none` so this anchoring box (spanning the full width of its
       // ancestor) doesn't intercept touches outside the bar itself.
       pointerEvents="box-none"
-      style={[styles.dockedContainer, style]}
+      style={[styles.dockedContainer, style, hideStyle]}
       testID={testID ? `${testID}-container` : undefined}
     >
       {pill}
-    </View>
+    </Reanimated.View>
   );
 };
 
@@ -264,10 +304,13 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   // `docked` anchors absolutely rather than reserving layout space, so
-  // consumers pad their own content to avoid it, same as `floating`.
+  // consumers pad their own content to avoid it, same as `floating`. `bottom`
+  // is pushed past the true edge by `DOCKED_BLEED`, compensated by the same
+  // amount added to `dockedInsetMargin`'s `marginBottom` — see its doc
+  // comment for why.
   dockedContainer: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -DOCKED_BLEED,
     left: 0,
     right: 0,
   },

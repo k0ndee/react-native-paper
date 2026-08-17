@@ -12014,6 +12014,17 @@
             },
             "description": "Override the container (background) color."
           },
+          "visible": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Whether the toolbar is currently visible. Toggling animates an offscreen\nslide + fade, paired spatial/effects springs like `FAB`'s own `visible`\nprop (see `useVisibility`). Drive this yourself from whatever decides\nvisibility — e.g. `useScrollVisibility()`'s `hidden` (see\n`ScrollVisibilityProvider`) for a scroll-driven toolbar. Defaults to\n`true`.",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
           "style": {
             "required": false,
             "tsType": {
