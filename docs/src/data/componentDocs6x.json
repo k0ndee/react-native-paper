@@ -12014,12 +12014,36 @@
             },
             "description": "Override the container (background) color."
           },
+          "leading": {
+            "required": false,
+            "tsType": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            },
+            "description": "Content rendered before `children` in the row. `floating` only —\nignored on `docked`. When set (along with `trailing`/`fab`), toggling\n`visible` off collapses this away instead of sliding the whole toolbar\noffscreen — see `visible`."
+          },
+          "trailing": {
+            "required": false,
+            "tsType": {
+              "name": "ReactReactNode",
+              "raw": "React.ReactNode"
+            },
+            "description": "Content rendered after `children` (before `fab`, if present) in the\nrow. `floating` only — ignored on `docked`. Same collapse behavior as\n`leading`."
+          },
+          "fab": {
+            "required": false,
+            "tsType": {
+              "name": "ReactReactElement",
+              "raw": "React.ReactElement"
+            },
+            "description": "A `FAB`/`FAB.Extended` element to pair with the toolbar, rendered at\nthe row's trailing end. `floating` only — ignored on `docked` (per M3,\n`docked` embeds a primary action directly rather than pairing with a\nseparate FAB). When set, toggling `visible` off shrinks\n`leading`/`children`/`trailing` away from their *leading* edge,\nrevealing the FAB — the FAB is a sibling of the toolbar's own pill,\nnever inside it, so the collapse itself never resizes or recolors it.\n\nThe space reserved for the pill next to `fab` always stays at the\npill's natural (expanded) width, even while collapsed — only the\nvisible content within that space animates. So `fab` never has to\nmove as the pill collapses/expands, and if you center the whole row on\nscreen (as the `visible`/`useScrollVisibility` usage example does),\nthe toolbar sits centered exactly as it would without `fab`, with\n`fab` fixed just beside it throughout."
+          },
           "visible": {
             "required": false,
             "tsType": {
               "name": "boolean"
             },
-            "description": "Whether the toolbar is currently visible. Drive this yourself from whatever decides\nvisibility — e.g. `useScrollVisibility()`'s `hidden` (see `ScrollVisibilityProvider`)\nfor a scroll-driven toolbar. Defaults to `true`.",
+            "description": "Whether the toolbar is currently visible. With no `leading`/`trailing`/\n`fab`, toggling animates an offscreen slide + fade, paired\nspatial/effects springs like `FAB`'s own `visible` prop (see\n`useVisibility`). With any of those set, toggling instead squeezes\n`leading`/`trailing` (and, with `fab`, `children` too) away, per M3's\ntoolbar/FAB-pairing collapse (see `useCollapse`). Drive this yourself\nfrom whatever decides visibility — e.g. `useScrollVisibility()`'s\n`hidden` (see `ScrollVisibilityProvider`) for a scroll-driven toolbar.\nDefaults to `true`.",
             "defaultValue": {
               "value": "true",
               "computed": false

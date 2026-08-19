@@ -2,8 +2,10 @@ import * as React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import {
+  Button,
   Chip,
   Divider,
+  FAB,
   IconButton,
   List,
   ScrollVisibilityProvider,
@@ -25,6 +27,17 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const variants: ToolbarVariant[] = ['floating', 'docked'];
 const orientations: ToolbarOrientation[] = ['horizontal', 'vertical'];
 const colorSchemes: ToolbarColorScheme[] = ['standard', 'vibrant'];
+
+// Demonstrates the two collapse-on-scroll shapes `floating` supports beyond
+// the plain whole-bar hide: squeezing away `leading`/`trailing` to leave the
+// key action, or pairing a `fab` and squeezing everything else away to
+// reveal it. `docked` ignores `leading`/`trailing`/`fab` entirely, per spec.
+type CollapseDemo = 'None' | 'Leading/trailing' | 'Paired FAB';
+const collapseDemos: CollapseDemo[] = [
+  'None',
+  'Leading/trailing',
+  'Paired FAB',
+];
 
 const toolbarItems = [
   { icon: 'format-bold', label: 'Bold' },
@@ -93,12 +106,25 @@ const ToolbarExampleContent = () => {
   const [colorScheme, setColorScheme] =
     React.useState<ToolbarColorScheme>('standard');
   const [hideOnScroll, setHideOnScroll] = React.useState(false);
+  const [collapseDemo, setCollapseDemo] = React.useState<CollapseDemo>('None');
 
   // The toggle only opts the toolbar into reacting to scroll — `Toolbar`
   // itself just takes a plain `visible` prop, same as `FAB`.
   const toolbarVisible = !hideOnScroll || !scrollVisibility?.hidden;
   const isFloating = variant === 'floating';
   const isVertical = isFloating && orientation === 'vertical';
+  const isLeadingTrailingDemo = collapseDemo === 'Leading/trailing';
+  const isFabDemo = collapseDemo === 'Paired FAB';
+
+  // The width-squeeze collapse only targets a horizontal axis (see
+  // `Toolbar`'s own `fab`/`leading`/`trailing` docs) — force `orientation`
+  // back to `horizontal` whenever a collapse demo is selected.
+  const handleCollapseDemoChange = (value: CollapseDemo) => {
+    setCollapseDemo(value);
+    if (value !== 'None') {
+      setOrientation('horizontal');
+    }
+  };
 
   const renderItem = React.useCallback(
     ({ item }: { item: (typeof rows)[number] }) => (
@@ -122,6 +148,39 @@ const ToolbarExampleContent = () => {
     </>
   );
 
+  // `Leading/trailing`: `children` is always just the key action (bold) —
+  // `leading`/`trailing` (deliberately different sizes: two icons vs one,
+  // to exercise the key-action-drift fix) are what actually fade/squeeze
+  // away on collapse, leaving only the key action visible.
+  // `Paired FAB`: the whole `toolbarChildren` row squeezes away, revealing
+  // the paired FAB in place. `None`: today's plain row, unchanged.
+  const toolbarKeyAction = (
+    <Button
+      aria-label="Bold"
+      mode="contained"
+      onPress={() => {}}
+      labelStyle={styles.keyActionLabel}
+    >
+      +
+    </Button>
+  );
+  const toolbarLeading = isLeadingTrailingDemo ? (
+    <>
+      <IconButton icon="arrow-left" aria-label="left" onPress={() => {}} />
+      <IconButton icon="arrow-right" aria-label="right" onPress={() => {}} />
+    </>
+  ) : undefined;
+  const toolbarTrailing = isLeadingTrailingDemo ? (
+    <IconButton
+      icon="picture-in-picture-top-right"
+      aria-label="pip"
+      onPress={() => {}}
+    />
+  ) : undefined;
+  const toolbarFab = isFabDemo ? (
+    <FAB icon="plus" aria-label="Add" onPress={() => {}} />
+  ) : undefined;
+
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}
@@ -138,13 +197,20 @@ const ToolbarExampleContent = () => {
           options={orientations}
           value={orientation}
           onChange={setOrientation}
-          disabled={!isFloating}
+          disabled={!isFloating || collapseDemo !== 'None'}
         />
         <ChipRow
           label="Color scheme"
           options={colorSchemes}
           value={colorScheme}
           onChange={setColorScheme}
+        />
+        <ChipRow
+          label="Collapse on scroll"
+          options={collapseDemos}
+          value={collapseDemo}
+          onChange={handleCollapseDemoChange}
+          disabled={!isFloating}
         />
         <List.Item
           title="Hide on scroll"
@@ -178,7 +244,10 @@ const ToolbarExampleContent = () => {
       />
       {isFloating ? (
         // `floating` doesn't anchor itself (same as `FAB`)—position it with
-        // a wrapping `View`, same as the component's own doc example.
+        // a wrapping `View`, same as the component's own doc example. Kept
+        // centered regardless of `collapseDemo`, `fab` included — the FAB
+        // just sits to the side of the (still-centered) toolbar, same
+        // overall placement as every other demo.
         <View
           pointerEvents="box-none"
           style={
@@ -192,19 +261,28 @@ const ToolbarExampleContent = () => {
             colorScheme={colorScheme}
             orientation={orientation}
             visible={toolbarVisible}
+            leading={toolbarLeading}
+            trailing={toolbarTrailing}
+            fab={toolbarFab}
           >
-            {toolbarChildren}
+            {isLeadingTrailingDemo ? toolbarKeyAction : toolbarChildren}
           </Toolbar>
         </View>
       ) : (
         // `docked` anchors itself, flush to the bottom edge, on its own.
+        // `leading`/`trailing`/`fab` are passed through here too, purely to
+        // demonstrate that `docked` silently ignores them (per M3, `docked`
+        // embeds its primary action directly rather than pairing a FAB).
         <Toolbar
           variant={variant}
           colorScheme={colorScheme}
           orientation={orientation}
           visible={toolbarVisible}
+          leading={toolbarLeading}
+          trailing={toolbarTrailing}
+          fab={toolbarFab}
         >
-          {toolbarChildren}
+          {isLeadingTrailingDemo ? toolbarKeyAction : toolbarChildren}
         </Toolbar>
       )}
     </View>
@@ -255,6 +333,9 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: 0.38,
+  },
+  keyActionLabel: {
+    fontSize: 20,
   },
   list: {
     flex: 1,

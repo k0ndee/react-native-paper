@@ -4,8 +4,9 @@ import { describe, expect, it } from '@jest/globals';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
 import { getTheme } from '../../core/theming';
-import { render, screen } from '../../test-utils';
+import { render, screen, within } from '../../test-utils';
 import Button from '../Button/Button';
+import FAB from '../FAB/FAB';
 import IconButton from '../IconButton/IconButton';
 import type { ColorScheme } from '../Toolbar/tokens';
 import Toolbar from '../Toolbar/Toolbar';
@@ -180,6 +181,199 @@ it('renders Toolbar transitioning to visible', async () => {
     </Toolbar>
   );
   expect(toJSON()).toMatchSnapshot();
+});
+
+describe('leading/trailing/fab collapse (floating only)', () => {
+  // `useCollapse` only starts constraining a segment's width once a real
+  // `onLayout` has measured it — jest's test renderer never fires one, so
+  // these snapshots render with no `width` override at all (natural sizing,
+  // same as if unwrapped) and the "transitioning to not visible" snapshot
+  // below can't actually show a collapse: the animate branch itself is
+  // gated on that same first measurement having happened. Same environment
+  // gap as the whole-bar hide's own "transitioning" tests above
+  // (`measure()`/`scheduleOnUI` don't run meaningfully under the
+  // Reanimated jest mock either) — not a component bug, just untestable
+  // here; verify the actual animation in a real app. This applies equally
+  // to the `fab` and no-`fab` (`leading`/`trailing`-only) cases — both are
+  // measurement-driven via `useShrinkSegment`.
+  it('renders Toolbar paired with a fab', async () => {
+    const tree = (
+      await render(
+        <Toolbar
+          leading={<IconButton icon="format-italic" onPress={() => {}} />}
+          trailing={<IconButton icon="format-underline" onPress={() => {}} />}
+          fab={<FAB icon="plus" onPress={() => {}} />}
+        >
+          <IconButton icon="format-bold" onPress={() => {}} />
+        </Toolbar>
+      )
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders Toolbar with leading/trailing and no fab', async () => {
+    const tree = (
+      await render(
+        <Toolbar
+          leading={<IconButton icon="format-italic" onPress={() => {}} />}
+          trailing={<IconButton icon="format-underline" onPress={() => {}} />}
+        >
+          <IconButton icon="format-bold" onPress={() => {}} />
+        </Toolbar>
+      )
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('lays out multiple leading/trailing children in a row, not a column', async () => {
+    // Both the live wrapper and its offscreen measurement duplicate need
+    // `flexDirection: 'row'` explicitly (`styles.row`, alongside
+    // `styles.naturalFlow`/`styles.offscreenMeasure` in `Toolbar.tsx`) —
+    // without it, RN's default column direction stacks multiple children
+    // vertically instead of laying out/measuring them side by side.
+    const tree = (
+      await render(
+        <Toolbar
+          leading={
+            <>
+              <IconButton icon="format-italic" onPress={() => {}} />
+              <IconButton icon="format-underline" onPress={() => {}} />
+            </>
+          }
+        >
+          <IconButton icon="format-bold" onPress={() => {}} />
+        </Toolbar>
+      )
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('hides leading/trailing from queries/touches (but not children) when visible is false, no fab', async () => {
+    // `leading`/`trailing` stay mounted the whole time (their width springs
+    // to `0` via `useShrinkSegment`, not a conditional unmount) — verified
+    // here as `queryByTestId` returning null purely because `aria-hidden`
+    // makes RNTL's default queries skip it, not because the node is gone;
+    // `includeHiddenElements` confirms it's still there underneath.
+    const { rerender } = await render(
+      <Toolbar
+        visible
+        leading={
+          <IconButton
+            testID="leading"
+            icon="format-italic"
+            onPress={() => {}}
+          />
+        }
+        trailing={
+          <IconButton
+            testID="trailing"
+            icon="format-underline"
+            onPress={() => {}}
+          />
+        }
+      >
+        <IconButton testID="key-action" icon="format-bold" onPress={() => {}} />
+      </Toolbar>
+    );
+    expect(screen.getByTestId('leading')).toBeTruthy();
+    expect(screen.getByTestId('trailing')).toBeTruthy();
+    expect(screen.getByTestId('key-action')).toBeTruthy();
+
+    await rerender(
+      <Toolbar
+        visible={false}
+        leading={
+          <IconButton
+            testID="leading"
+            icon="format-italic"
+            onPress={() => {}}
+          />
+        }
+        trailing={
+          <IconButton
+            testID="trailing"
+            icon="format-underline"
+            onPress={() => {}}
+          />
+        }
+      >
+        <IconButton testID="key-action" icon="format-bold" onPress={() => {}} />
+      </Toolbar>
+    );
+    expect(screen.queryByTestId('leading')).toBeNull();
+    expect(screen.queryByTestId('trailing')).toBeNull();
+    // Rendered twice (the live wrapper plus its offscreen measurement
+    // duplicate — see `Toolbar.tsx`'s own doc on that), hence `getAllBy`.
+    expect(
+      screen.getAllByTestId('leading', { includeHiddenElements: true }).length
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByTestId('trailing', { includeHiddenElements: true }).length
+    ).toBeGreaterThan(0);
+    expect(screen.getByTestId('key-action')).toBeTruthy();
+  });
+
+  // Same caveat as the whole-bar hide's own "transitioning to not visible"
+  // test above: the collapse target depends on a natural-width measurement
+  // that arrives via a later `onLayout`, so this snapshot only captures the
+  // pre-measurement frame.
+  it('renders a fab-paired Toolbar transitioning to not visible', async () => {
+    const { rerender, toJSON } = await render(
+      <Toolbar fab={<FAB icon="plus" onPress={() => {}} />}>
+        <IconButton icon="format-bold" onPress={() => {}} />
+      </Toolbar>
+    );
+    await rerender(
+      <Toolbar visible={false} fab={<FAB icon="plus" onPress={() => {}} />}>
+        <IconButton icon="format-bold" onPress={() => {}} />
+      </Toolbar>
+    );
+    expect(toJSON()).toMatchSnapshot();
+  });
+
+  it('silently ignores leading/trailing/fab on docked', async () => {
+    const plain = (
+      await render(
+        <Toolbar variant="docked" testID="docked">
+          <ToolbarChildren />
+        </Toolbar>
+      )
+    ).toJSON();
+
+    const withCollapseProps = (
+      await render(
+        <Toolbar
+          variant="docked"
+          testID="docked"
+          leading={<IconButton icon="format-underline" onPress={() => {}} />}
+          trailing={<IconButton icon="format-underline" onPress={() => {}} />}
+          fab={<FAB icon="plus" onPress={() => {}} />}
+        >
+          <ToolbarChildren />
+        </Toolbar>
+      )
+    ).toJSON();
+
+    // Compared as serialized strings, not `toEqual`: each render's
+    // `onPress={() => {}}` closures are distinct function references, which
+    // would otherwise fail a deep-equality check despite an identical tree.
+    expect(JSON.stringify(withCollapseProps)).toBe(JSON.stringify(plain));
+  });
+
+  it("renders a paired fab as a sibling of the toolbar's own pill, not nested inside it", async () => {
+    await render(
+      <Toolbar
+        testID="toolbar"
+        fab={<FAB testID="fab" icon="plus" onPress={() => {}} />}
+      >
+        <IconButton icon="format-bold" onPress={() => {}} />
+      </Toolbar>
+    );
+
+    const pill = screen.getByTestId('toolbar');
+    expect(within(pill).queryByTestId('fab-container')).toBeNull();
+    expect(screen.getByTestId('fab-container')).toBeTruthy();
+  });
 });
 
 it('renders floating Toolbar with vibrant colorScheme', async () => {
