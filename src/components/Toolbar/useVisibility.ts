@@ -77,12 +77,36 @@ export function useVisibility({
   // frame before the effect below corrects it.
   const translateY = useSharedValue(visible ? 0 : UNMEASURED_FALLBACK_DISTANCE);
   const alpha = useSharedValue(visible ? 1 : 0);
+  // Caches the last real measurement so a hide triggered while a prior
+  // toggle hasn't settled yet (see the `translateY.value === 0` check below)
+  // can reuse it instead of re-measuring a position that's currently
+  // mid-animation (and therefore not the pill's true resting position).
+  const lastMeasuredDistance = useSharedValue(UNMEASURED_FALLBACK_DISTANCE);
+  // Tracks the previous `visible` so a `windowHeight`-only change (device
+  // rotation) doesn't replay the show springs while already shown and
+  // settled. The hide branch below still reacts to `windowHeight` on its
+  // own, since the offscreen distance genuinely depends on it.
+  const wasVisible = React.useRef(visible);
+  // Tracks the previous `windowHeight` so a rotation while already hidden
+  // can widen the cached offscreen distance by exactly how much the window
+  // grew (see the `windowHeightGrew` branch below) instead of leaving it
+  // stale.
+  const previousWindowHeight = React.useRef(windowHeight);
 
   React.useEffect(() => {
+    const visibilityChanged = wasVisible.current !== visible;
+    wasVisible.current = visible;
+    const windowHeightGrew = windowHeight > previousWindowHeight.current;
+    const windowHeightGrowth = windowHeight - previousWindowHeight.current;
+    previousWindowHeight.current = windowHeight;
+
     const spatialSpring = toRawSpring(theme.motion.spring.fast.spatial);
     const effectsSpring = toRawSpring(theme.motion.spring.fast.effects);
 
     if (visible) {
+      if (!visibilityChanged) {
+        return;
+      }
       translateY.value = reduceMotion ? 0 : withSpring(0, spatialSpring);
       alpha.value = reduceMotion ? 1 : withSpring(1, effectsSpring);
       return;
@@ -90,15 +114,45 @@ export function useVisibility({
 
     alpha.value = reduceMotion ? 0 : withSpring(0, effectsSpring);
     scheduleOnUI(() => {
-      const measurement = measure(ref);
-      const target = measurement
-        ? windowHeight - measurement.pageY + EXIT_CLEARANCE
-        : UNMEASURED_FALLBACK_DISTANCE;
+      // Only trust a fresh measurement while fully at rest and visible
+      // (`translateY` still `0`) — mid-toggle, the node's on-screen
+      // position is contaminated by whatever spring is still in flight
+      // (e.g. a hide that got interrupted by a quick show, now hiding
+      // again), which would corrupt the computed exit distance. Reuse the
+      // last valid measurement instead; the resting position hasn't moved,
+      // only visibility has.
+      if (translateY.value === 0) {
+        const measurement = measure(ref);
+        if (measurement) {
+          lastMeasuredDistance.value =
+            windowHeight - measurement.pageY + EXIT_CLEARANCE;
+        }
+      } else if (windowHeightGrew) {
+        // Already hidden (translated away) and the window grew, e.g. a
+        // rotation — the node's current on-screen position can't be
+        // trusted for a fresh measurement here (same reason as the comment
+        // below), so widen the cached distance by the same growth instead.
+        // That's always enough to still clear the new, taller window: for
+        // anchoring where the resting position doesn't move with
+        // `windowHeight` this matches the real distance exactly, and for
+        // anchoring where it does, it only overshoots past the edge by a
+        // harmless margin rather than risk landing short of it.
+        lastMeasuredDistance.value += windowHeightGrowth;
+      }
       translateY.value = reduceMotion
-        ? target
-        : withSpring(target, spatialSpring);
+        ? lastMeasuredDistance.value
+        : withSpring(lastMeasuredDistance.value, spatialSpring);
     });
-  }, [visible, windowHeight, theme, reduceMotion, translateY, alpha, ref]);
+  }, [
+    visible,
+    windowHeight,
+    theme,
+    reduceMotion,
+    translateY,
+    alpha,
+    lastMeasuredDistance,
+    ref,
+  ]);
 
   const style = useAnimatedStyle(
     () => ({

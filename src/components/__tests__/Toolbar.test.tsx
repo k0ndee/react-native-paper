@@ -1,4 +1,4 @@
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 
 import { describe, expect, it } from '@jest/globals';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
@@ -77,32 +77,27 @@ it('renders Toolbar with vertical orientation', async () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("applies `style` directly to the floating pill's outer (position) layer", async () => {
-  const originalPlatform = Platform.OS;
-  Platform.OS = 'ios';
-
+it("applies `style` to the floating pill's outer positioning wrapper", async () => {
   await render(
     <Toolbar testID="floating" style={{ position: 'absolute', top: 5 }}>
       <ToolbarChildren />
     </Toolbar>
   );
 
-  expect(screen.getByTestId('floating-outer-layer')).toHaveStyle({
+  expect(screen.getByTestId('floating-container')).toHaveStyle({
     position: 'absolute',
     top: 5,
   });
-
-  Platform.OS = originalPlatform;
 });
 
-it("lets `style` override the floating pill's internal container styles", async () => {
+it("lets `style` override the floating wrapper's default sizing", async () => {
   await render(
     <Toolbar testID="floating" style={{ height: 200 }}>
       <ToolbarChildren />
     </Toolbar>
   );
 
-  expect(screen.getByTestId('floating-outer-layer')).toHaveStyle({
+  expect(screen.getByTestId('floating-container')).toHaveStyle({
     height: 200,
   });
 });

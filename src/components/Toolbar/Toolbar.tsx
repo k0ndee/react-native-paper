@@ -83,9 +83,8 @@ export type Props = {
    */
   theme?: ThemeProp;
   /**
-   * For `floating`, the ref lands on the `Surface` pill itself; for
-   * `docked`, it lands on the outer positioning wrapper `View`, not the
-   * pill inside it.
+   * The ref lands on the outer positioning wrapper `View`, not the pill
+   * (`Surface`) inside it.
    */
   ref?: React.RefObject<View>;
 };
@@ -208,79 +207,78 @@ const Toolbar = ({
     theme,
   });
 
-  const pill = (
-    <Surface
-      // `docked`'s public `ref` lives on the wrapper below instead, freeing
-      // this one up for `useVisibility` to measure the toolbar's resting
-      // on-screen position (needed to compute how far offscreen is).
-      ref={isDocked ? visibilityRef : ref}
-      elevation={elevation}
-      pointerEvents={visible ? 'auto' : 'none'}
-      aria-hidden={!visible}
+  const content = (
+    <View
+      role="toolbar"
+      aria-label={ariaLabel}
+      testID={testID ? `${testID}-content` : undefined}
       style={[
-        {
-          backgroundColor,
-          borderRadius,
-        },
-        isDocked && styles.dockedFill,
         styles.content,
-        !isDocked && style,
+        isVertical ? styles.column : styles.row,
+        { ...contentPadding, gap },
+        dockedInsetMargin,
+        // Cross-axis thickness is the spec default (see `thickness`
+        // above). Deliberately set here rather than on `Surface` (which
+        // wraps this `View` with no size of its own, so it just hugs
+        // it) — giving `Surface` an explicit width/height that flips
+        // between renders is what previously left a stale shadow
+        // "ghost" on iOS when `floating`'s `orientation` changed axis;
+        // that no longer happens with the fixed dimension living here
+        // instead.
+        isDocked && { height: thickness },
+        !isDocked &&
+          (isVertical ? { width: thickness } : { height: thickness }),
+        contentContainerStyle,
       ]}
-      testID={testID}
     >
-      <View
-        role="toolbar"
-        aria-label={ariaLabel}
-        testID={testID ? `${testID}-content` : undefined}
-        style={[
-          styles.content,
-          isVertical ? styles.column : styles.row,
-          { ...contentPadding, gap },
-          dockedInsetMargin,
-          // Cross-axis thickness is the spec default (see `thickness`
-          // above). Deliberately set here rather than on `Surface` (which
-          // wraps this `View` with no size of its own, so it just hugs
-          // it) — giving `Surface` an explicit width/height that flips
-          // between renders is what previously left a stale shadow
-          // "ghost" on iOS when `floating`'s `orientation` changed axis;
-          // that no longer happens with the fixed dimension living here
-          // instead.
-          isDocked && { height: thickness },
-          !isDocked &&
-            (isVertical ? { width: thickness } : { height: thickness }),
-          contentContainerStyle,
-        ]}
-      >
-        <ToolbarColorContext.Provider value={{ theme, colorScheme }}>
-          {children}
-        </ToolbarColorContext.Provider>
-      </View>
-    </Surface>
+      <ToolbarColorContext.Provider value={{ theme, colorScheme }}>
+        {children}
+      </ToolbarColorContext.Provider>
+    </View>
   );
 
-  // `floating` is positioned directly via `style` on `Surface` itself (like
-  // `FAB`'s `Shell`) — this wrapper carries nothing but the `visible`
-  // transform, so it doesn't disturb that positioning contract. `docked`
-  // anchors to its nearest positioned ancestor via the wrapping view below,
-  // which now also carries the transform directly.
-  if (!isDocked) {
-    return (
-      <Reanimated.View ref={visibilityRef} style={hideStyle}>
-        {pill}
-      </Reanimated.View>
-    );
-  }
+  const surfaceStyle = [
+    {
+      backgroundColor,
+      borderRadius,
+    },
+    isDocked && styles.dockedFill,
+    styles.content,
+  ];
 
+  // Both variants anchor via an outer `Reanimated.View` that carries the
+  // consumer's `style` (positioning) and `hideStyle` (the show/hide
+  // transform), wrapping a plain `Surface` that only ever holds
+  // appearance/content styling — never positioning. That split is what lets
+  // the public `ref` (this wrapper) and `visibilityRef` (the inner
+  // `Surface`, for `useVisibility`'s `measure()`) each land on their own
+  // node instead of needing to share one. `docked` additionally anchors via
+  // `styles.dockedContainer`; `floating` has no anchor of its own, relying
+  // entirely on the consumer's `style`.
   return (
     <Reanimated.View
       ref={ref}
-      // `box-none` so this anchoring box (spanning the full width of its
-      // ancestor) doesn't intercept touches outside the bar itself.
-      pointerEvents="box-none"
-      style={[styles.dockedContainer, style, hideStyle]}
+      // `box-none` so `docked`'s anchoring box (spanning the full width of
+      // its ancestor) doesn't intercept touches outside the bar itself.
+      // `floating`'s wrapper hugs the pill exactly, so it has no such dead
+      // space to worry about.
+      pointerEvents={isDocked ? 'box-none' : undefined}
+      style={[isDocked && styles.dockedContainer, style, hideStyle]}
       testID={testID ? `${testID}-container` : undefined}
     >
-      {pill}
+      <Surface
+        // The public `ref` lives on the wrapper above instead, freeing this
+        // one up for `useVisibility` to measure the toolbar's resting
+        // on-screen position (needed to compute how far offscreen is).
+        ref={visibilityRef}
+        elevation={elevation}
+        pointerEvents={visible ? 'auto' : 'none'}
+        aria-hidden={!visible}
+        style={surfaceStyle}
+        testID={testID}
+      >
+        {content}
+      </Surface>
     </Reanimated.View>
   );
 };

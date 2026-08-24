@@ -6,6 +6,7 @@ import { render } from '../../test-utils';
 import {
   resolveScrollTarget,
   ScrollVisibilityProvider,
+  shouldSuppressReversal,
   useScrollVisibility,
   useScrollVisibilityHandler,
 } from '../scrollVisibility';
@@ -28,21 +29,88 @@ class ErrorBoundary extends React.Component<
 
 describe('resolveScrollTarget', () => {
   it('always shows at or above the top, regardless of delta', () => {
-    expect(resolveScrollTarget(0, 100)).toBe(0);
-    expect(resolveScrollTarget(-10, 100)).toBe(0);
+    expect(resolveScrollTarget(0, 100, 0)).toEqual({
+      target: 0,
+      accumulated: 0,
+    });
+    expect(resolveScrollTarget(-10, 100, 0)).toEqual({
+      target: 0,
+      accumulated: 0,
+    });
   });
 
-  it('hides on a scroll-down delta past the threshold', () => {
-    expect(resolveScrollTarget(100, 50)).toBe(1);
+  it('hides once accumulated scroll-down distance passes the threshold', () => {
+    expect(resolveScrollTarget(100, 30, 0)).toEqual({
+      target: 1,
+      accumulated: 0,
+    });
   });
 
-  it('shows on a scroll-up delta past the threshold', () => {
-    expect(resolveScrollTarget(100, -50)).toBe(0);
+  it('shows once accumulated scroll-up distance passes the threshold', () => {
+    expect(resolveScrollTarget(100, -30, 0)).toEqual({
+      target: 0,
+      accumulated: 0,
+    });
   });
 
-  it('ignores deltas smaller than the threshold', () => {
-    expect(resolveScrollTarget(100, 2)).toBe(null);
-    expect(resolveScrollTarget(100, -2)).toBe(null);
+  it('accumulates deltas smaller than the threshold without acting yet', () => {
+    expect(resolveScrollTarget(100, 10, 0)).toEqual({
+      target: null,
+      accumulated: 10,
+    });
+    expect(resolveScrollTarget(110, 10, 10)).toEqual({
+      target: null,
+      accumulated: 20,
+    });
+  });
+
+  it('commits once accumulation across events crosses the threshold', () => {
+    const first = resolveScrollTarget(100, 15, 0);
+    expect(first).toEqual({ target: null, accumulated: 15 });
+
+    const second = resolveScrollTarget(115, 15, first.accumulated);
+    expect(second).toEqual({ target: 1, accumulated: 0 });
+  });
+
+  it('a single reversed frame resets the accumulator instead of flipping', () => {
+    // Built up a 15px down run, then one small up-tick (jitter) — should
+    // NOT show; it should just restart the accumulator in the up direction.
+    expect(resolveScrollTarget(115, -5, 15)).toEqual({
+      target: null,
+      accumulated: -5,
+    });
+  });
+
+  it('a sustained reversal still shows once it re-crosses the threshold', () => {
+    let accumulated = 15;
+    let result = resolveScrollTarget(110, -5, accumulated);
+    accumulated = result.accumulated;
+    expect(result.target).toBe(null);
+
+    result = resolveScrollTarget(90, -20, accumulated);
+    expect(result).toEqual({ target: 0, accumulated: 0 });
+  });
+
+  it('a zero delta is a no-op', () => {
+    expect(resolveScrollTarget(100, 0, 12)).toEqual({
+      target: null,
+      accumulated: 12,
+    });
+  });
+});
+
+describe('shouldSuppressReversal', () => {
+  it('never suppresses a commit in the same direction as the last one', () => {
+    expect(shouldSuppressReversal(1, 1, 0)).toBe(false);
+    expect(shouldSuppressReversal(0, 0, 0)).toBe(false);
+  });
+
+  it('suppresses a reversal that comes right after the last commit', () => {
+    expect(shouldSuppressReversal(0, 1, 50)).toBe(true);
+  });
+
+  it('allows a reversal once enough time has passed since the last commit', () => {
+    expect(shouldSuppressReversal(0, 1, 500)).toBe(false);
   });
 });
 

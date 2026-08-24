@@ -3,14 +3,18 @@
 exports[`defaults a mode-less IconButton child's iconColor to the toolbar's content color 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -607,14 +611,18 @@ exports[`extends the docked container into the bottom safe-area inset 1`] = `
 exports[`keeps an explicit iconColor instead of the vibrant default 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -972,14 +980,18 @@ exports[`keeps an explicit iconColor instead of the vibrant default 1`] = `
 exports[`leaves a Button child with a more opinionated mode uncolored 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -1209,14 +1221,18 @@ exports[`leaves a Button child with a more opinionated mode uncolored 1`] = `
 exports[`leaves an IconButton child with an explicit mode uncolored 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -1435,14 +1451,18 @@ exports[`leaves an IconButton child with an explicit mode uncolored 1`] = `
 exports[`recolors IconButtons through a Fragment held in a variable, not just direct children 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -1800,14 +1820,18 @@ exports[`recolors IconButtons through a Fragment held in a variable, not just di
 exports[`renders Toolbar transitioning to not visible 1`] = `
 <View
   style={
-    {
-      "opacity": 0,
-      "transform": [
-        {
-          "translateY": 1000,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 0,
+        "transform": [
+          {
+            "translateY": 1000,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -2165,14 +2189,18 @@ exports[`renders Toolbar transitioning to not visible 1`] = `
 exports[`renders Toolbar transitioning to visible 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -2530,14 +2558,18 @@ exports[`renders Toolbar transitioning to visible 1`] = `
 exports[`renders Toolbar with default props 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -3273,14 +3305,18 @@ exports[`renders Toolbar with docked variant 1`] = `
 exports[`renders Toolbar with vertical orientation 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
@@ -3638,14 +3674,18 @@ exports[`renders Toolbar with vertical orientation 1`] = `
 exports[`renders floating Toolbar with vibrant colorScheme 1`] = `
 <View
   style={
-    {
-      "opacity": 1,
-      "transform": [
-        {
-          "translateY": 0,
-        },
-      ],
-    }
+    [
+      false,
+      undefined,
+      {
+        "opacity": 1,
+        "transform": [
+          {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   }
 >
   <View
