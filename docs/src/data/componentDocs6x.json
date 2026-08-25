@@ -12019,7 +12019,7 @@
             "tsType": {
               "name": "boolean"
             },
-            "description": "Whether the toolbar is currently visible. Toggling animates an offscreen\nslide + fade, paired spatial/effects springs like `FAB`'s own `visible`\nprop (see `useVisibility`). Drive this yourself from whatever decides\nvisibility — e.g. `useScrollVisibility()`'s `hidden` (see\n`ScrollVisibilityProvider`) for a scroll-driven toolbar. Defaults to\n`true`.",
+            "description": "Whether the toolbar is currently visible. Drive this yourself from whatever decides\nvisibility — e.g. `useScrollVisibility()`'s `hidden` (see `ScrollVisibilityProvider`)\nfor a scroll-driven toolbar. Defaults to `true`.",
             "defaultValue": {
               "value": "true",
               "computed": false
@@ -12075,8 +12075,8 @@
           "ref": {
             "required": false,
             "tsType": {
-              "name": "ReactRefObject",
-              "raw": "React.RefObject<View>",
+              "name": "ReactRef",
+              "raw": "React.Ref<View>",
               "elements": [
                 {
                   "name": "View"

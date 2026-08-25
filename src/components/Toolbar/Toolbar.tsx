@@ -50,12 +50,9 @@ export type Props = {
    */
   containerColor?: ColorValue;
   /**
-   * Whether the toolbar is currently visible. Toggling animates an offscreen
-   * slide + fade, paired spatial/effects springs like `FAB`'s own `visible`
-   * prop (see `useVisibility`). Drive this yourself from whatever decides
-   * visibility — e.g. `useScrollVisibility()`'s `hidden` (see
-   * `ScrollVisibilityProvider`) for a scroll-driven toolbar. Defaults to
-   * `true`.
+   * Whether the toolbar is currently visible. Drive this yourself from whatever decides
+   * visibility — e.g. `useScrollVisibility()`'s `hidden` (see `ScrollVisibilityProvider`)
+   * for a scroll-driven toolbar. Defaults to `true`.
    */
   visible?: boolean;
   /**
@@ -86,7 +83,7 @@ export type Props = {
    * The ref lands on the outer positioning wrapper `View`, not the pill
    * (`Surface`) inside it.
    */
-  ref?: React.RefObject<View>;
+  ref?: React.Ref<View>;
 };
 
 /**

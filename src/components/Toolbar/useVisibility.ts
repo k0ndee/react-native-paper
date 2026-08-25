@@ -47,13 +47,7 @@ const UNMEASURED_FALLBACK_DISTANCE = 1000;
  * Position and opacity are two separate springs, per M3's guidance to pair a
  * spatial spring (for the properties that are expected to overshoot, like
  * position) with an effects spring (for properties that shouldn't, like
- * opacity) — the same pairing `FAB`'s own `useVisibility` uses for its
- * scale/alpha, at the same `fast` speed tier. M3's toolbar examples animate
- * this show/hide with the fast tier too, even though its general size-based
- * guidance (small elements get `fast`, partial-screen surfaces get
- * `default`) would suggest otherwise for something toolbar-sized — the
- * quicker pop in/out reads better here than the more deliberate `default`
- * timing.
+ * opacity).
  *
  * How far "offscreen" is isn't a fixed distance: a `floating` toolbar can be
  * anchored anywhere on screen (flush to an edge, centered along one, etc.),
@@ -62,8 +56,6 @@ const UNMEASURED_FALLBACK_DISTANCE = 1000;
  * this measures the ref's actual position via Reanimated's `measure()` at
  * the moment it's asked to hide, and computes exactly how far down clears
  * the bottom of the window.
- *
- * Reduce-motion: snap to the final values, no animation.
  */
 export function useVisibility({
   visible,
@@ -82,7 +74,7 @@ export function useVisibility({
   // can reuse it instead of re-measuring a position that's currently
   // mid-animation (and therefore not the pill's true resting position).
   const lastMeasuredDistance = useSharedValue(UNMEASURED_FALLBACK_DISTANCE);
-  // Tracks the previous `visible` so a `windowHeight`-only change (device
+  // Tracks the previous `visible` so a `windowHeight` change (device
   // rotation) doesn't replay the show springs while already shown and
   // settled. The hide branch below still reacts to `windowHeight` on its
   // own, since the offscreen distance genuinely depends on it.
