@@ -32,6 +32,12 @@ import { cornerFull } from '../../theme/tokens/sys/shape';
 import type { StateOpacityKey, ThemeProp } from '../../theme/types';
 import getMinInteractiveSizeHitSlop from '../../utils/getMinInteractiveSizeHitSlop';
 import { isKeyboardFocusEvent } from '../../utils/isKeyboardFocusEvent';
+import {
+  getFocusRingStyle,
+  toStyleList,
+  useFocusRing,
+  webNoOutline,
+} from '../../utils/useFocusRing';
 import Icon, { type IconSource } from '../Icon';
 
 export type Props = {
@@ -84,10 +90,6 @@ const {
 
 const { state: stateTokens } = tokens.md.sys;
 const stateOpacity = stateTokens.opacity;
-const { thickness: FOCUS_THICKNESS, outerOffset: FOCUS_OUTER_OFFSET } =
-  stateTokens.focusIndicator;
-const FOCUS_RING_INSET = -(FOCUS_OUTER_OFFSET + FOCUS_THICKNESS);
-const OVERLAY_TOP = (STATE_LAYER_SIZE - TRACK_HEIGHT) / 2;
 
 // The state layer is fixed size, so the slop to reach the 48dp minimum
 // interactive target is a constant rather than something to measure.
@@ -162,6 +164,13 @@ const Switch = ({
   const pressedSV = useSharedValue(0);
   const hoveredSV = useSharedValue(0);
   const focusedSV = useSharedValue(0);
+  const focusRing = useFocusRing(isDisabled);
+
+  React.useEffect(() => {
+    if (isDisabled) {
+      focusedSV.value = 0;
+    }
+  }, [isDisabled, focusedSV]);
   const checkedSV = useSharedValue(checked ? 1 : 0);
   const hasIconSV = useSharedValue(hasIcon ? 1 : 0);
   const isDisabledSV = useSharedValue(isDisabled ? 1 : 0);
@@ -331,10 +340,6 @@ const Switch = ({
     ],
   }));
 
-  const focusRingAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: focusedSV.value,
-  }));
-
   const paint = resolveSwitchPaint(colors, isEnabled, checked);
   const stateLayerColor = checked
     ? colors.checkedStateLayerColor
@@ -371,10 +376,11 @@ const Switch = ({
           hoveredSV.value = 0;
         }}
         onFocus={(e) => {
-          if (!isKeyboardFocusEvent(e)) return;
-          focusedSV.value = 1;
+          focusRing.onFocus(e);
+          if (!isDisabled && isKeyboardFocusEvent(e)) focusedSV.value = 1;
         }}
         onBlur={() => {
+          focusRing.onBlur();
           focusedSV.value = 0;
         }}
         android_ripple={{ color: 'transparent' }}
@@ -403,6 +409,9 @@ const Switch = ({
           style={[
             styles.track,
             { backgroundColor: paint.track, opacity: trackOpacityValue },
+            ...toStyleList(
+              getFocusRingStyle(focusRing.focused, colors.focusIndicatorColor)
+            ),
           ]}
         >
           {showOutline ? (
@@ -465,22 +474,6 @@ const Switch = ({
           </View>
         </Animated.View>
       ) : null}
-
-      <Animated.View
-        style={[
-          styles.focusRing,
-          {
-            borderColor: colors.focusIndicatorColor,
-            borderWidth: FOCUS_THICKNESS,
-            top: OVERLAY_TOP + FOCUS_RING_INSET,
-            left: FOCUS_RING_INSET,
-            right: FOCUS_RING_INSET,
-            bottom: OVERLAY_TOP + FOCUS_RING_INSET,
-            borderRadius: cornerFull,
-          },
-          focusRingAnimatedStyle,
-        ]}
-      />
     </View>
   );
 };
@@ -552,10 +545,6 @@ const styles = StyleSheet.create({
     height: SELECTED_ICON,
     pointerEvents: 'none',
   },
-  focusRing: {
-    position: 'absolute',
-    pointerEvents: 'none',
-  },
   absoluteFill: {
     position: 'absolute',
     top: 0,
@@ -564,9 +553,5 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
-
-// Web-only style; not in StyleSheet because `outline` is outside ViewStyle.
-// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-const webNoOutline = { outline: 'none' } as unknown as ViewStyle;
 
 export default Switch;
