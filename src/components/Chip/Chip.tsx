@@ -20,6 +20,11 @@ import { white } from '../../theme/colors';
 import type { ThemeProp } from '../../theme/types';
 import getMinInteractiveSizeHitSlop from '../../utils/getMinInteractiveSizeHitSlop';
 import hasTouchHandler from '../../utils/hasTouchHandler';
+import {
+  getFocusRingStyle,
+  toStyleList,
+  useFocusRing,
+} from '../../utils/useFocusRing';
 import type { IconSource } from '../Icon';
 import Icon from '../Icon';
 import MaterialCommunityIcon from '../MaterialCommunityIcon';
@@ -238,6 +243,7 @@ const Chip = ({
   ...rest
 }: Props) => {
   const theme = useInternalTheme(themeOverrides);
+  const closeFocusRing = useFocusRing(disabled);
 
   const [pressed, setPressed] = React.useState(false);
   const elevation = elevated ? (pressed ? 2 : 1) : 0;
@@ -317,6 +323,7 @@ const Chip = ({
     >
       <TouchableRipple
         borderless
+        focusRing="inward"
         background={background}
         style={[{ borderRadius }, styles.touchable]}
         onPress={onPress}
@@ -417,7 +424,19 @@ const Chip = ({
             disabled={disabled}
             role="button"
             aria-label={closeIconAccessibilityLabel}
-            style={styles.closeButton}
+            onFocus={closeFocusRing.onFocus}
+            onBlur={closeFocusRing.onBlur}
+            style={[
+              styles.closeButton,
+              { borderRadius },
+              ...toStyleList(
+                getFocusRingStyle(
+                  closeFocusRing.focused,
+                  theme.colors.secondary,
+                  'inward'
+                )
+              ),
+            ]}
           >
             <View
               testID={testID ? `${testID}-close-icon` : undefined}

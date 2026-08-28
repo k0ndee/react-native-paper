@@ -3,9 +3,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import type {
   ColorValue,
   GestureResponderEvent,
-  NativeSyntheticEvent,
   StyleProp,
-  TargetedEvent,
   ViewStyle,
 } from 'react-native';
 
@@ -16,10 +14,8 @@ import { getSelectionVisualState } from './utils';
 import { useLocale } from '../../core/locale';
 import { useInternalTheme } from '../../core/theming';
 import { useReduceMotion } from '../../theme/accessibility/ReduceMotionContext';
-import { tokens } from '../../theme/tokens';
 import type { ThemeProp } from '../../theme/types';
 import getMinInteractiveSizeHitSlop from '../../utils/getMinInteractiveSizeHitSlop';
-import { isKeyboardFocusEvent } from '../../utils/isKeyboardFocusEvent';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import type { Props as TouchableRippleProps } from '../TouchableRipple/TouchableRipple';
 
@@ -77,15 +73,6 @@ const {
   stateLayerSize: STATE_LAYER_SIZE,
 } = CheckboxTokens;
 
-const FOCUS_THICKNESS = tokens.md.sys.state.focusIndicator.thickness;
-// Focus indicator is a circular ring at the 40dp state-layer boundary.
-// We don't apply `focusIndicator.outerOffset`, so the ring stays inside the 40dp
-// circle. `TouchableRipple borderless` used to crop anything outside it; on web
-// it no longer does, since the touchable cannot clip without clipping the touch
-// target. Native still clips. Check both when revisiting the offset.
-const FOCUS_RING_SIZE = STATE_LAYER_SIZE;
-const FOCUS_RING_RADIUS = STATE_LAYER_SIZE / 2;
-
 // The state layer is fixed, so the slop to reach the 48dp minimum
 // interactive target is a constant rather than something to measure.
 const CHECKBOX_HIT_SLOP = getMinInteractiveSizeHitSlop({
@@ -137,7 +124,6 @@ const Checkbox = ({
   // Web (react-native-web) doesn't auto-mirror layout, so flip the mask
   // anchor manually for RTL. Native handles it via `I18nManager`.
   const flipMaskForWebRTL = Platform.OS === 'web' && direction === 'rtl';
-  const [focused, setFocused] = React.useState(false);
 
   const selected = status === 'checked' || status === 'indeterminate';
 
@@ -211,19 +197,6 @@ const Checkbox = ({
   }
   const showIndeterminate = nextGlyph === 'indeterminate';
 
-  const handleFocus = React.useCallback(
-    (e: NativeSyntheticEvent<TargetedEvent>) => {
-      if (disabled) return;
-      if (!isKeyboardFocusEvent(e)) return;
-      setFocused(true);
-    },
-    [disabled]
-  );
-
-  const handleBlur = React.useCallback(() => {
-    setFocused(false);
-  }, []);
-
   const checked: boolean | 'mixed' =
     status === 'indeterminate' ? 'mixed' : status === 'checked';
 
@@ -247,25 +220,13 @@ const Checkbox = ({
       borderless
       centered
       onPress={onPress}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
       disabled={disabled}
       {...accessibilityProps}
       testID={testID}
       hitSlop={rest.hitSlop ?? (disabled ? undefined : CHECKBOX_HIT_SLOP)}
-      style={[
-        styles.tapTarget,
-        Platform.OS === 'web' ? webNoOutline : undefined,
-        style,
-      ]}
+      style={[styles.tapTarget, style]}
     >
       <View pointerEvents="none" style={styles.tapTargetInner}>
-        {focused && !disabled ? (
-          <View
-            pointerEvents="none"
-            style={[styles.focusRing, { borderColor: theme.colors.secondary }]}
-          />
-        ) : null}
         <View style={[styles.container, { opacity: visual.containerOpacity }]}>
           <Animated.View
             pointerEvents="none"
@@ -311,10 +272,6 @@ const Checkbox = ({
   );
 };
 
-// Web-only style; not in StyleSheet because `outline` is outside ViewStyle.
-// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-const webNoOutline = { outline: 'none' } as unknown as ViewStyle;
-
 const styles = StyleSheet.create({
   tapTarget: {
     width: STATE_LAYER_SIZE,
@@ -328,13 +285,6 @@ const styles = StyleSheet.create({
     height: STATE_LAYER_SIZE,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  focusRing: {
-    position: 'absolute',
-    width: FOCUS_RING_SIZE,
-    height: FOCUS_RING_SIZE,
-    borderRadius: FOCUS_RING_RADIUS,
-    borderWidth: FOCUS_THICKNESS,
   },
   container: {
     width: CONTAINER_SIZE,
