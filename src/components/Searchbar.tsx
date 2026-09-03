@@ -235,7 +235,6 @@ const Searchbar = ({
       backgroundColor={theme.colors.surfaceContainerHigh}
       borderRadius={isBarMode ? theme.shapes.corner.extraLarge : cornerNone}
       style={[styles.container, style]}
-      testID={testID ? `${testID}-container` : undefined}
       elevation={elevation}
       theme={theme}
     >
@@ -257,7 +256,6 @@ const Searchbar = ({
         }
         theme={theme}
         aria-label={searchAccessibilityLabel}
-        testID={testID ? `${testID}-icon` : undefined}
       />
       <TextInput
         style={[
@@ -295,7 +293,6 @@ const Searchbar = ({
         // when clearing the value.
         <View
           pointerEvents={value ? 'auto' : 'none'}
-          testID={testID ? `${testID}-icon-wrapper` : undefined}
           style={[
             !value && styles.v3ClearIcon,
             right !== undefined && styles.v3ClearIconHidden,
@@ -317,7 +314,6 @@ const Searchbar = ({
                 />
               ))
             }
-            testID={testID ? `${testID}-clear-icon` : undefined}
             role="button"
             theme={theme}
           />
@@ -331,7 +327,6 @@ const Searchbar = ({
           iconColor={traileringIconColor || colors.onSurfaceVariant}
           icon={traileringIcon}
           aria-label={traileringIconAccessibilityLabel}
-          testID={testID ? `${testID}-trailering-icon` : undefined}
         />
       ) : null}
       {isBarMode &&
@@ -345,7 +340,6 @@ const Searchbar = ({
               backgroundColor: colors.outline,
             },
           ]}
-          testID={testID ? `${testID}-divider` : undefined}
         />
       )}
     </Surface>

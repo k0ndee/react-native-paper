@@ -281,7 +281,6 @@ const Chip = ({
       elevation={elevation}
       transitionDuration={elevationTransitionDuration}
       {...rest}
-      testID={testID ? `${testID}-container` : undefined}
       theme={theme}
     >
       <TouchableRipple

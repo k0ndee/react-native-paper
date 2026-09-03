@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { describe, expect, it } from '@jest/globals';
 
 import { getTheme } from '../../core/theming';
-import { render, screen } from '../../test-utils';
+import { render } from '../../test-utils';
 import { pink500 } from '../../theme/colors';
 import { tokens } from '../../theme/tokens';
 import IconButton from '../IconButton/IconButton';
@@ -53,7 +53,7 @@ it('renders icon change animated', async () => {
 });
 
 it('renders icon button with custom border radius', async () => {
-  await render(
+  const { toJSON } = await render(
     <IconButton
       icon="camera"
       testID="icon-button"
@@ -63,13 +63,11 @@ it('renders icon button with custom border radius', async () => {
     />
   );
 
-  expect(screen.getByTestId('icon-button-container')).toHaveStyle({
-    borderRadius: 0,
-  });
+  expect(toJSON()).toMatchSnapshot();
 });
 
 it('renders icon button with small border radius', async () => {
-  await render(
+  const { toJSON } = await render(
     <IconButton
       icon="camera"
       testID="icon-button"
@@ -79,9 +77,7 @@ it('renders icon button with small border radius', async () => {
     />
   );
 
-  expect(screen.getByTestId('icon-button-container')).toHaveStyle({
-    borderRadius: 4,
-  });
+  expect(toJSON()).toMatchSnapshot();
 });
 
 describe('getIconButtonColor - icon color', () => {

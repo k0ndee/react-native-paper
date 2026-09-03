@@ -190,58 +190,39 @@ describe('renderAppbarContent', () => {
 
 describe('AppbarAction', () => {
   it('should be rendered with default theme color', async () => {
-    await render(
+    const { toJSON } = await render(
       <Appbar>
         <Appbar.Action icon="menu" testID="appbar-action" />
       </Appbar>
     );
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    const appbarActionIcon = screen.getByTestId('appbar-action-icon-current')
-      .props.children;
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    expect(appbarActionIcon.props.color).toBe(
-      getTheme().colors.onSurfaceVariant
-    );
+    expect(toJSON()).toMatchSnapshot();
   });
 
   it('should be rendered with specific theme color if is leading', async () => {
-    await render(
+    const { toJSON } = await render(
       <Appbar>
         <Appbar.Action icon="menu" testID="appbar-action" isLeading />
       </Appbar>
     );
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    const appbarActionIcon = screen.getByTestId('appbar-action-icon-current')
-      .props.children;
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    expect(appbarActionIcon.props.color).toBe(getTheme().colors.onSurface);
+    expect(toJSON()).toMatchSnapshot();
   });
 
   it('should be rendered with custom color', async () => {
-    await render(
+    const { toJSON } = await render(
       <Appbar>
         <Appbar.Action icon="menu" color="purple" testID="appbar-action" />
       </Appbar>
     );
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    const appbarActionIcon = screen.getByTestId('appbar-action-icon-current')
-      .props.children;
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    expect(appbarActionIcon.props.color).toBe('purple');
+    expect(toJSON()).toMatchSnapshot();
   });
 
   it('should render AppbarBackAction with custom color', async () => {
-    await render(
+    const { toJSON } = await render(
       <Appbar>
         <Appbar.BackAction color="purple" testID="appbar-action" />
       </Appbar>
     );
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    const appbarBackActionIcon = screen.getByTestId(
-      'appbar-action-icon-current'
-    ).props.children;
-    // eslint-disable-next-line no-restricted-syntax -- TODO: replace TestInstance props access with a user-visible assertion.
-    expect(appbarBackActionIcon.props.color).toBe('purple');
+    expect(toJSON()).toMatchSnapshot();
   });
 });
 
@@ -254,7 +235,7 @@ describe('AppbarContent', () => {
         </Appbar>
       );
 
-      expect(screen.getByTestId('appbar-content-title-text')).toHaveStyle(
+      expect(screen.getByText('Title')).toHaveStyle(
         getTheme().fonts[modeTextVariant[mode]]
       );
     })

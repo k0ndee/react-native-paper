@@ -691,7 +691,6 @@ const Menu = ({
             style={[styles.wrapper, positionStyle, style]}
             pointerEvents={pointerEvents}
             onAccessibilityEscape={onDismiss}
-            testID={testID ? `${testID}-view` : undefined}
           >
             <Animated.View
               pointerEvents={pointerEvents}
@@ -707,7 +706,7 @@ const Menu = ({
                   shadowMenuAnimationStyle,
                 ]}
                 elevation={elevation}
-                testID={testID ? `${testID}-surface` : undefined}
+                testID={testID}
                 theme={theme}
               >
                 <Animated.View

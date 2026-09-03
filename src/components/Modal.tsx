@@ -235,7 +235,6 @@ function Modal({
         onPress={dismissable ? onDismissCallback : undefined}
         importantForAccessibility="no"
         style={[styles.backdrop, backdropStyle, backdropTransitionStyle]}
-        testID={testID ? `${testID}-backdrop` : undefined}
       />
       <View
         style={[
@@ -244,10 +243,8 @@ function Modal({
           style,
         ]}
         pointerEvents="box-none"
-        testID={testID ? `${testID}-wrapper` : undefined}
       >
         <Surface
-          testID={testID ? `${testID}-surface` : undefined}
           theme={theme}
           backgroundColor={contentBackgroundColor}
           borderRadius={contentBorderRadius}

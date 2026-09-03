@@ -225,13 +225,11 @@ const Card = ({
       style={[{ borderColor }, style]}
       theme={theme}
       elevation={elevation}
-      testID={testID ? `${testID}-container` : undefined}
       {...rest}
     >
       {isMode('outlined') && (
         <View
           pointerEvents="none"
-          testID={testID ? `${testID}-outline` : undefined}
           style={[
             {
               borderColor,
