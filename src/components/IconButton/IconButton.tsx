@@ -16,7 +16,6 @@ import ActivityIndicator from '../ActivityIndicator';
 import CrossFadeIcon from '../CrossFadeIcon';
 import Icon from '../Icon';
 import type { IconSource } from '../Icon';
-import Surface from '../Surface';
 import {
   resolveIconColors as resolveToolbarIconColors,
   ToolbarColorContext,
