@@ -19,11 +19,7 @@ import { useInternalTheme } from '../../core/theming';
 import type { ThemeProp } from '../../theme/types';
 import hasTouchHandler from '../../utils/hasTouchHandler';
 import type { FocusRingPlacement } from '../../utils/useFocusRing';
-import {
-  getFocusRingStyle,
-  toStyleList,
-  useFocusRing,
-} from '../../utils/useFocusRing';
+import { useFocusRing } from '../../utils/useFocusRing';
 
 const ANDROID_VERSION_LOLLIPOP = 21;
 const ANDROID_VERSION_PIE = 28;
@@ -78,8 +74,8 @@ export type Props = PressableProps & {
    *   that sit flush against a neighbour.
    * - `none` - no indicator. Only for a control that draws its own.
    *
-   * Has no effect on iOS, which does not dispatch focus events for a
-   * `Pressable`.
+   * Has no effect on iOS today - see `useFocusRing`'s doc comment for why
+   * (`enableImperativeFocus`, off by default).
    */
   focusRing?: FocusRingPlacement;
   onPress?: (e: GestureResponderEvent) => void | null;
@@ -124,18 +120,22 @@ const TouchableRipple = ({
 
   const disabled = disabledProp || !hasPassedTouchHandler;
 
-  const ring = useFocusRing(disabled || focusRing === 'none');
+  // Keyed off `disabledProp`, not `disabled`: the latter also folds in
+  // "no press handler passed", which is a non-interactivity signal, not a
+  // disabled one - the ring should only react to real disablement.
+  const { target, ring } = useFocusRing(
+    disabledProp,
+    theme.colors.secondary,
+    focusRing
+  );
   const handleFocus = (e: NativeSyntheticEvent<TargetedEvent>) => {
     onFocus?.(e);
-    ring.onFocus(e);
+    target.onFocus?.(e);
   };
   const handleBlur = (e: NativeSyntheticEvent<TargetedEvent>) => {
     onBlur?.(e);
-    ring.onBlur();
+    target.onBlur?.();
   };
-  const ringStyles = toStyleList(
-    getFocusRingStyle(ring.focused, theme.colors.secondary, focusRing)
-  );
 
   const { calculatedRippleColor, calculatedUnderlayColor } =
     getTouchableRippleColors({
@@ -169,7 +169,7 @@ const TouchableRipple = ({
         hitSlop={hitSlop}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        style={[useForeground && styles.overflowHidden, style, ...ringStyles]}
+        style={[useForeground && styles.overflowHidden, style, ...ring.style]}
         android_ripple={androidRipple}
       >
         {React.Children.only(children)}
@@ -185,7 +185,7 @@ const TouchableRipple = ({
       hitSlop={hitSlop}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      style={[borderless && styles.overflowHidden, style, ...ringStyles]}
+      style={[borderless && styles.overflowHidden, style, ...ring.style]}
     >
       {({ pressed }) => (
         <>
