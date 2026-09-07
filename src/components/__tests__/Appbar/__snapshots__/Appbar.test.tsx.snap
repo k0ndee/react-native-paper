@@ -194,7 +194,6 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -233,17 +232,10 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -261,6 +253,12 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -360,7 +358,6 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
           [
             {
               "margin": 6,
-              "overflow": "hidden",
             },
             {
               "backgroundColor": undefined,
@@ -399,17 +396,10 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
           centered={true}
           collapsable={false}
           focusable={true}
-          hitSlop={
-            {
-              "bottom": 6,
-              "left": 6,
-              "right": 6,
-              "top": 6,
-            }
-          }
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
+          onLayout={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -427,6 +417,12 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
                   "alignItems": "center",
                   "flexGrow": 1,
                   "justifyContent": "center",
+                },
+                {
+                  "borderRadius": 20,
+                },
+                {
+                  "overflow": "hidden",
                 },
                 undefined,
               ],
@@ -582,7 +578,6 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
       [
         {
           "margin": 6,
-          "overflow": "hidden",
         },
         {
           "backgroundColor": undefined,
@@ -621,17 +616,10 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
       centered={true}
       collapsable={false}
       focusable={true}
-      hitSlop={
-        {
-          "bottom": 6,
-          "left": 6,
-          "right": 6,
-          "top": 6,
-        }
-      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -649,6 +637,12 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
               "alignItems": "center",
               "flexGrow": 1,
               "justifyContent": "center",
+            },
+            {
+              "borderRadius": 20,
+            },
+            {
+              "overflow": "hidden",
             },
             undefined,
           ],
@@ -805,7 +799,6 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
       [
         {
           "margin": 6,
-          "overflow": "hidden",
         },
         {
           "backgroundColor": undefined,
@@ -843,17 +836,10 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
       centered={true}
       collapsable={false}
       focusable={true}
-      hitSlop={
-        {
-          "bottom": 6,
-          "left": 6,
-          "right": 6,
-          "top": 6,
-        }
-      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -871,6 +857,12 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
               "alignItems": "center",
               "flexGrow": 1,
               "justifyContent": "center",
+            },
+            {
+              "borderRadius": 20,
+            },
+            {
+              "overflow": "hidden",
             },
             undefined,
           ],
