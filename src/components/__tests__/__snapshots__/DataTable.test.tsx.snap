@@ -25,6 +25,7 @@ exports[`DataTable.Cell renders data table cell 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -96,6 +97,7 @@ exports[`DataTable.Cell renders right aligned data table cell 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
+  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -383,7 +385,6 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -422,17 +423,10 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -450,6 +444,12 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -501,7 +501,6 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -540,17 +539,10 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -568,6 +560,12 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -677,7 +675,6 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -716,17 +713,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -744,6 +734,12 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -795,7 +791,6 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -834,17 +829,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -862,6 +850,12 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -913,7 +907,6 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -952,17 +945,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -980,6 +966,12 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -1031,7 +1023,6 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -1070,17 +1061,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1098,6 +1082,12 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -1207,7 +1197,6 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -1246,17 +1235,10 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1274,6 +1256,12 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -1325,7 +1313,6 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -1364,17 +1351,10 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1392,6 +1372,12 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -1624,6 +1610,7 @@ exports[`DataTable.Pagination renders data table pagination with options select 
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
+          onLayout={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1801,7 +1788,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -1840,17 +1826,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1868,6 +1847,12 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -1919,7 +1904,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -1958,17 +1942,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1986,6 +1963,12 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -2037,7 +2020,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -2076,17 +2058,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2104,6 +2079,12 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -2155,7 +2136,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -2194,17 +2174,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2222,6 +2195,12 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],

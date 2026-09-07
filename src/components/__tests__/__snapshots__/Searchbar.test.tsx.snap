@@ -96,7 +96,6 @@ exports[`activity indicator snapshot test 1`] = `
       [
         {
           "margin": 6,
-          "overflow": "hidden",
         },
         {
           "backgroundColor": undefined,
@@ -135,17 +134,10 @@ exports[`activity indicator snapshot test 1`] = `
       centered={true}
       collapsable={false}
       focusable={true}
-      hitSlop={
-        {
-          "bottom": 6,
-          "left": 6,
-          "right": 6,
-          "top": 6,
-        }
-      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -163,6 +155,12 @@ exports[`activity indicator snapshot test 1`] = `
               "alignItems": "center",
               "flexGrow": 1,
               "justifyContent": "center",
+            },
+            {
+              "borderRadius": 20,
+            },
+            {
+              "overflow": "hidden",
             },
             undefined,
           ],
@@ -536,7 +534,6 @@ exports[`renders with placeholder 1`] = `
       [
         {
           "margin": 6,
-          "overflow": "hidden",
         },
         {
           "backgroundColor": undefined,
@@ -575,17 +572,10 @@ exports[`renders with placeholder 1`] = `
       centered={true}
       collapsable={false}
       focusable={true}
-      hitSlop={
-        {
-          "bottom": 6,
-          "left": 6,
-          "right": 6,
-          "top": 6,
-        }
-      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -603,6 +593,12 @@ exports[`renders with placeholder 1`] = `
               "alignItems": "center",
               "flexGrow": 1,
               "justifyContent": "center",
+            },
+            {
+              "borderRadius": 20,
+            },
+            {
+              "overflow": "hidden",
             },
             undefined,
           ],
@@ -702,7 +698,6 @@ exports[`renders with placeholder 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -741,17 +736,10 @@ exports[`renders with placeholder 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -769,6 +757,12 @@ exports[`renders with placeholder 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
@@ -914,7 +908,6 @@ exports[`renders with text 1`] = `
       [
         {
           "margin": 6,
-          "overflow": "hidden",
         },
         {
           "backgroundColor": undefined,
@@ -953,17 +946,10 @@ exports[`renders with text 1`] = `
       centered={true}
       collapsable={false}
       focusable={true}
-      hitSlop={
-        {
-          "bottom": 6,
-          "left": 6,
-          "right": 6,
-          "top": 6,
-        }
-      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -981,6 +967,12 @@ exports[`renders with text 1`] = `
               "alignItems": "center",
               "flexGrow": 1,
               "justifyContent": "center",
+            },
+            {
+              "borderRadius": 20,
+            },
+            {
+              "overflow": "hidden",
             },
             undefined,
           ],
@@ -1076,7 +1068,6 @@ exports[`renders with text 1`] = `
         [
           {
             "margin": 6,
-            "overflow": "hidden",
           },
           {
             "backgroundColor": undefined,
@@ -1115,17 +1106,10 @@ exports[`renders with text 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          {
-            "bottom": 6,
-            "left": 6,
-            "right": 6,
-            "top": 6,
-          }
-        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1143,6 +1127,12 @@ exports[`renders with text 1`] = `
                 "alignItems": "center",
                 "flexGrow": 1,
                 "justifyContent": "center",
+              },
+              {
+                "borderRadius": 20,
+              },
+              {
+                "overflow": "hidden",
               },
               undefined,
             ],
