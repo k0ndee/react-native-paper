@@ -3,7 +3,7 @@ import type { ColorValue } from 'react-native';
 
 import { ToolbarTokens } from './tokens';
 import type { ColorScheme } from './tokens';
-import type { InternalTheme } from '../../types';
+import type { InternalTheme } from '../../theme/types';
 
 export const resolveColors = (colorScheme: ColorScheme) =>
   colorScheme === 'vibrant'

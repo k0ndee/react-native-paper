@@ -9,8 +9,8 @@ import type { ColorScheme, Orientation, Variant } from './tokens';
 import { ToolbarColorContext } from './ToolbarColorContext';
 import { getSpacing, resolveContainerColor, resolveElevation } from './utils';
 import { useInternalTheme } from '../../core/theming';
+import type { ThemeProp } from '../../theme/types';
 import { resolveCornerRadius } from '../../theme/utils/shape';
-import type { ThemeProp } from '../../types';
 import Surface from '../Surface';
 
 export type Props = {
@@ -183,11 +183,9 @@ const Toolbar = ({
     <Surface
       ref={isDocked ? undefined : ref}
       elevation={elevation}
+      backgroundColor={backgroundColor}
+      borderRadius={borderRadius}
       style={[
-        {
-          backgroundColor,
-          borderRadius,
-        },
         isDocked && styles.dockedFill,
         styles.content,
         !isDocked && style,

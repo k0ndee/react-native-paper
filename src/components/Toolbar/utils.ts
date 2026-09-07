@@ -4,7 +4,7 @@ import { ToolbarTokens } from './tokens';
 import type { ColorScheme, Variant } from './tokens';
 import { resolveColors } from './ToolbarColorContext';
 import type { Elevation } from '../../theme/types';
-import type { InternalTheme } from '../../types';
+import type { InternalTheme } from '../../theme/types';
 
 /** Resolve the container (background) color; an explicit `containerColor` wins over `colorScheme`. */
 export const resolveContainerColor = ({

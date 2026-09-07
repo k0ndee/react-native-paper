@@ -87,7 +87,7 @@ it("applies `style` directly to the floating pill's outer (position) layer", asy
     </Toolbar>
   );
 
-  expect(screen.getByTestId('floating-outer-layer')).toHaveStyle({
+  expect(screen.getByTestId('floating')).toHaveStyle({
     position: 'absolute',
     top: 5,
   });
@@ -102,7 +102,7 @@ it("lets `style` override the floating pill's internal container styles", async 
     </Toolbar>
   );
 
-  expect(screen.getByTestId('floating-outer-layer')).toHaveStyle({
+  expect(screen.getByTestId('floating')).toHaveStyle({
     height: 200,
   });
 });
@@ -388,7 +388,7 @@ it("leaves a Button child's explicit textColor/buttonColor untouched", async () 
 // `theme.colors` values are `rgba(r, g, b, 1)` strings convert to hex to
 // compare against the design spec's hex values directly.
 const toHex = (rgba: unknown) => {
-  const [r, g, b] = String(rgba).match(/\d+/g)!.map(Number);
+  const [r, g, b] = (String(rgba).match(/\d+/g) ?? []).map(Number);
   return (
     '#' +
     [r, g, b]
