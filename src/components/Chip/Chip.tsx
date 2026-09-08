@@ -155,29 +155,6 @@ export type Props = Omit<ViewProps, 'style'> & {
 };
 
 /**
- * Chips are compact elements that can represent inputs, attributes, or actions.
- * They can have an icon or avatar on the left, and a close button icon on the right.
- * They are typically used to:
- * <ul>
- *  <li>Present multiple options </li>
- *  <li>Represent attributes active or chosen </li>
- *  <li>Present filter options </li>
- *  <li>Trigger actions related to primary content </li>
- * </ul>
- *
- * ## Usage
- * ```js
- * import * as React from 'react';
- * import { Chip } from 'react-native-paper';
- *
- * const MyComponent = () => (
- *   <Chip icon="information" onPress={() => console.log('Pressed')}>Example Chip</Chip>
- * );
- *
- * export default MyComponent;
- * ```
- */
-/**
  * Room the chip reserves on its right for the close button, which fills all of
  * it, so the body stops here and the two divide the chip.
  *
@@ -206,6 +183,29 @@ const CHIP_BODY_HIT_SLOP = getMinInteractiveSizeHitSlop({
   height: CHIP_BODY_HEIGHT,
 });
 
+/**
+ * Chips are compact elements that can represent inputs, attributes, or actions.
+ * They can have an icon or avatar on the left, and a close button icon on the right.
+ * They are typically used to:
+ * <ul>
+ *  <li>Present multiple options </li>
+ *  <li>Represent attributes active or chosen </li>
+ *  <li>Present filter options </li>
+ *  <li>Trigger actions related to primary content </li>
+ * </ul>
+ *
+ * ## Usage
+ * ```js
+ * import * as React from 'react';
+ * import { Chip } from 'react-native-paper';
+ *
+ * const MyComponent = () => (
+ *   <Chip icon="information" onPress={() => console.log('Pressed')}>Example Chip</Chip>
+ * );
+ *
+ * export default MyComponent;
+ * ```
+ */
 const Chip = ({
   mode = 'flat',
   children,
