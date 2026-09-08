@@ -25,7 +25,6 @@ exports[`DataTable.Cell renders data table cell 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -97,7 +96,6 @@ exports[`DataTable.Cell renders right aligned data table cell 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -392,8 +390,16 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -423,10 +429,17 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -446,7 +459,15 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -508,8 +529,16 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -539,10 +568,17 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -562,7 +598,15 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -682,8 +726,16 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -713,10 +765,17 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -736,7 +795,15 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -798,8 +865,16 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -829,10 +904,17 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -852,7 +934,15 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -914,8 +1004,16 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -945,10 +1043,17 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -968,7 +1073,15 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -1030,8 +1143,16 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -1061,10 +1182,17 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1084,7 +1212,15 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -1204,8 +1340,16 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -1235,10 +1379,17 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1258,7 +1409,15 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -1320,8 +1479,16 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -1351,10 +1518,17 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1374,7 +1548,15 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -1610,7 +1792,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
-          onLayout={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1795,8 +1976,16 @@ exports[`DataTable.Pagination renders data table pagination with options select 
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -1826,10 +2015,17 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1849,7 +2045,15 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -1911,8 +2115,16 @@ exports[`DataTable.Pagination renders data table pagination with options select 
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -1942,10 +2154,17 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1965,7 +2184,15 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -2027,8 +2254,16 @@ exports[`DataTable.Pagination renders data table pagination with options select 
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -2058,10 +2293,17 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2081,7 +2323,15 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -2143,8 +2393,16 @@ exports[`DataTable.Pagination renders data table pagination with options select 
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -2174,10 +2432,17 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2197,7 +2462,15 @@ exports[`DataTable.Pagination renders data table pagination with options select 
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",

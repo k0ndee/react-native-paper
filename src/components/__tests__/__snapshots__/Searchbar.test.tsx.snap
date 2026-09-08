@@ -103,8 +103,16 @@ exports[`activity indicator snapshot test 1`] = `
           "width": 40,
         },
         {
+          "borderBottomEndRadius": undefined,
+          "borderBottomLeftRadius": undefined,
+          "borderBottomRightRadius": undefined,
+          "borderBottomStartRadius": undefined,
           "borderColor": "rgba(202, 196, 208, 1)",
           "borderRadius": 20,
+          "borderTopEndRadius": undefined,
+          "borderTopLeftRadius": undefined,
+          "borderTopRightRadius": undefined,
+          "borderTopStartRadius": undefined,
           "borderWidth": 0,
         },
         undefined,
@@ -134,10 +142,17 @@ exports[`activity indicator snapshot test 1`] = `
       centered={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -157,7 +172,15 @@ exports[`activity indicator snapshot test 1`] = `
               "justifyContent": "center",
             },
             {
+              "borderBottomEndRadius": undefined,
+              "borderBottomLeftRadius": undefined,
+              "borderBottomRightRadius": undefined,
+              "borderBottomStartRadius": undefined,
               "borderRadius": 20,
+              "borderTopEndRadius": undefined,
+              "borderTopLeftRadius": undefined,
+              "borderTopRightRadius": undefined,
+              "borderTopStartRadius": undefined,
             },
             {
               "overflow": "hidden",
@@ -541,8 +564,16 @@ exports[`renders with placeholder 1`] = `
           "width": 40,
         },
         {
+          "borderBottomEndRadius": undefined,
+          "borderBottomLeftRadius": undefined,
+          "borderBottomRightRadius": undefined,
+          "borderBottomStartRadius": undefined,
           "borderColor": "rgba(202, 196, 208, 1)",
           "borderRadius": 20,
+          "borderTopEndRadius": undefined,
+          "borderTopLeftRadius": undefined,
+          "borderTopRightRadius": undefined,
+          "borderTopStartRadius": undefined,
           "borderWidth": 0,
         },
         undefined,
@@ -572,10 +603,17 @@ exports[`renders with placeholder 1`] = `
       centered={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -595,7 +633,15 @@ exports[`renders with placeholder 1`] = `
               "justifyContent": "center",
             },
             {
+              "borderBottomEndRadius": undefined,
+              "borderBottomLeftRadius": undefined,
+              "borderBottomRightRadius": undefined,
+              "borderBottomStartRadius": undefined,
               "borderRadius": 20,
+              "borderTopEndRadius": undefined,
+              "borderTopLeftRadius": undefined,
+              "borderTopRightRadius": undefined,
+              "borderTopStartRadius": undefined,
             },
             {
               "overflow": "hidden",
@@ -705,8 +751,16 @@ exports[`renders with placeholder 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -736,10 +790,17 @@ exports[`renders with placeholder 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -759,7 +820,15 @@ exports[`renders with placeholder 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -915,8 +984,16 @@ exports[`renders with text 1`] = `
           "width": 40,
         },
         {
+          "borderBottomEndRadius": undefined,
+          "borderBottomLeftRadius": undefined,
+          "borderBottomRightRadius": undefined,
+          "borderBottomStartRadius": undefined,
           "borderColor": "rgba(202, 196, 208, 1)",
           "borderRadius": 20,
+          "borderTopEndRadius": undefined,
+          "borderTopLeftRadius": undefined,
+          "borderTopRightRadius": undefined,
+          "borderTopStartRadius": undefined,
           "borderWidth": 0,
         },
         undefined,
@@ -946,10 +1023,17 @@ exports[`renders with text 1`] = `
       centered={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -969,7 +1053,15 @@ exports[`renders with text 1`] = `
               "justifyContent": "center",
             },
             {
+              "borderBottomEndRadius": undefined,
+              "borderBottomLeftRadius": undefined,
+              "borderBottomRightRadius": undefined,
+              "borderBottomStartRadius": undefined,
               "borderRadius": 20,
+              "borderTopEndRadius": undefined,
+              "borderTopLeftRadius": undefined,
+              "borderTopRightRadius": undefined,
+              "borderTopStartRadius": undefined,
             },
             {
               "overflow": "hidden",
@@ -1075,8 +1167,16 @@ exports[`renders with text 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -1106,10 +1206,17 @@ exports[`renders with text 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1129,7 +1236,15 @@ exports[`renders with text 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",

@@ -14,9 +14,11 @@ import useLatestCallback from 'use-latest-callback';
 
 import { getChipColors } from './helpers';
 import type { ChipAvatarProps } from './helpers';
+import { ChipTokens } from './tokens';
 import { useInternalTheme } from '../../core/theming';
 import { white } from '../../theme/colors';
 import type { ThemeProp } from '../../theme/types';
+import getMinInteractiveSizeHitSlop from '../../utils/getMinInteractiveSizeHitSlop';
 import hasTouchHandler from '../../utils/hasTouchHandler';
 import type { IconSource } from '../Icon';
 import Icon from '../Icon';
@@ -194,6 +196,16 @@ const CLOSE_AFFORDANCE_WIDTH = 34;
  */
 const CLOSE_AFFORDANCE_MIN_WIDTH = 26;
 
+/**
+ * The container height is fixed by spec, so the slop to reach the 48dp minimum
+ * is a constant rather than something to measure. Width grows with the label
+ * and the whole pill is already the target, so only the vertical axis needs it.
+ */
+const { containerHeight: CHIP_BODY_HEIGHT } = ChipTokens;
+const CHIP_BODY_HIT_SLOP = getMinInteractiveSizeHitSlop({
+  height: CHIP_BODY_HEIGHT,
+});
+
 const Chip = ({
   mode = 'flat',
   children,
@@ -319,7 +331,7 @@ const Chip = ({
         aria-disabled={disabled}
         testID={testID}
         theme={theme}
-        hitSlop={hitSlop}
+        hitSlop={hitSlop ?? (disabled ? undefined : CHIP_BODY_HIT_SLOP)}
       >
         <View
           style={[
@@ -446,6 +458,7 @@ const styles = StyleSheet.create({
   },
   md3Content: {
     paddingLeft: 0,
+    minHeight: CHIP_BODY_HEIGHT,
   },
   icon: {
     padding: 4,

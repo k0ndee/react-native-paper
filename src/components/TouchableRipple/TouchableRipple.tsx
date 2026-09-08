@@ -15,31 +15,21 @@ import { getTouchableRippleColors } from './utils';
 import { SettingsContext } from '../../core/settings';
 import type { Settings } from '../../core/settings';
 import { useInternalTheme } from '../../core/theming';
-import { tokens } from '../../theme/tokens';
 import type { ThemeProp } from '../../theme/types';
 import hasTouchHandler from '../../utils/hasTouchHandler';
 
-const { minInteractiveSize } = tokens.md.sys.state;
-
 /**
  * react-native-web removed `hitSlop` in 0.13.0, so web needs a real element the
- * browser can hit-test instead. An absolutely positioned box at least the
- * minimum target size, which is what material-web does, and it costs no layout.
+ * browser can hit-test instead of a native responder inset.
  * @see https://github.com/necolas/react-native-web/releases/tag/0.13.0
- * @see https://github.com/material-components/material-web/blob/main/iconbutton/internal/_shared.scss
  */
 const getTouchTargetStyle = (hitSlop: PressableProps['hitSlop']): ViewStyle => {
-  // `undefined` means the caller said nothing, so the minimum applies. `null`
-  // means "no slop", same as native.
-  if (hitSlop === undefined) {
-    return styles.touchTarget;
-  }
-  if (hitSlop === null) {
+  // `undefined` or `null` both mean no slop: nothing for the caller to opt
+  // into, so the target matches the touchable's own bounds.
+  if (hitSlop === undefined || hitSlop === null) {
     return styles.noTouchTarget;
   }
 
-  // A caller hitSlop wins here too, so web matches native instead of ignoring
-  // the prop.
   const inset = (value: number | undefined) => -(value ?? 0);
 
   return typeof hitSlop === 'number'
@@ -394,17 +384,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-  },
-  touchTarget: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    // max(minInteractiveSize, 100%), same as MD3 web's .touch
-    width: '100%',
-    height: '100%',
-    minWidth: minInteractiveSize,
-    minHeight: minInteractiveSize,
-    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
   },
 });
 
