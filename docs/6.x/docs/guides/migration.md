@@ -71,61 +71,32 @@ You can use the component's color prop where available, or override the correspo
 
 ### Test IDs
 
-Hardcoded default test IDs have been removed for the components listed below. Many of these components also derive test IDs for their internal parts by appending a suffix to the `testID` prop (e.g. `${testID}-container`). Since `testID` is no longer defaulted to a hardcoded value, none of these derived test IDs are set either unless you pass a `testID` explicitly — so all queries by the IDs below will stop matching:
+Hardcoded default test IDs have been removed for the components listed below:
 
 - `Appbar.Content`: `appbar-content`
-  - `appbar-content-title-text`
 - `Appbar.Header`: `appbar-header`
-  - `appbar-header-root-layer`
 - `BottomNavigation`: `bottom-navigation`
-  - `bottom-navigation-bar`
 - `BottomNavigation.Bar`: `bottom-navigation-bar`
-  - `bottom-navigation-bar-content`
-  - `bottom-navigation-bar-content-wrapper`
 - `Button`: `button`
-  - `button-container`
-  - `button-icon-container`
-  - `button-text`
 - `Card`: `card`
-  - `card-container`
-  - `card-outline`
 - `Chip`: `chip`
-  - `chip-container`
 - `Drawer.CollapsedItem`: `drawer-collapsed-item`
-  - `drawer-collapsed-item-outline`
-  - `drawer-collapsed-item-container`
 - `FAB`: `floating-action-button`
-  - `floating-action-button-container`
-  - `floating-action-button-text`
 - `FAB.Extended`: `extended-floating-action-button`
-  - `extended-floating-action-button-container`
-  - `extended-floating-action-button-text`
 - `FAB.Menu`: `floating-action-button-menu`
 - `IconButton`: `icon-button`
-  - `icon-button-container`
-  - `icon-button-icon` (and `icon-button-icon-previous` / `icon-button-icon-current` when `animated`)
 - `Menu`: `menu`
-  - `menu-view`
-  - `menu-surface`
 - `Menu.Item`: `menu-item`
-  - `menu-item-title`
 - `Modal`: `modal`
-  - `modal-backdrop`
-  - `modal-wrapper`
-  - `modal-surface`
 - `ProgressBar`: `progress-bar`
-  - `progress-bar-fill`
 - `Searchbar`: `search-bar`
-  - `search-bar-container`
-  - `search-bar-icon`
-  - `search-bar-icon-wrapper`
-  - `search-bar-clear-icon`
-  - `search-bar-trailering-icon`
-  - `search-bar-divider`
 - `Surface`: `surface`
-  - `surface-outer-layer`
 
-You can specify a `testID` explicitly to restore both the component's own test ID and all of its derived test IDs above, using the same suffixes.
+You can specify a `testID` explicitly to restore each component's own test ID.
+
+These components used to also derive test IDs for internal, implementation-only elements by appending a suffix to the `testID` prop (e.g. `${testID}-container`, `${testID}-icon`, `${testID}-outline`). Those internal test IDs have been removed entirely — they are no longer set even when you pass `testID` explicitly. Test IDs should only be used to interact with elements or assert content your users can reach, not to reach into a component's internal structure in tests; if you were relying on one of these internal IDs, query by role, label, text, or the component's own `testID`/`ref` instead.
+
+The one exception is `BottomNavigation`, which still sets `${testID}-bar` on its internal `BottomNavigation.Bar` when you pass `testID`, since there's currently no other way to reference that node from outside the component.
 
 ## Components
 
