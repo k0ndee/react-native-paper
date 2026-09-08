@@ -420,7 +420,7 @@ const Chip = ({
             style={styles.closeButton}
           >
             <View
-              testID={`${testID}-close-icon`}
+              testID={testID ? `${testID}-close-icon` : undefined}
               style={[styles.icon, styles.closeIcon, styles.md3CloseIcon]}
             >
               {closeIcon ? (
