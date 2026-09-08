@@ -12,7 +12,7 @@ import Animated, { type AnimatedStyle } from 'react-native-reanimated';
 import { getIconButtonColor } from './utils';
 import { useInternalTheme } from '../../core/theming';
 import type { ThemeProp } from '../../theme/types';
-import { splitStyles } from '../../utils/splitStyles';
+import getMinInteractiveSizeHitSlop from '../../utils/getMinInteractiveSizeHitSlop';
 import ActivityIndicator from '../ActivityIndicator';
 import CrossFadeIcon from '../CrossFadeIcon';
 import Icon from '../Icon';
@@ -75,6 +75,21 @@ export type Props = Omit<
    * Function to execute on press.
    */
   onPress?: (e: GestureResponderEvent) => void;
+  /**
+   * Radius of every corner of the button. Defaults to a circle (half of the
+   * button's size). Read as a plain prop rather than out of `style`, since
+   * `style` may be an animated value on the UI thread that a synchronous
+   * `StyleSheet.flatten` cannot see.
+   */
+  borderRadius?: number;
+  borderTopLeftRadius?: number;
+  borderTopRightRadius?: number;
+  borderBottomLeftRadius?: number;
+  borderBottomRightRadius?: number;
+  borderTopStartRadius?: number;
+  borderTopEndRadius?: number;
+  borderBottomStartRadius?: number;
+  borderBottomEndRadius?: number;
   style?: StyleProp<AnimatedStyle<ViewStyle>>;
   ref?: React.Ref<View>;
   /**
@@ -129,6 +144,15 @@ const IconButton = ({
   testID,
   loading = false,
   contentStyle,
+  borderRadius,
+  borderTopLeftRadius,
+  borderTopRightRadius,
+  borderBottomLeftRadius,
+  borderBottomRightRadius,
+  borderTopStartRadius,
+  borderTopEndRadius,
+  borderBottomStartRadius,
+  borderBottomEndRadius,
   ref,
   ...rest
 }: Props) => {
@@ -152,21 +176,18 @@ const IconButton = ({
   });
 
   const buttonSize = size + 2 * PADDING;
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-  const flattenedStyle = (StyleSheet.flatten(style) || {}) as ViewStyle;
-
-  const { borderWidth = mode === 'outlined' && !selected ? 1 : 0 } =
-    flattenedStyle;
-
-  const [, borderRadiusStyles] = splitStyles(
-    flattenedStyle,
-    (style) => style.startsWith('border') && style.endsWith('Radius')
-  );
+  const borderWidth = mode === 'outlined' && !selected ? 1 : 0;
 
   const shapeStyles = {
-    borderRadius: buttonSize / 2,
-    ...borderRadiusStyles,
+    borderRadius: borderRadius ?? buttonSize / 2,
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius,
+    borderTopStartRadius,
+    borderTopEndRadius,
+    borderBottomStartRadius,
+    borderBottomEndRadius,
   };
 
   const borderStyles = {
@@ -174,6 +195,14 @@ const IconButton = ({
     borderColor,
     ...shapeStyles,
   };
+
+  // Computed straight from `size`, a plain prop known at render time, rather
+  // than measured. `buttonSize` never changes after mount without `size` also
+  // changing, so there is nothing to react to. A disabled button gets no
+  // slop of its own, only what a caller's own `hitSlop` in `rest` supplies.
+  const hitSlop = disabled
+    ? undefined
+    : getMinInteractiveSizeHitSlop({ width: buttonSize, height: buttonSize });
 
   return (
     <Animated.View
@@ -217,6 +246,7 @@ const IconButton = ({
         aria-disabled={disabled}
         disabled={disabled}
         testID={testID}
+        hitSlop={hitSlop}
         {...rest}
       >
         <View style={{ opacity: iconOpacity }}>

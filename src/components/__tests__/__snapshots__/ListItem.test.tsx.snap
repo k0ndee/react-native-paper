@@ -169,7 +169,6 @@ exports[`renders list item with custom description 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -378,10 +377,17 @@ exports[`renders list item with custom description 1`] = `
               accessible={true}
               collapsable={false}
               focusable={true}
+              hitSlop={
+                {
+                  "bottom": 8,
+                  "left": 0,
+                  "right": 0,
+                  "top": 8,
+                }
+              }
               onBlur={[Function]}
               onClick={[Function]}
               onFocus={[Function]}
-              onLayout={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -415,6 +421,7 @@ exports[`renders list item with custom description 1`] = `
                       "position": "relative",
                     },
                     {
+                      "minHeight": 32,
                       "paddingLeft": 0,
                     },
                     {
@@ -551,7 +558,6 @@ exports[`renders list item with custom title and description styles 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -696,7 +702,6 @@ exports[`renders list item with left and right items 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -886,7 +891,6 @@ exports[`renders list item with left item 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1042,7 +1046,6 @@ exports[`renders list item with right item 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1154,7 +1157,6 @@ exports[`renders list item with title and description 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1295,7 +1297,6 @@ exports[`renders with a description with typeof number 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}

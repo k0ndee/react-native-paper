@@ -201,8 +201,16 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
             "width": 40,
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderColor": "rgba(202, 196, 208, 1)",
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
             "borderWidth": 0,
           },
           undefined,
@@ -232,10 +240,17 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
         centered={true}
         collapsable={false}
         focusable={true}
+        hitSlop={
+          {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -255,7 +270,15 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
                 "justifyContent": "center",
               },
               {
+                "borderBottomEndRadius": undefined,
+                "borderBottomLeftRadius": undefined,
+                "borderBottomRightRadius": undefined,
+                "borderBottomStartRadius": undefined,
                 "borderRadius": 20,
+                "borderTopEndRadius": undefined,
+                "borderTopLeftRadius": undefined,
+                "borderTopRightRadius": undefined,
+                "borderTopStartRadius": undefined,
               },
               {
                 "overflow": "hidden",
@@ -365,8 +388,16 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
               "width": 40,
             },
             {
+              "borderBottomEndRadius": undefined,
+              "borderBottomLeftRadius": undefined,
+              "borderBottomRightRadius": undefined,
+              "borderBottomStartRadius": undefined,
               "borderColor": "rgba(202, 196, 208, 1)",
               "borderRadius": 20,
+              "borderTopEndRadius": undefined,
+              "borderTopLeftRadius": undefined,
+              "borderTopRightRadius": undefined,
+              "borderTopStartRadius": undefined,
               "borderWidth": 0,
             },
             undefined,
@@ -396,10 +427,17 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
           centered={true}
           collapsable={false}
           focusable={true}
+          hitSlop={
+            {
+              "bottom": 4,
+              "left": 4,
+              "right": 4,
+              "top": 4,
+            }
+          }
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
-          onLayout={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -419,7 +457,15 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
                   "justifyContent": "center",
                 },
                 {
+                  "borderBottomEndRadius": undefined,
+                  "borderBottomLeftRadius": undefined,
+                  "borderBottomRightRadius": undefined,
+                  "borderBottomStartRadius": undefined,
                   "borderRadius": 20,
+                  "borderTopEndRadius": undefined,
+                  "borderTopLeftRadius": undefined,
+                  "borderTopRightRadius": undefined,
+                  "borderTopStartRadius": undefined,
                 },
                 {
                   "overflow": "hidden",
@@ -585,8 +631,16 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
           "width": 40,
         },
         {
+          "borderBottomEndRadius": undefined,
+          "borderBottomLeftRadius": undefined,
+          "borderBottomRightRadius": undefined,
+          "borderBottomStartRadius": undefined,
           "borderColor": "rgba(202, 196, 208, 1)",
           "borderRadius": 20,
+          "borderTopEndRadius": undefined,
+          "borderTopLeftRadius": undefined,
+          "borderTopRightRadius": undefined,
+          "borderTopStartRadius": undefined,
           "borderWidth": 0,
         },
         undefined,
@@ -616,10 +670,17 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
       centered={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -639,7 +700,15 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
               "justifyContent": "center",
             },
             {
+              "borderBottomEndRadius": undefined,
+              "borderBottomLeftRadius": undefined,
+              "borderBottomRightRadius": undefined,
+              "borderBottomStartRadius": undefined,
               "borderRadius": 20,
+              "borderTopEndRadius": undefined,
+              "borderTopLeftRadius": undefined,
+              "borderTopRightRadius": undefined,
+              "borderTopStartRadius": undefined,
             },
             {
               "overflow": "hidden",
@@ -806,8 +875,16 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
           "width": 40,
         },
         {
+          "borderBottomEndRadius": undefined,
+          "borderBottomLeftRadius": undefined,
+          "borderBottomRightRadius": undefined,
+          "borderBottomStartRadius": undefined,
           "borderColor": "rgba(202, 196, 208, 1)",
           "borderRadius": 20,
+          "borderTopEndRadius": undefined,
+          "borderTopLeftRadius": undefined,
+          "borderTopRightRadius": undefined,
+          "borderTopStartRadius": undefined,
           "borderWidth": 0,
         },
         undefined,
@@ -836,10 +913,17 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
       centered={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -859,7 +943,15 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
               "justifyContent": "center",
             },
             {
+              "borderBottomEndRadius": undefined,
+              "borderBottomLeftRadius": undefined,
+              "borderBottomRightRadius": undefined,
+              "borderBottomStartRadius": undefined,
               "borderRadius": 20,
+              "borderTopEndRadius": undefined,
+              "borderTopLeftRadius": undefined,
+              "borderTopRightRadius": undefined,
+              "borderTopStartRadius": undefined,
             },
             {
               "overflow": "hidden",

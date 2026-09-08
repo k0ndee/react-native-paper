@@ -56,10 +56,17 @@ exports[`renders segmented button 1`] = `
       accessible={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 6,
+          "left": 0,
+          "right": 0,
+          "top": 6,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -183,10 +190,17 @@ exports[`renders segmented button 1`] = `
       accessible={true}
       collapsable={false}
       focusable={true}
+      hitSlop={
+        {
+          "bottom": 6,
+          "left": 0,
+          "right": 0,
+          "top": 6,
+        }
+      }
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      onLayout={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
