@@ -18,9 +18,6 @@ const styles = StyleSheet.create({
   slightlyRounded: {
     borderRadius: 4,
   },
-  cutCorner: {
-    borderTopLeftRadius: 0,
-  },
 });
 
 it('renders icon button by default', async () => {
@@ -47,6 +44,33 @@ it('renders disabled icon button', async () => {
   const tree = (await render(<IconButton icon="camera" disabled />)).toJSON();
 
   expect(tree).toMatchSnapshot();
+});
+
+it('expands hitSlop up to the 48dp minimum for a button smaller than that', async () => {
+  await render(<IconButton icon="camera" />);
+
+  // (48 - 40) / 2 on every side, for the default 24dp icon plus 8dp padding
+  // eslint-disable-next-line no-restricted-syntax
+  expect(screen.getByTestId('icon-button').props.hitSlop).toEqual({
+    top: 4,
+    bottom: 4,
+    left: 4,
+    right: 4,
+  });
+});
+
+it('gives a disabled button no hitSlop of its own', async () => {
+  await render(<IconButton icon="camera" disabled />);
+
+  // eslint-disable-next-line no-restricted-syntax
+  expect(screen.getByTestId('icon-button').props.hitSlop).toBeUndefined();
+});
+
+it('lets a caller-supplied hitSlop win even while disabled', async () => {
+  await render(<IconButton icon="camera" disabled hitSlop={2} />);
+
+  // eslint-disable-next-line no-restricted-syntax
+  expect(screen.getByTestId('icon-button').props.hitSlop).toBe(2);
 });
 
 it('renders icon change animated', async () => {
@@ -90,7 +114,7 @@ it('clips to a custom corner radius', async () => {
       testID="icon-button"
       size={36}
       onPress={() => {}}
-      style={styles.cutCorner}
+      borderTopLeftRadius={0}
     />
   );
 

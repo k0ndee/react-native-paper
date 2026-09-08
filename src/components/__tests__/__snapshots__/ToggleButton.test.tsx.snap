@@ -14,8 +14,16 @@ exports[`renders disabled toggle button 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
-        "borderRadius": 4,
+        "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       {
@@ -57,7 +65,6 @@ exports[`renders disabled toggle button 1`] = `
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -75,7 +82,15 @@ exports[`renders disabled toggle button 1`] = `
             "justifyContent": "center",
           },
           {
-            "borderRadius": 4,
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
+            "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",
@@ -140,8 +155,16 @@ exports[`renders toggle button 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
-        "borderRadius": 4,
+        "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       {
@@ -180,10 +203,17 @@ exports[`renders toggle button 1`] = `
     centered={true}
     collapsable={false}
     focusable={true}
+    hitSlop={
+      {
+        "bottom": 4,
+        "left": 4,
+        "right": 4,
+        "top": 4,
+      }
+    }
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -201,7 +231,15 @@ exports[`renders toggle button 1`] = `
             "justifyContent": "center",
           },
           {
-            "borderRadius": 4,
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
+            "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",
@@ -266,8 +304,16 @@ exports[`renders unchecked toggle button 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
-        "borderRadius": 4,
+        "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       {
@@ -309,7 +355,6 @@ exports[`renders unchecked toggle button 1`] = `
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -327,7 +372,15 @@ exports[`renders unchecked toggle button 1`] = `
             "justifyContent": "center",
           },
           {
-            "borderRadius": 4,
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
+            "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",

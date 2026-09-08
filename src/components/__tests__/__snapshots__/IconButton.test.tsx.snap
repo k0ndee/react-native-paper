@@ -14,8 +14,16 @@ exports[`renders disabled icon button 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
         "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       undefined,
@@ -47,7 +55,6 @@ exports[`renders disabled icon button 1`] = `
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -67,7 +74,15 @@ exports[`renders disabled icon button 1`] = `
             "justifyContent": "center",
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",
@@ -132,8 +147,16 @@ exports[`renders icon button by default 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
         "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       undefined,
@@ -162,10 +185,17 @@ exports[`renders icon button by default 1`] = `
     centered={true}
     collapsable={false}
     focusable={true}
+    hitSlop={
+      {
+        "bottom": 4,
+        "left": 4,
+        "right": 4,
+        "top": 4,
+      }
+    }
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -185,7 +215,15 @@ exports[`renders icon button by default 1`] = `
             "justifyContent": "center",
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",
@@ -250,8 +288,16 @@ exports[`renders icon button with color 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
         "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       undefined,
@@ -280,10 +326,17 @@ exports[`renders icon button with color 1`] = `
     centered={true}
     collapsable={false}
     focusable={true}
+    hitSlop={
+      {
+        "bottom": 4,
+        "left": 4,
+        "right": 4,
+        "top": 4,
+      }
+    }
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -303,7 +356,15 @@ exports[`renders icon button with color 1`] = `
             "justifyContent": "center",
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",
@@ -491,8 +552,16 @@ exports[`renders icon button with size 1`] = `
         "width": 46,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
         "borderRadius": 23,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       undefined,
@@ -521,10 +590,17 @@ exports[`renders icon button with size 1`] = `
     centered={true}
     collapsable={false}
     focusable={true}
+    hitSlop={
+      {
+        "bottom": 1,
+        "left": 1,
+        "right": 1,
+        "top": 1,
+      }
+    }
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -544,7 +620,15 @@ exports[`renders icon button with size 1`] = `
             "justifyContent": "center",
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderRadius": 23,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",
@@ -732,8 +816,16 @@ exports[`renders icon change animated 1`] = `
         "width": 40,
       },
       {
+        "borderBottomEndRadius": undefined,
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
         "borderRadius": 20,
+        "borderTopEndRadius": undefined,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "borderTopStartRadius": undefined,
         "borderWidth": 0,
       },
       undefined,
@@ -762,10 +854,17 @@ exports[`renders icon change animated 1`] = `
     centered={true}
     collapsable={false}
     focusable={true}
+    hitSlop={
+      {
+        "bottom": 4,
+        "left": 4,
+        "right": 4,
+        "top": 4,
+      }
+    }
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    onLayout={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -785,7 +884,15 @@ exports[`renders icon change animated 1`] = `
             "justifyContent": "center",
           },
           {
+            "borderBottomEndRadius": undefined,
+            "borderBottomLeftRadius": undefined,
+            "borderBottomRightRadius": undefined,
+            "borderBottomStartRadius": undefined,
             "borderRadius": 20,
+            "borderTopEndRadius": undefined,
+            "borderTopLeftRadius": undefined,
+            "borderTopRightRadius": undefined,
+            "borderTopStartRadius": undefined,
           },
           {
             "overflow": "hidden",

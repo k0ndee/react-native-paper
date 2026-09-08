@@ -33,7 +33,9 @@ describe('TouchableRipple (web)', () => {
     return Array.isArray(style) ? Object.assign({}, ...style.flat()) : style;
   };
 
-  it('renders a minimum sized touch target for an interactive touchable', async () => {
+  it("renders a touch target matching the touchable's own bounds by default", async () => {
+    // No minimum is enforced here: the primitive does not measure, so with no
+    // caller-supplied `hitSlop` the target is exactly the touchable's bounds.
     await render(
       <TouchableRipple onPress={() => {}}>
         <Text>Button</Text>
@@ -41,12 +43,12 @@ describe('TouchableRipple (web)', () => {
     );
 
     expect(screen.getByTestId(TARGET, HIDDEN)).toBeOnTheScreen();
-    expect(styleOf(TARGET)).toMatchObject({
+    expect(styleOf(TARGET)).toEqual({
       position: 'absolute',
-      minWidth: 48,
-      minHeight: 48,
-      width: '100%',
-      height: '100%',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
     });
   });
 
