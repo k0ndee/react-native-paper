@@ -47,7 +47,7 @@ it('renders disabled icon button', async () => {
 });
 
 it('expands hitSlop up to the 48dp minimum for a button smaller than that', async () => {
-  await render(<IconButton icon="camera" />);
+  await render(<IconButton testID="icon-button" icon="camera" />);
 
   // (48 - 40) / 2 on every side, for the default 24dp icon plus 8dp padding
   // eslint-disable-next-line no-restricted-syntax
@@ -60,14 +60,16 @@ it('expands hitSlop up to the 48dp minimum for a button smaller than that', asyn
 });
 
 it('gives a disabled button no hitSlop of its own', async () => {
-  await render(<IconButton icon="camera" disabled />);
+  await render(<IconButton testID="icon-button" icon="camera" disabled />);
 
   // eslint-disable-next-line no-restricted-syntax
   expect(screen.getByTestId('icon-button').props.hitSlop).toBeUndefined();
 });
 
 it('lets a caller-supplied hitSlop win even while disabled', async () => {
-  await render(<IconButton icon="camera" disabled hitSlop={2} />);
+  await render(
+    <IconButton testID="icon-button" icon="camera" disabled hitSlop={2} />
+  );
 
   // eslint-disable-next-line no-restricted-syntax
   expect(screen.getByTestId('icon-button').props.hitSlop).toBe(2);

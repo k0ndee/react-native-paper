@@ -358,7 +358,7 @@ describe('close affordance', () => {
 
   it('keeps the close glyph pinned right so it does not drift', async () => {
     await render(
-      <Chip onPress={() => {}} onClose={() => {}}>
+      <Chip testID="chip" onPress={() => {}} onClose={() => {}}>
         Example
       </Chip>
     );
