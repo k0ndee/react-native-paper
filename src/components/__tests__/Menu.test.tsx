@@ -3,8 +3,8 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import { expect, it, jest } from '@jest/globals';
 import { act, screen, waitFor } from '@testing-library/react-native';
 
-import { getTheme } from '../../core/theming';
 import { render } from '../../test-utils';
+import { LightTheme } from '../../theme/schemes';
 import type { Elevation } from '../../theme/types';
 import Button from '../Button/Button';
 import Menu from '../Menu/Menu';
@@ -52,7 +52,6 @@ const elevations: Elevation[] = [0, 1, 2, 3, 4, 5];
 
 elevations.forEach((elevation) =>
   it(`renders menu with background color based on elevation value = ${elevation}`, async () => {
-    const theme = getTheme();
     const testID = 'menu-with-elevation';
 
     await render(
@@ -72,7 +71,7 @@ elevations.forEach((elevation) =>
     );
 
     expect(screen.getByTestId(testID)).toHaveStyle({
-      backgroundColor: theme.colors.elevation[`level${elevation}`],
+      backgroundColor: LightTheme.colors.elevation[`level${elevation}`],
     });
   })
 );

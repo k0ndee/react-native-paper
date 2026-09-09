@@ -2,8 +2,8 @@ import { Platform, StyleSheet, Text } from 'react-native';
 
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
 
-import { getTheme } from '../../../core/theming';
 import { render, screen } from '../../../test-utils';
+import { LightTheme } from '../../../theme/schemes';
 import { Palette } from '../../../theme/tokens';
 import Button from '../../Button/Button';
 import Card from '../../Card/Card';
@@ -143,27 +143,27 @@ describe('getCardColors - background color', () => {
   it('should return correct theme color, for theme version 3, contained mode', () => {
     expect(
       getCardColors({
-        theme: getTheme(),
+        theme: LightTheme,
         mode: 'contained',
       })
     ).toMatchObject({
-      backgroundColor: getTheme().colors.surfaceVariant,
+      backgroundColor: LightTheme.colors.surfaceVariant,
     });
   });
 
   it('should return correct theme color, for theme version 3, outlined mode', () => {
     expect(
       getCardColors({
-        theme: getTheme(),
+        theme: LightTheme,
         mode: 'outlined',
       })
-    ).toMatchObject({ backgroundColor: getTheme().colors.surface });
+    ).toMatchObject({ backgroundColor: LightTheme.colors.surface });
   });
 
   it('should return undefined, for theme version 3, elevated mode', () => {
     expect(
       getCardColors({
-        theme: getTheme(),
+        theme: LightTheme,
         mode: 'elevated',
       })
     ).toMatchObject({ backgroundColor: undefined });
@@ -174,11 +174,11 @@ describe('getCardColors - border color', () => {
   it('should return correct theme color, for theme version 3', () => {
     expect(
       getCardColors({
-        theme: getTheme(),
+        theme: LightTheme,
         // @ts-expect-error: Verify the runtime fallback when mode is omitted.
         mode: undefined,
       })
-    ).toMatchObject({ borderColor: getTheme().colors.outline });
+    ).toMatchObject({ borderColor: LightTheme.colors.outline });
   });
 });
 
@@ -186,7 +186,7 @@ describe('getCardCoverStyle - border radius', () => {
   it('should return custom border radius', () => {
     expect(
       getCardCoverStyle({
-        theme: getTheme(),
+        theme: LightTheme,
         borderRadiusStyles: styles.customCoverRadius,
       })
     ).toMatchObject(styles.customCoverRadius);
@@ -195,9 +195,9 @@ describe('getCardCoverStyle - border radius', () => {
   it('should return correct border radius based on roundness, for theme version 3', () => {
     expect(
       getCardCoverStyle({
-        theme: getTheme(),
+        theme: LightTheme,
         borderRadiusStyles: {},
       })
-    ).toMatchObject({ borderRadius: getTheme().shapes.corner.medium });
+    ).toMatchObject({ borderRadius: LightTheme.shapes.corner.medium });
   });
 });

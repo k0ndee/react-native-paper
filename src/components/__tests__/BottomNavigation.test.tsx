@@ -13,8 +13,8 @@ import type { KeyboardEvent } from 'react-native';
 import { describe, expect, it, jest } from '@jest/globals';
 import { act, fireEvent, userEvent } from '@testing-library/react-native';
 
-import { getTheme } from '../../core/theming';
 import { render, screen } from '../../test-utils';
+import { LightTheme } from '../../theme/schemes';
 import { Palette } from '../../theme/tokens';
 import BottomNavigation from '../BottomNavigation/BottomNavigation';
 import BottomNavigationRouteScreen from '../BottomNavigation/BottomNavigationRouteScreen';
@@ -569,8 +569,7 @@ describe('getActiveTintColor', () => {
   `(
     'returns $expected when activeColor: $activeColor',
     ({ activeColor, expected }) => {
-      const theme = getTheme(false);
-      const result = getActiveTintColor({ activeColor, theme });
+      const result = getActiveTintColor({ activeColor, theme: LightTheme });
       expect(result).toBe(expected);
     }
   );
@@ -584,10 +583,9 @@ describe('getInactiveTintColor', () => {
   `(
     'returns $expected when inactiveColor: $inactiveColor',
     ({ inactiveColor, expected }) => {
-      const theme = getTheme(false);
       const result = getInactiveTintColor({
         inactiveColor,
-        theme,
+        theme: LightTheme,
       });
       expect(result).toBe(expected);
     }
@@ -607,12 +605,11 @@ describe('getLabelColor', () => {
   ])(
     'returns $expected when tintColor: $tintColor, focused: $focused',
     ({ tintColor, focused, expected }) => {
-      const theme = getTheme(false);
       const result = getLabelColor({
         tintColor: tintColor ?? '',
         hasColor: Boolean(tintColor),
         focused,
-        theme,
+        theme: LightTheme,
       });
       expect(result).toBe(expected);
     }

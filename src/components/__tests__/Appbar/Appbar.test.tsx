@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { getTheme } from '../../../core/theming';
 import { render, screen } from '../../../test-utils';
+import { DarkTheme, LightTheme } from '../../../theme/schemes';
 import { tokens } from '../../../theme/tokens';
 import Appbar from '../../Appbar';
 import {
@@ -236,7 +236,7 @@ describe('AppbarContent', () => {
       );
 
       expect(screen.getByText('Title')).toHaveStyle(
-        getTheme().fonts[modeTextVariant[mode]]
+        LightTheme.fonts[modeTextVariant[mode]]
       );
     })
   );
@@ -264,18 +264,18 @@ describe('getAppbarColors', () => {
 
   it('should return custom color no matter what is the theme version', () => {
     expect(
-      getAppbarBackgroundColor(getTheme(), elevated, customBackground)
+      getAppbarBackgroundColor(LightTheme, elevated, customBackground)
     ).toBe(customBackground);
   });
 
   it('returns the light surface container color for an elevated appbar', () => {
-    expect(getAppbarBackgroundColor(getTheme(), elevated)).toBe(
+    expect(getAppbarBackgroundColor(LightTheme, elevated)).toBe(
       tokens.md.ref.palette.neutral94
     );
   });
 
   it('returns the dark surface container color for an elevated appbar', () => {
-    expect(getAppbarBackgroundColor(getTheme(true), elevated)).toBe(
+    expect(getAppbarBackgroundColor(DarkTheme, elevated)).toBe(
       tokens.md.ref.palette.neutral12
     );
   });
