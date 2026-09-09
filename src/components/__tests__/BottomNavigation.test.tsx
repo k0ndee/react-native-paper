@@ -159,6 +159,7 @@ it('calls onIndexChange', async () => {
   await render(
     <BottomNavigation
       testID="bottom-navigation"
+      barTestID="bottom-navigation-bar"
       shifting
       navigationState={createState(0, 5)}
       onIndexChange={onIndexChange}
@@ -183,6 +184,7 @@ it('calls onTabPress', async () => {
   await render(
     <BottomNavigation
       testID="bottom-navigation"
+      barTestID="bottom-navigation-bar"
       shifting
       onTabPress={onTabPress}
       onIndexChange={onIndexChange}
@@ -214,6 +216,7 @@ it('calls onTabLongPress', async () => {
   await render(
     <BottomNavigation
       testID="bottom-navigation"
+      barTestID="bottom-navigation-bar"
       shifting
       onIndexChange={onIndexChange}
       onTabLongPress={onTabLongPress}

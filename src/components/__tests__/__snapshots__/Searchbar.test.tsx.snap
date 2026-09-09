@@ -258,7 +258,6 @@ exports[`activity indicator snapshot test 1`] = `
         },
       ]
     }
-    testID="activity-indicator"
   >
     <View
       collapsable={false}

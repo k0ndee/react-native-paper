@@ -94,9 +94,18 @@ Hardcoded default test IDs have been removed for the components listed below:
 
 You can specify a `testID` explicitly to restore each component's own test ID.
 
-These components used to also derive test IDs for internal, implementation-only elements by appending a suffix to the `testID` prop (e.g. `${testID}-container`, `${testID}-icon`, `${testID}-outline`). Those internal test IDs have been removed entirely — they are no longer set even when you pass `testID` explicitly. Test IDs should only be used to interact with elements or assert content your users can reach, not to reach into a component's internal structure in tests; if you were relying on one of these internal IDs, query by role, label, text, or the component's own `testID`/`ref` instead.
+These components used to also derive test IDs for internal, implementation-only elements by appending a suffix to the `testID` prop (e.g. `${testID}-container`, `${testID}-icon`, `${testID}-outline`). They have been removed entirely.
 
-The one exception is `BottomNavigation`, which still sets `${testID}-bar` on its internal `BottomNavigation.Bar` when you pass `testID`, since there's currently no other way to reference that node from outside the component.
+If you were relying on internal test IDs, update your tests not to rely on internal implementation details and only interact with elements or assert content your users can reach, e.g.: query by role, label, text etc., or `testID` props accepted by the component.
+
+Some components now accept explicit `testID` props for their interactable, internal elements:
+
+- `BottomNavigation`: `barTestID` for the internal `BottomNavigation.Bar`, replacing the previous `${testID}-bar` derivation.
+- `Chip`: `closeIconTestID` for the close icon button.
+- `Dialog` and `Modal`: `overlayTestID` for the overlay displayed behind the content.
+- `Menu`: `overlayTestID` for the overlay displayed behind the menu.
+- `Searchbar`: `searchTestID`, `clearTestID`, and `trailingTestID` for the search, clear, and trailing icon buttons.
+- `Snackbar`: `iconTestID` for the icon button.
 
 ## Components
 

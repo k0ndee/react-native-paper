@@ -204,7 +204,7 @@ const Card = ({
   const borderRadius = theme.shapes.corner.medium;
 
   const content = (
-    <View style={[styles.innerContainer, contentStyle]} testID={testID}>
+    <View style={[styles.innerContainer, contentStyle]}>
       {React.Children.map(children, (child, index) =>
         React.isValidElement(child)
           ? React.cloneElement(child as React.ReactElement<any>, {
@@ -225,6 +225,7 @@ const Card = ({
       style={[{ borderColor }, style]}
       theme={theme}
       elevation={elevation}
+      testID={hasPassedTouchHandler ? undefined : testID}
       {...rest}
     >
       {isMode('outlined') && (
@@ -250,6 +251,7 @@ const Card = ({
           onPress={onPress}
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
+          testID={testID}
         >
           {content}
         </Pressable>

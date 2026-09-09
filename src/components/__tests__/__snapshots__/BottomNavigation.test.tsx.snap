@@ -872,7 +872,6 @@ exports[`applies maxTabBarWidth styling if compact prop is truthy 1`] = `
         "right": 0,
       }
     }
-    testID="bottom-navigation-bar"
   >
     <View
       collapsable={false}
@@ -2745,7 +2744,6 @@ exports[`does not apply maxTabBarWidth styling if compact prop is falsy 1`] = `
         "right": 0,
       }
     }
-    testID="bottom-navigation-bar"
   >
     <View
       collapsable={false}
@@ -9286,7 +9284,6 @@ exports[`renders custom background color passed to barStyle property 1`] = `
         "right": 0,
       }
     }
-    testID="bottom-navigation-bar"
   >
     <View
       collapsable={false}

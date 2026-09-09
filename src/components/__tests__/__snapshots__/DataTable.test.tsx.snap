@@ -1770,7 +1770,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
         "marginVertical": 6,
       }
     }
-    testID="options-select"
   >
     <Text
       aria-label="selectPageDropdownLabel"
@@ -1800,7 +1799,6 @@ exports[`DataTable.Pagination renders data table pagination with options select 
           ],
         ]
       }
-      testID="select-page-dropdown-label"
     >
       Rows per page
     </Text>

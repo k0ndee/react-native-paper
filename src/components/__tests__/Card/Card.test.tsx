@@ -80,12 +80,12 @@ describe('Card', () => {
 
   it('renders with a content style', async () => {
     await render(
-      <Card testID="card" contentStyle={styles.contentStyle}>
+      <Card contentStyle={styles.contentStyle}>
         <Text>Content</Text>
       </Card>
     );
 
-    expect(screen.getByTestId('card')).toHaveStyle(styles.contentStyle);
+    expect(screen.getByText('Content').parent).toHaveStyle(styles.contentStyle);
   });
 
   it('does not render a disabled accessibility state', async () => {

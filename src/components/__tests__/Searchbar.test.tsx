@@ -30,13 +30,13 @@ it('activity indicator snapshot test', async () => {
 it('renders with ActivityIndicator', async () => {
   await render(<Searchbar loading={true} value="" />);
 
-  expect(screen.getByTestId('activity-indicator')).toBeOnTheScreen();
+  expect(screen.getByRole('progressbar')).toBeOnTheScreen();
 });
 
 it('renders without ActivityIndicator', async () => {
   await render(<Searchbar loading={false} value="" />);
 
-  expect(screen.queryByTestId('activity-indicator')).not.toBeOnTheScreen();
+  expect(screen.queryByRole('progressbar')).not.toBeOnTheScreen();
 });
 
 it('renders clear icon with custom color', async () => {
