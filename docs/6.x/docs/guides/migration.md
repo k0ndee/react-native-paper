@@ -98,7 +98,7 @@ These components used to also derive test IDs for internal, implementation-only 
 
 If you were relying on internal test IDs, update your tests not to rely on internal implementation details and only interact with elements or assert content your users can reach, e.g.: query by role, label, text etc., or `testID` props accepted by the component.
 
-Some components now accept explicit `testID` props for their interactable, internal elements:
+Some components now accept explicit `testID` props for their interactable elements:
 
 - `BottomNavigation`: `barTestID` for the internal `BottomNavigation.Bar`, replacing the previous `${testID}-bar` derivation.
 - `Chip`: `closeIconTestID` for the close icon button.
