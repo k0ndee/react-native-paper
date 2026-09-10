@@ -68,19 +68,17 @@ describe('TouchableRipple', () => {
     });
 
     it('takes the shape of the touchable so it does not square off the corners', async () => {
-      await render(
+      const { toJSON } = await render(
         <TouchableRipple testOnly_pressed borderRadius={4}>
           <Text>Press me!</Text>
         </TouchableRipple>
       );
 
-      expect(screen.getByTestId('touchable-ripple-underlay')).toHaveStyle({
-        borderRadius: 4,
-      });
+      expect(toJSON()).toMatchSnapshot();
     });
 
     it('takes per-corner radii too', async () => {
-      await render(
+      const { toJSON } = await render(
         <TouchableRipple
           testOnly_pressed
           borderTopLeftRadius={8}
@@ -90,10 +88,7 @@ describe('TouchableRipple', () => {
         </TouchableRipple>
       );
 
-      expect(screen.getByTestId('touchable-ripple-underlay')).toHaveStyle({
-        borderTopLeftRadius: 8,
-        borderBottomRightRadius: 2,
-      });
+      expect(toJSON()).toMatchSnapshot();
     });
   });
 

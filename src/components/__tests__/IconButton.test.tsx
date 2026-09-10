@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { describe, expect, it } from '@jest/globals';
 
-import { render } from '../../test-utils';
+import { render, screen } from '../../test-utils';
 import { pink500 } from '../../theme/colors';
 import { LightTheme } from '../../theme/schemes';
 import { tokens } from '../../theme/tokens';
