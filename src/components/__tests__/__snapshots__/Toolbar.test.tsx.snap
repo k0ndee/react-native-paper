@@ -141,7 +141,6 @@ exports[`defaults a mode-less IconButton child's iconColor to the toolbar's cont
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -198,7 +197,6 @@ exports[`defaults a mode-less IconButton child's iconColor to the toolbar's cont
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -402,7 +400,6 @@ exports[`extends the docked container into the bottom safe-area inset 1`] = `
             undefined,
           ]
         }
-        testID="icon-button-container"
       >
         <View
           accessibilityState={
@@ -459,7 +456,6 @@ exports[`extends the docked container into the bottom safe-area inset 1`] = `
               ],
             ]
           }
-          testID="icon-button"
         >
           <View
             style={
@@ -521,7 +517,6 @@ exports[`extends the docked container into the bottom safe-area inset 1`] = `
             undefined,
           ]
         }
-        testID="icon-button-container"
       >
         <View
           accessibilityState={
@@ -578,7 +573,6 @@ exports[`extends the docked container into the bottom safe-area inset 1`] = `
               ],
             ]
           }
-          testID="icon-button"
         >
           <View
             style={
@@ -765,7 +759,6 @@ exports[`keeps an explicit iconColor instead of the vibrant default 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -822,7 +815,6 @@ exports[`keeps an explicit iconColor instead of the vibrant default 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -884,7 +876,6 @@ exports[`keeps an explicit iconColor instead of the vibrant default 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -941,7 +932,6 @@ exports[`keeps an explicit iconColor instead of the vibrant default 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -1152,7 +1142,6 @@ exports[`leaves a Button child with a more opinionated mode uncolored 1`] = `
           },
         ]
       }
-      testID="button-container"
     >
       <View
         collapsable={false}
@@ -1242,7 +1231,6 @@ exports[`leaves a Button child with a more opinionated mode uncolored 1`] = `
             },
           ]
         }
-        testID="button"
       >
         <View
           style={
@@ -1304,7 +1292,6 @@ exports[`leaves a Button child with a more opinionated mode uncolored 1`] = `
                 ],
               ]
             }
-            testID="button-text"
           >
             Done
           </Text>
@@ -1456,7 +1443,6 @@ exports[`leaves an IconButton child with an explicit mode uncolored 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -1513,7 +1499,6 @@ exports[`leaves an IconButton child with an explicit mode uncolored 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -1699,7 +1684,6 @@ exports[`recolors IconButtons through a Fragment held in a variable, not just di
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -1756,7 +1740,6 @@ exports[`recolors IconButtons through a Fragment held in a variable, not just di
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -1818,7 +1801,6 @@ exports[`recolors IconButtons through a Fragment held in a variable, not just di
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -1875,7 +1857,6 @@ exports[`recolors IconButtons through a Fragment held in a variable, not just di
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -2061,7 +2042,6 @@ exports[`renders Toolbar with default props 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -2118,7 +2098,6 @@ exports[`renders Toolbar with default props 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -2180,7 +2159,6 @@ exports[`renders Toolbar with default props 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -2237,7 +2215,6 @@ exports[`renders Toolbar with default props 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -2441,7 +2418,6 @@ exports[`renders Toolbar with docked variant 1`] = `
             undefined,
           ]
         }
-        testID="icon-button-container"
       >
         <View
           accessibilityState={
@@ -2498,7 +2474,6 @@ exports[`renders Toolbar with docked variant 1`] = `
               ],
             ]
           }
-          testID="icon-button"
         >
           <View
             style={
@@ -2560,7 +2535,6 @@ exports[`renders Toolbar with docked variant 1`] = `
             undefined,
           ]
         }
-        testID="icon-button-container"
       >
         <View
           accessibilityState={
@@ -2617,7 +2591,6 @@ exports[`renders Toolbar with docked variant 1`] = `
               ],
             ]
           }
-          testID="icon-button"
         >
           <View
             style={
@@ -2804,7 +2777,6 @@ exports[`renders Toolbar with vertical orientation 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -2861,7 +2833,6 @@ exports[`renders Toolbar with vertical orientation 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -2923,7 +2894,6 @@ exports[`renders Toolbar with vertical orientation 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -2980,7 +2950,6 @@ exports[`renders Toolbar with vertical orientation 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -3166,7 +3135,6 @@ exports[`renders floating Toolbar with vibrant colorScheme 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -3223,7 +3191,6 @@ exports[`renders floating Toolbar with vibrant colorScheme 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={
@@ -3285,7 +3252,6 @@ exports[`renders floating Toolbar with vibrant colorScheme 1`] = `
           undefined,
         ]
       }
-      testID="icon-button-container"
     >
       <View
         accessibilityState={
@@ -3342,7 +3308,6 @@ exports[`renders floating Toolbar with vibrant colorScheme 1`] = `
             ],
           ]
         }
-        testID="icon-button"
       >
         <View
           style={

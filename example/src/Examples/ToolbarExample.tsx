@@ -161,7 +161,7 @@ const ToolbarExample = () => {
           style={
             isVertical
               ? [styles.verticalAnchor, { right: insets.right + 16 }]
-              : [styles.horizontalAnchor, { bottom: insets.bottom + 24 }]
+              : [styles.horizontalAnchor, { bottom: insets.bottom + 16 }]
           }
         >
           <Toolbar

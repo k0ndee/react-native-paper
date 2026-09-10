@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import type { ColorValue, StyleProp, ViewStyle } from 'react-native';
+import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -12,8 +12,9 @@ import { useInternalTheme } from '../../core/theming';
 import type { ThemeProp } from '../../theme/types';
 import { resolveCornerRadius } from '../../theme/utils/shape';
 import Surface from '../Surface';
+import type { SurfaceStyle } from '../Surface';
 
-export type Props = {
+export type Props = Omit<ViewProps, 'style'> & {
   /**
    * Content of the toolbar, typically a row of `IconButton`s.
    */
@@ -42,8 +43,12 @@ export type Props = {
   /**
    * Style for positioning `floating`'s pill, or overriding `docked`'s
    * default anchoring.
+   *
+   * This doesn't support all `View` style properties: background color and
+   * border radius should be specified via `containerColor` and the
+   * `variant`'s shape token instead — see `Surface`'s `style` prop.
    */
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<SurfaceStyle>;
   /**
    * Style for the row/column wrapping `children`. Overrides the default
    * padding/gap, and, for consumers who need full control, the fixed
@@ -126,6 +131,7 @@ const Toolbar = ({
   'aria-label': ariaLabel,
   theme: themeOverrides,
   ref,
+  ...rest
 }: Props) => {
   const theme = useInternalTheme(themeOverrides);
   const insets = useSafeAreaInsets();
@@ -181,6 +187,10 @@ const Toolbar = ({
 
   const pill = (
     <Surface
+      // `rest` (e.g. `onLayout`) follows `ref` above: it lands on whichever
+      // node is the toolbar's outer node for the given `variant` — this
+      // `Surface` for `floating`, or the `docked` wrapper `View` below.
+      {...(!isDocked ? rest : null)}
       ref={isDocked ? undefined : ref}
       elevation={elevation}
       backgroundColor={backgroundColor}
@@ -231,11 +241,17 @@ const Toolbar = ({
 
   return (
     <View
+      {...rest}
       ref={ref}
       // `box-none` so this anchoring box (spanning the full width of its
       // ancestor) doesn't intercept touches outside the bar itself.
       pointerEvents="box-none"
-      style={[styles.dockedContainer, style]}
+      // `style` is typed against `SurfaceStyle` (excluding `backgroundColor`/
+      // border-radius props, which `Surface` above ignores) so it's safe on
+      // a plain `View` too; the cast is only for `AnimatedStyle`'s stricter
+      // shared-value typing, unused by this non-animated wrapper.
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+      style={[styles.dockedContainer, style as StyleProp<ViewStyle>]}
       testID={testID ? `${testID}-container` : undefined}
     >
       {pill}
