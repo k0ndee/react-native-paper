@@ -162,11 +162,10 @@ export type Props = Omit<ViewProps, 'style'> & {
  * Room the chip reserves on its right for the close button, which fills all of
  * it, so the body stops here and the two divide the chip.
  *
- * MD3 splits the same way and does not give a chip's trailing action 48dp; in
- * material-web it is 24x24 with no expansion. This column is wider than that and
- * gets no vertical expansion, so the strips above and below belong to the body
- * and a near miss activates the chip rather than deleting it.
- * @see https://github.com/material-components/material-web/blob/main/chips/internal/_trailing-icon.scss
+ * Matches material-web's own remove button, which expands to a 48px touch
+ * target the same way; the 24x24 dimensions in its `_trailing-icon.scss` are
+ * for the ripple and focus ring, not the touch target.
+ * @see https://github.com/material-components/material-web/blob/main/chips/internal/_shared.scss
  */
 const CLOSE_AFFORDANCE_WIDTH = 34;
 
@@ -186,6 +185,9 @@ const { containerHeight: CHIP_BODY_HEIGHT } = ChipTokens;
 const CHIP_BODY_HIT_SLOP = getMinInteractiveSizeHitSlop({
   height: CHIP_BODY_HEIGHT,
 });
+// The close button's own box is the same fixed height as the body, so it
+// needs the same vertical slop to reach 48dp.
+const CLOSE_BUTTON_WEB_TOUCH_TARGET_INSET = CHIP_BODY_HIT_SLOP?.top ?? 0;
 
 /**
  * Chips are compact elements that can represent inputs, attributes, or actions.
@@ -323,6 +325,7 @@ const Chip = ({
         borderless
         background={background}
         style={[{ borderRadius }, styles.touchable]}
+        borderRadius={borderRadius}
         onPress={onPress}
         onLongPress={onLongPress}
         onPressIn={hasPassedTouchHandler ? handlePressIn : undefined}
@@ -335,7 +338,13 @@ const Chip = ({
         aria-disabled={disabled}
         testID={testID}
         theme={theme}
-        hitSlop={hitSlop ?? (disabled ? undefined : CHIP_BODY_HIT_SLOP)}
+        hitSlop={
+          hitSlop !== undefined
+            ? hitSlop
+            : disabled
+              ? undefined
+              : CHIP_BODY_HIT_SLOP
+        }
       >
         <View
           style={[
@@ -423,7 +432,14 @@ const Chip = ({
             aria-label={closeIconAccessibilityLabel}
             testID={closeIconTestID}
             style={styles.closeButton}
+            hitSlop={disabled ? undefined : CHIP_BODY_HIT_SLOP}
           >
+            {/* react-native-web removed `hitSlop` in 0.13.0, 
+                so web needs a real element the browser can
+                hit-test instead of a native responder inset. */}
+            {Platform.OS === 'web' && !disabled && (
+              <View aria-hidden style={styles.closeButtonWebTouchTarget} />
+            )}
             <View
               testID={testID ? `${testID}-close-icon` : undefined}
               style={[styles.icon, styles.closeIcon, styles.md3CloseIcon]}
@@ -526,6 +542,14 @@ const styles = StyleSheet.create({
     height: '100%',
     // Vertical only. The glyph pins itself horizontally with `alignSelf`.
     justifyContent: 'center',
+    ...(Platform.OS === 'web' && { position: 'relative' }),
+  },
+  closeButtonWebTouchTarget: {
+    position: 'absolute',
+    top: -CLOSE_BUTTON_WEB_TOUCH_TARGET_INSET,
+    bottom: -CLOSE_BUTTON_WEB_TOUCH_TARGET_INSET,
+    left: 0,
+    right: 0,
   },
   touchable: {
     width: '100%',

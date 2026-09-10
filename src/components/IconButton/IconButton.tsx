@@ -68,13 +68,22 @@ export type Props = Omit<
   'aria-label'?: string;
   /**
    * Style of button's inner content.
-   * Use this prop to apply custom height and width or to set a custom padding`.
+   * Use this prop to set a custom padding. For a custom height and width,
+   * use the `width` and `height` props instead.
    */
   contentStyle?: StyleProp<ViewStyle>;
   /**
    * Function to execute on press.
    */
   onPress?: (e: GestureResponderEvent) => void;
+  /**
+   * Width of the button's inner content. Defaults to the button's size.
+   */
+  width?: number;
+  /**
+   * Height of the button's inner content. Defaults to the button's size.
+   */
+  height?: number;
   /**
    * Radius of every corner of the button. Defaults to a circle (half of the
    * button's size). Read as a plain prop rather than out of `style`, since
@@ -144,6 +153,8 @@ const IconButton = ({
   testID,
   loading = false,
   contentStyle,
+  width,
+  height,
   borderRadius,
   borderTopLeftRadius,
   borderTopRightRadius,
@@ -196,13 +207,15 @@ const IconButton = ({
     ...shapeStyles,
   };
 
-  // Computed straight from `size`, a plain prop known at render time, rather
-  // than measured. `buttonSize` never changes after mount without `size` also
-  // changing, so there is nothing to react to. A disabled button gets no
-  // slop of its own, only what a caller's own `hitSlop` in `rest` supplies.
+  const touchableWidth = width ?? buttonSize - 2 * borderWidth;
+  const touchableHeight = height ?? buttonSize - 2 * borderWidth;
+
   const hitSlop = disabled
     ? undefined
-    : getMinInteractiveSizeHitSlop({ width: buttonSize, height: buttonSize });
+    : getMinInteractiveSizeHitSlop({
+        width: touchableWidth,
+        height: touchableHeight,
+      });
 
   return (
     <Animated.View
@@ -240,8 +253,10 @@ const IconButton = ({
           // Native only: its own overflow does not clip its hitSlop, but on web
           // it would clip the touch target, where the container already clips.
           Platform.OS !== 'web' && styles.clipToShape,
+          { width, height },
           contentStyle,
         ]}
+        {...shapeStyles}
         role="button"
         aria-disabled={disabled}
         disabled={disabled}

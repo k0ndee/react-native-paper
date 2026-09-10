@@ -18,37 +18,6 @@ import { useInternalTheme } from '../../core/theming';
 import type { ThemeProp } from '../../theme/types';
 import hasTouchHandler from '../../utils/hasTouchHandler';
 
-/**
- * react-native-web removed `hitSlop` in 0.13.0, so web needs a real element the
- * browser can hit-test instead of a native responder inset.
- * @see https://github.com/necolas/react-native-web/releases/tag/0.13.0
- */
-const getTouchTargetStyle = (hitSlop: PressableProps['hitSlop']): ViewStyle => {
-  // `undefined` or `null` both mean no slop: nothing for the caller to opt
-  // into, so the target matches the touchable's own bounds.
-  if (hitSlop === undefined || hitSlop === null) {
-    return styles.noTouchTarget;
-  }
-
-  const inset = (value: number | undefined) => -(value ?? 0);
-
-  return typeof hitSlop === 'number'
-    ? {
-        position: 'absolute',
-        top: inset(hitSlop),
-        bottom: inset(hitSlop),
-        left: inset(hitSlop),
-        right: inset(hitSlop),
-      }
-    : {
-        position: 'absolute',
-        top: inset(hitSlop.top),
-        bottom: inset(hitSlop.bottom),
-        left: inset(hitSlop.left),
-        right: inset(hitSlop.right),
-      };
-};
-
 export type Props = PressableProps & {
   /**
    * Whether to render the ripple outside the view bounds.
@@ -111,6 +80,28 @@ export type Props = PressableProps & {
    * @optional
    */
   theme?: ThemeProp;
+  /**
+   * Radius of every corner of the touchable. Native-only: it shapes the
+   * highlight underlay there. On web the ripple container clips itself
+   * regardless, so this has no effect.
+   */
+  borderRadius?: number;
+  borderTopLeftRadius?: number;
+  borderTopRightRadius?: number;
+  borderBottomLeftRadius?: number;
+  borderBottomRightRadius?: number;
+  borderTopStartRadius?: number;
+  borderTopEndRadius?: number;
+  borderBottomStartRadius?: number;
+  borderBottomEndRadius?: number;
+  /**
+   * Width of the touchable's own border, if it draws one. Web-only: the touch
+   * target's absolute offsets start inside the border, not the visible outer
+   * edge, so this widens the target back out to it. Read as a plain prop
+   * rather than out of `style`, since `style` can be a function of press
+   * state instead of a plain object to read a value off.
+   */
+  borderWidth?: number;
 };
 
 /**
@@ -149,6 +140,18 @@ const TouchableRipple = ({
   children,
   theme: themeOverrides,
   hitSlop,
+  // consumed so they do not reach the DOM; native-only, the ripple container
+  // clips itself regardless of shape on web
+  borderRadius: _borderRadius,
+  borderTopLeftRadius: _borderTopLeftRadius,
+  borderTopRightRadius: _borderTopRightRadius,
+  borderBottomLeftRadius: _borderBottomLeftRadius,
+  borderBottomRightRadius: _borderBottomRightRadius,
+  borderTopStartRadius: _borderTopStartRadius,
+  borderTopEndRadius: _borderTopEndRadius,
+  borderBottomStartRadius: _borderBottomStartRadius,
+  borderBottomEndRadius: _borderBottomEndRadius,
+  borderWidth,
   ref,
   ...rest
 }: Props) => {
@@ -336,26 +339,40 @@ const TouchableRipple = ({
         typeof style === 'function' ? style(state) : style,
       ]}
     >
-      {(state) => (
-        <>
-          {/* Before the children, not after. It hit-tests, so as the last
-              sibling it covers anything interactive inside the touchable and
-              takes its presses, e.g. a pressable List.Item with a control in
-              `right`. Ahead of them it still covers the area outside the
-              touchable, where there is nothing else to hit.
-              Nothing that cannot be pressed gets a target, same as native. */}
-          {!disabled && (
-            <View
-              aria-hidden
-              style={getTouchTargetStyle(hitSlop)}
-              testID="touchable-ripple-touch-target"
-            />
-          )}
-          {React.Children.only(
-            typeof children === 'function' ? children(state) : children
-          )}
-        </>
-      )}
+      {(state) => {
+        const border = borderWidth ?? 0;
+        const inset = (value: number | undefined) => -((value ?? 0) + border);
+
+        const touchTargetStyle: ViewStyle | undefined =
+          hitSlop == null
+            ? undefined
+            : typeof hitSlop === 'number'
+              ? {
+                  position: 'absolute',
+                  top: inset(hitSlop),
+                  bottom: inset(hitSlop),
+                  left: inset(hitSlop),
+                  right: inset(hitSlop),
+                }
+              : {
+                  position: 'absolute',
+                  top: inset(hitSlop.top),
+                  bottom: inset(hitSlop.bottom),
+                  left: inset(hitSlop.left),
+                  right: inset(hitSlop.right),
+                };
+
+        return (
+          <>
+            {!disabled && touchTargetStyle && (
+              <View aria-hidden style={touchTargetStyle} />
+            )}
+            {React.Children.only(
+              typeof children === 'function' ? children(state) : children
+            )}
+          </>
+        );
+      }}
     </Pressable>
   );
 };
@@ -377,13 +394,6 @@ const styles = StyleSheet.create({
     ...(Platform.OS === 'web' && {
       cursor: 'auto',
     }),
-  },
-  noTouchTarget: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
 });
 

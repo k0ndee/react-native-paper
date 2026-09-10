@@ -185,6 +185,10 @@ exports[`activity indicator snapshot test 1`] = `
             {
               "overflow": "hidden",
             },
+            {
+              "height": undefined,
+              "width": undefined,
+            },
             undefined,
           ],
         ]
@@ -1048,6 +1052,10 @@ exports[`renders with placeholder 1`] = `
             {
               "overflow": "hidden",
             },
+            {
+              "height": undefined,
+              "width": undefined,
+            },
             undefined,
           ],
         ]
@@ -1234,6 +1242,10 @@ exports[`renders with placeholder 1`] = `
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],
@@ -1468,6 +1480,10 @@ exports[`renders with text 1`] = `
             {
               "overflow": "hidden",
             },
+            {
+              "height": undefined,
+              "width": undefined,
+            },
             undefined,
           ],
         ]
@@ -1650,6 +1666,10 @@ exports[`renders with text 1`] = `
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],

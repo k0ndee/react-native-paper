@@ -69,7 +69,7 @@ describe('TouchableRipple', () => {
 
     it('takes the shape of the touchable so it does not square off the corners', async () => {
       await render(
-        <TouchableRipple testOnly_pressed style={{ borderRadius: 4 }}>
+        <TouchableRipple testOnly_pressed borderRadius={4}>
           <Text>Press me!</Text>
         </TouchableRipple>
       );
@@ -83,7 +83,8 @@ describe('TouchableRipple', () => {
       await render(
         <TouchableRipple
           testOnly_pressed
-          style={[{ borderTopLeftRadius: 8 }, { borderBottomRightRadius: 2 }]}
+          borderTopLeftRadius={8}
+          borderBottomRightRadius={2}
         >
           <Text>Press me!</Text>
         </TouchableRipple>

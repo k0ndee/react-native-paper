@@ -19,7 +19,7 @@ exports[`renders disabled toggle button 1`] = `
         "borderBottomRightRadius": undefined,
         "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
-        "borderRadius": 20,
+        "borderRadius": 4,
         "borderTopEndRadius": undefined,
         "borderTopLeftRadius": undefined,
         "borderTopRightRadius": undefined,
@@ -34,7 +34,6 @@ exports[`renders disabled toggle button 1`] = `
       {
         "backgroundColor": "rgba(230, 224, 233, 1)",
         "borderColor": "rgba(121, 116, 126, 1)",
-        "borderRadius": 4,
       },
       undefined,
     ]
@@ -86,7 +85,7 @@ exports[`renders disabled toggle button 1`] = `
             "borderBottomLeftRadius": undefined,
             "borderBottomRightRadius": undefined,
             "borderBottomStartRadius": undefined,
-            "borderRadius": 20,
+            "borderRadius": 4,
             "borderTopEndRadius": undefined,
             "borderTopLeftRadius": undefined,
             "borderTopRightRadius": undefined,
@@ -94,6 +93,10 @@ exports[`renders disabled toggle button 1`] = `
           },
           {
             "overflow": "hidden",
+          },
+          {
+            "height": undefined,
+            "width": undefined,
           },
           undefined,
         ],
@@ -160,7 +163,7 @@ exports[`renders toggle button 1`] = `
         "borderBottomRightRadius": undefined,
         "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
-        "borderRadius": 20,
+        "borderRadius": 4,
         "borderTopEndRadius": undefined,
         "borderTopLeftRadius": undefined,
         "borderTopRightRadius": undefined,
@@ -175,7 +178,6 @@ exports[`renders toggle button 1`] = `
       {
         "backgroundColor": "rgba(230, 224, 233, 1)",
         "borderColor": "rgba(121, 116, 126, 1)",
-        "borderRadius": 4,
       },
       undefined,
     ]
@@ -235,7 +237,7 @@ exports[`renders toggle button 1`] = `
             "borderBottomLeftRadius": undefined,
             "borderBottomRightRadius": undefined,
             "borderBottomStartRadius": undefined,
-            "borderRadius": 20,
+            "borderRadius": 4,
             "borderTopEndRadius": undefined,
             "borderTopLeftRadius": undefined,
             "borderTopRightRadius": undefined,
@@ -243,6 +245,10 @@ exports[`renders toggle button 1`] = `
           },
           {
             "overflow": "hidden",
+          },
+          {
+            "height": undefined,
+            "width": undefined,
           },
           undefined,
         ],
@@ -309,7 +315,7 @@ exports[`renders unchecked toggle button 1`] = `
         "borderBottomRightRadius": undefined,
         "borderBottomStartRadius": undefined,
         "borderColor": "rgba(202, 196, 208, 1)",
-        "borderRadius": 20,
+        "borderRadius": 4,
         "borderTopEndRadius": undefined,
         "borderTopLeftRadius": undefined,
         "borderTopRightRadius": undefined,
@@ -324,7 +330,6 @@ exports[`renders unchecked toggle button 1`] = `
       {
         "backgroundColor": "rgba(243, 237, 247, 1)",
         "borderColor": "rgba(121, 116, 126, 1)",
-        "borderRadius": 4,
       },
       undefined,
     ]
@@ -376,7 +381,7 @@ exports[`renders unchecked toggle button 1`] = `
             "borderBottomLeftRadius": undefined,
             "borderBottomRightRadius": undefined,
             "borderBottomStartRadius": undefined,
-            "borderRadius": 20,
+            "borderRadius": 4,
             "borderTopEndRadius": undefined,
             "borderTopLeftRadius": undefined,
             "borderTopRightRadius": undefined,
@@ -384,6 +389,10 @@ exports[`renders unchecked toggle button 1`] = `
           },
           {
             "overflow": "hidden",
+          },
+          {
+            "height": undefined,
+            "width": undefined,
           },
           undefined,
         ],
