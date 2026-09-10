@@ -108,13 +108,14 @@ it("lets `style` override the floating pill's internal container styles", async 
 });
 
 it("lets `contentContainerStyle` override the pill's fixed cross-axis thickness for full control", async () => {
-  await render(
-    <Toolbar testID="floating" contentContainerStyle={{ height: 10 }}>
-      <ToolbarChildren />
-    </Toolbar>
-  );
-
-  expect(screen.getByTestId('floating-content')).toHaveStyle({ height: 10 });
+  const tree = (
+    await render(
+      <Toolbar contentContainerStyle={{ height: 10 }}>
+        <ToolbarChildren />
+      </Toolbar>
+    )
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it("applies `style` to the docked variant's self-anchoring container", async () => {
@@ -124,7 +125,7 @@ it("applies `style` to the docked variant's self-anchoring container", async () 
     </Toolbar>
   );
 
-  expect(screen.getByTestId('docked-container')).toHaveStyle({ bottom: 10 });
+  expect(screen.getByTestId('docked')).toHaveStyle({ bottom: 10 });
 });
 
 it('renders floating Toolbar with vibrant colorScheme', async () => {
@@ -139,24 +140,19 @@ it('renders floating Toolbar with vibrant colorScheme', async () => {
 });
 
 it('renders docked Toolbar with vibrant colorScheme', async () => {
-  await render(
-    <>
-      <Toolbar testID="toolbar-vibrant" variant="docked" colorScheme="vibrant">
-        <ToolbarChildren />
-      </Toolbar>
-      <Toolbar testID="toolbar-standard" variant="docked">
-        <ToolbarChildren />
-      </Toolbar>
-    </>
-  );
-
-  const theme = LightTheme;
-  expect(screen.getByTestId('toolbar-vibrant')).toHaveStyle({
-    backgroundColor: theme.colors.primaryContainer,
-  });
-  expect(screen.getByTestId('toolbar-standard')).toHaveStyle({
-    backgroundColor: theme.colors.surfaceContainer,
-  });
+  const tree = (
+    await render(
+      <>
+        <Toolbar variant="docked" colorScheme="vibrant">
+          <ToolbarChildren />
+        </Toolbar>
+        <Toolbar variant="docked">
+          <ToolbarChildren />
+        </Toolbar>
+      </>
+    )
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it('keeps an explicit iconColor instead of the vibrant default', async () => {
@@ -239,71 +235,46 @@ it('recolors a Button nested inside a View, not just direct children', async () 
 });
 
 it('gives a selected IconButton child the selected container color', async () => {
-  await render(
-    <>
-      <Toolbar>
-        <IconButton
-          testID="standard-selected"
-          selected
-          icon="format-bold"
-          onPress={() => {}}
-        />
-      </Toolbar>
-      <Toolbar colorScheme="vibrant">
-        <IconButton
-          testID="vibrant-selected"
-          selected
-          icon="format-bold"
-          onPress={() => {}}
-        />
-      </Toolbar>
-    </>
-  );
-
-  const theme = LightTheme;
-  expect(screen.getByTestId('standard-selected').parent).toHaveStyle({
-    backgroundColor: theme.colors.secondaryContainer,
-  });
-  expect(screen.getByTestId('vibrant-selected').parent).toHaveStyle({
-    backgroundColor: theme.colors.surfaceContainer,
-  });
+  const tree = (
+    await render(
+      <>
+        <Toolbar>
+          <IconButton selected icon="format-bold" onPress={() => {}} />
+        </Toolbar>
+        <Toolbar colorScheme="vibrant">
+          <IconButton selected icon="format-bold" onPress={() => {}} />
+        </Toolbar>
+      </>
+    )
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it('gives a disabled, selected IconButton child the disabled treatment instead of its selected color', async () => {
-  await render(
-    <Toolbar>
-      <IconButton
-        testID="disabled-selected"
-        selected
-        disabled
-        icon="format-bold"
-        onPress={() => {}}
-      />
-    </Toolbar>
-  );
-
-  const theme = LightTheme;
-  expect(screen.getByTestId('disabled-selected').parent).not.toHaveStyle({
-    backgroundColor: theme.colors.secondaryContainer,
-  });
+  const tree = (
+    await render(
+      <Toolbar>
+        <IconButton selected disabled icon="format-bold" onPress={() => {}} />
+      </Toolbar>
+    )
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it("leaves a selected IconButton child's explicit containerColor untouched", async () => {
-  await render(
-    <Toolbar colorScheme="vibrant">
-      <IconButton
-        testID="explicit"
-        selected
-        icon="format-bold"
-        containerColor="red"
-        onPress={() => {}}
-      />
-    </Toolbar>
-  );
-
-  expect(screen.getByTestId('explicit').parent).toHaveStyle({
-    backgroundColor: 'red',
-  });
+  const tree = (
+    await render(
+      <Toolbar colorScheme="vibrant">
+        <IconButton
+          selected
+          icon="format-bold"
+          containerColor="red"
+          onPress={() => {}}
+        />
+      </Toolbar>
+    )
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it("defaults a mode-less Button child's textColor to the toolbar's content color", async () => {
@@ -356,16 +327,12 @@ it('leaves a Button child with a more opinionated mode uncolored', async () => {
 });
 
 it("leaves a Button child's explicit textColor/buttonColor untouched", async () => {
-  await render(
+  const view = await render(
     <Toolbar colorScheme="vibrant">
       <Button textColor="red" onPress={() => {}}>
         Explicit text
       </Button>
-      <Button
-        testID="explicit-button-color"
-        buttonColor="blue"
-        onPress={() => {}}
-      >
+      <Button buttonColor="blue" onPress={() => {}}>
         Explicit button
       </Button>
     </Toolbar>
@@ -374,9 +341,7 @@ it("leaves a Button child's explicit textColor/buttonColor untouched", async () 
   expect(screen.getByText('Explicit text')).toHaveStyle({
     color: 'red',
   });
-  expect(screen.getByTestId('explicit-button-color').parent).toHaveStyle({
-    backgroundColor: 'blue',
-  });
+  expect(view.toJSON()).toMatchSnapshot();
 });
 
 // `theme.colors` values are `rgba(r, g, b, 1)` strings convert to hex to

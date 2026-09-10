@@ -154,8 +154,6 @@ const ToolbarExample = () => {
         ]}
       />
       {isFloating ? (
-        // `floating` doesn't anchor itself (same as `FAB`)—position it with
-        // a wrapping `View`, same as the component's own doc example.
         <View
           pointerEvents="box-none"
           style={
@@ -173,7 +171,6 @@ const ToolbarExample = () => {
           </Toolbar>
         </View>
       ) : (
-        // `docked` anchors itself, flush to the bottom edge, on its own.
         <Toolbar
           variant={variant}
           colorScheme={colorScheme}

@@ -6,7 +6,6 @@ import { resolveColors } from './ToolbarColorContext';
 import type { Elevation } from '../../theme/types';
 import type { InternalTheme } from '../../theme/types';
 
-/** Resolve the container (background) color; an explicit `containerColor` wins over `colorScheme`. */
 export const resolveContainerColor = ({
   theme,
   colorScheme,
@@ -33,7 +32,7 @@ export const resolveElevation = ({
 /**
  * Leading/trailing padding + inter-item gap for the content row/column,
  * from spec defaults (`contentContainerStyle` can override). `docked`'s
- * content row is a fixed 64dp band (see `Toolbar.tsx`'s `thickness`), so
+ * content row is a fixed band (see `Toolbar.tsx`'s `thickness`), so
  * it only pads horizontally to leave room for taller children like a
  * `Button` label; `floating` has no such fixed height, so it pads every
  * side.
@@ -42,13 +41,30 @@ export const getSpacing = ({
   variant,
 }: {
   variant: Variant;
-}): { paddingLeading: number; paddingTrailing: number; gap: number } => {
-  const tokens =
-    variant === 'docked' ? ToolbarTokens.docked : ToolbarTokens.floating;
+}): {
+  paddingLeading: number;
+  paddingTrailing: number;
+  paddingTop: number;
+  paddingBottom: number;
+  gap: number;
+} => {
+  if (variant === 'docked') {
+    const tokens = ToolbarTokens.docked;
+    return {
+      paddingLeading: tokens.containerLeadingSpace,
+      paddingTrailing: tokens.containerTrailingSpace,
+      paddingTop: 0,
+      paddingBottom: 0,
+      gap: tokens.defaultSpacing,
+    };
+  }
 
+  const tokens = ToolbarTokens.floating;
   return {
     paddingLeading: tokens.containerLeadingSpace,
     paddingTrailing: tokens.containerTrailingSpace,
+    paddingTop: tokens.containerTopSpace,
+    paddingBottom: tokens.containerBottomSpace,
     gap: tokens.defaultSpacing,
   };
 };
