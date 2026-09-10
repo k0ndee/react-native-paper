@@ -23,6 +23,8 @@ const floating = {
   containerShape: 'full',
   containerLeadingSpace: 8,
   containerTrailingSpace: 8,
+  containerTopSpace: 8,
+  containerBottomSpace: 8,
   defaultSpacing: 4,
 } as const;
 
@@ -31,15 +33,15 @@ const elevation = {
   floating: 3,
 } as const satisfies Record<string, Elevation>;
 
-// Per https://m3.material.io/components/toolbars/specs—color roles for
-// the toolbar itself (`container`) and its mode-less descendants: `IconButton`
-// (`icon`, `buttonContainer`) and `Button` (`label`); a `mode` on either
-// (filled, outlined, etc.) opts it out in favor of its own mode-based
-// coloring instead (see `ToolbarColorContext`). `selected*` roles apply
-// only to `IconButton`, `Button` has no `selected` state, and an
-// unselected `IconButton` gets no `buttonContainer` override at all, since
-// it's the same role as the toolbar's own `container` (i.e. no visible
-// pill, it just blends in).
+// Color roles from https://m3.material.io/components/toolbars/specs, for the
+// toolbar's own `container` and for its mode-less children: `IconButton`
+// (`icon`, `buttonContainer`) and `Button` (`label`). If an `IconButton` or
+// `Button` has a `mode` (filled, outlined, etc.), it colors itself instead
+// (see `ToolbarColorContext`). The `selected*` roles only apply to
+// `IconButton`, `Button` has no selected state. An unselected `IconButton`
+// doesn't get a `buttonContainer` override either, since that role is the
+// same color as the toolbar's `container`, so it just blends in with no
+// visible pill.
 const standardColors = {
   container: 'surfaceContainer',
   buttonContainer: 'surfaceContainer',

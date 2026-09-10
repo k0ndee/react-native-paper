@@ -46,7 +46,7 @@ export type Props = Omit<ViewProps, 'style'> & {
    *
    * This doesn't support all `View` style properties: background color and
    * border radius should be specified via `containerColor` and the
-   * `variant`'s shape token instead — see `Surface`'s `style` prop.
+   * `variant`'s shape token instead - see `Surface`'s `style` prop.
    */
   style?: StyleProp<SurfaceStyle>;
   /**
@@ -56,7 +56,9 @@ export type Props = Omit<ViewProps, 'style'> & {
    */
   contentContainerStyle?: StyleProp<ViewStyle>;
   /**
-   * TestID used for testing purposes.
+   * TestID used for testing purposes. Lands on the same node as `ref` (see
+   * below) - the `Surface` pill for `floating`, or the outer positioning
+   * wrapper `View` for `docked`.
    */
   testID?: string;
   /**
@@ -135,6 +137,10 @@ const Toolbar = ({
 }: Props) => {
   const theme = useInternalTheme(themeOverrides);
   const insets = useSafeAreaInsets();
+  const toolbarColorContextValue = React.useMemo(
+    () => ({ theme, colorScheme }),
+    [theme, colorScheme]
+  );
 
   const isDocked = variant === 'docked';
   const isVertical = !isDocked && orientation === 'vertical';
@@ -152,31 +158,26 @@ const Toolbar = ({
   );
   const elevation = resolveElevation({ isDocked });
 
-  // Cross-axis thickness is always the spec value (64dp); insets are
-  // never mixed in, so the icon band never grows/shrinks with the safe
-  // area (`docked` extends into insets separately, see
-  // `dockedInsetMargin` below).
+  // Cross-axis thickness is always the spec value, insets are never mixed in,
+  // so the icon band never grows/shrinks with the safe area (`docked` extends
+  // into insets separately, see`dockedInsetMargin` below).
   const thickness = isDocked
     ? ToolbarTokens.docked.containerHeight
     : ToolbarTokens.floating.containerHeight;
-  const { paddingLeading, paddingTrailing, gap } = getSpacing({ variant });
+  const { paddingLeading, paddingTrailing, paddingTop, paddingBottom, gap } =
+    getSpacing({ variant });
 
-  // `docked`'s content row is a fixed 64dp band (see `thickness` above),
-  // so top/bottom padding would clip taller children (e.g. a `Button`
-  // label). `floating` has no fixed-height row, so it pads every side.
+  // `docked`'s content row is a fixed band (see `thickness` above),
+  // so top/bottom padding would clip taller children.
+  // `floating` has no fixed-height row, so it pads every side.
   const contentPadding = isDocked
     ? { paddingLeft: paddingLeading, paddingRight: paddingTrailing }
     : {
-        paddingTop: paddingLeading,
-        paddingBottom: paddingLeading,
+        paddingTop,
+        paddingBottom,
         paddingLeft: paddingLeading,
         paddingRight: paddingTrailing,
       };
-  // `docked`'s background extends into the bottom/left/right insets while
-  // its content stays clear of them, via margin outside `Surface`'s own
-  // fixed-size box (so `Surface` grows to wrap it, keeping the icon row's
-  // 64dp band untouched). `floating` doesn't self-anchor, so it has no
-  // insets to account for.
   const dockedInsetMargin = isDocked
     ? {
         marginBottom: insets.bottom,
@@ -187,9 +188,6 @@ const Toolbar = ({
 
   const pill = (
     <Surface
-      // `rest` (e.g. `onLayout`) follows `ref` above: it lands on whichever
-      // node is the toolbar's outer node for the given `variant` — this
-      // `Surface` for `floating`, or the `docked` wrapper `View` below.
       {...(!isDocked ? rest : null)}
       ref={isDocked ? undefined : ref}
       elevation={elevation}
@@ -200,41 +198,35 @@ const Toolbar = ({
         styles.content,
         !isDocked && style,
       ]}
-      testID={testID}
+      testID={isDocked ? undefined : testID}
     >
       <View
         role="toolbar"
         aria-label={ariaLabel}
-        testID={testID ? `${testID}-content` : undefined}
         style={[
           styles.content,
           isVertical ? styles.column : styles.row,
           { ...contentPadding, gap },
           dockedInsetMargin,
-          // Cross-axis thickness is the spec default (see `thickness`
-          // above). Deliberately set here rather than on `Surface` (which
-          // wraps this `View` with no size of its own, so it just hugs
-          // it) — giving `Surface` an explicit width/height that flips
-          // between renders is what previously left a stale shadow
-          // "ghost" on iOS when `floating`'s `orientation` changed axis;
-          // that no longer happens with the fixed dimension living here
-          // instead.
+          // Cross-axis thickness is the spec default (see `thickness` above).
+          // It's set here and not on `Surface` on purpose: `Surface` just
+          // wraps this `View` and has no size of its own, so it hugs
+          // whatever size we give this `View`. Setting an explicit
+          // width/height directly on `Surface` used to leave a stale shadow
+          // "ghost" on iOS whenever `floating`'s `orientation` flipped the axis.
           isDocked && { height: thickness },
           !isDocked &&
             (isVertical ? { width: thickness } : { height: thickness }),
           contentContainerStyle,
         ]}
       >
-        <ToolbarColorContext.Provider value={{ theme, colorScheme }}>
+        <ToolbarColorContext.Provider value={toolbarColorContextValue}>
           {children}
         </ToolbarColorContext.Provider>
       </View>
     </Surface>
   );
 
-  // `floating` is positioned directly via `style` (like `FAB`'s `Shell`),
-  // no wrapper needed. `docked` anchors to its nearest positioned
-  // ancestor, which needs the wrapping `View` below.
   if (!isDocked) {
     return pill;
   }
@@ -243,16 +235,10 @@ const Toolbar = ({
     <View
       {...rest}
       ref={ref}
-      // `box-none` so this anchoring box (spanning the full width of its
-      // ancestor) doesn't intercept touches outside the bar itself.
       pointerEvents="box-none"
-      // `style` is typed against `SurfaceStyle` (excluding `backgroundColor`/
-      // border-radius props, which `Surface` above ignores) so it's safe on
-      // a plain `View` too; the cast is only for `AnimatedStyle`'s stricter
-      // shared-value typing, unused by this non-animated wrapper.
       // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
       style={[styles.dockedContainer, style as StyleProp<ViewStyle>]}
-      testID={testID ? `${testID}-container` : undefined}
+      testID={testID}
     >
       {pill}
     </View>
@@ -277,8 +263,6 @@ const styles = StyleSheet.create({
   dockedFill: {
     width: '100%',
   },
-  // `docked` anchors absolutely rather than reserving layout space, so
-  // consumers pad their own content to avoid it, same as `floating`.
   dockedContainer: {
     position: 'absolute',
     bottom: 0,
