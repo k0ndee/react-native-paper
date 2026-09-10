@@ -27,7 +27,6 @@ describe('Switch render', () => {
   it('expands hitSlop up to the 48dp minimum when enabled', async () => {
     await render(<Switch testID="switch" value />);
 
-    // (48 - 40) / 2 top/bottom, none horizontally: the track is already wider
     // eslint-disable-next-line no-restricted-syntax
     expect(screen.getByTestId('switch').props.hitSlop).toEqual({
       top: 4,

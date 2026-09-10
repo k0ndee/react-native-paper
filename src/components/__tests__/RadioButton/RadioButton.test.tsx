@@ -87,7 +87,6 @@ describe('RadioButton', () => {
     it('expands up to the 48dp minimum when enabled', async () => {
       await render(<RadioButton testID="radio" value="first" />);
 
-      // (48 - 40) / 2 on every side
       // eslint-disable-next-line no-restricted-syntax
       expect(screen.getByTestId('radio').props.hitSlop).toEqual({
         top: 4,

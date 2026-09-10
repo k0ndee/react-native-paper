@@ -194,10 +194,6 @@ const SegmentedButtonItem = ({
   };
 
   const paddingVertical = getSegmentedButtonDensityPadding({ density });
-
-  // Height is `2 * paddingVertical + content`, and content is never shorter
-  // than the 18dp icon (the label's own line height is taller), so that is
-  // the safe floor to compute slop from without needing to measure.
   const contentHeight = 2 * paddingVertical + iconSize;
   const defaultHitSlop = disabled
     ? undefined

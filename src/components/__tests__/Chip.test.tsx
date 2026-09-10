@@ -102,8 +102,6 @@ it('expands hitSlop up to the 48dp minimum when enabled', async () => {
     </Chip>
   );
 
-  // (48 - 32) / 2 top/bottom, none horizontally: the pill's width already
-  // covers it
   // eslint-disable-next-line no-restricted-syntax
   expect(screen.getByTestId('active-chip').props.hitSlop).toEqual({
     top: 8,
