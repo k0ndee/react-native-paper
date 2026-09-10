@@ -283,6 +283,10 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -469,6 +473,10 @@ exports[`Appbar does not pass any additional props to Searchbar 1`] = `
                 },
                 {
                   "overflow": "hidden",
+                },
+                {
+                  "height": undefined,
+                  "width": undefined,
                 },
                 undefined,
               ],
@@ -713,6 +721,10 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
             {
               "overflow": "hidden",
             },
+            {
+              "height": undefined,
+              "width": undefined,
+            },
             undefined,
           ],
         ]
@@ -955,6 +967,10 @@ exports[`Appbar passes additional props to AppbarBackAction, AppbarContent and A
             },
             {
               "overflow": "hidden",
+            },
+            {
+              "height": undefined,
+              "width": undefined,
             },
             undefined,
           ],

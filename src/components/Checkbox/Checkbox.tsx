@@ -79,10 +79,10 @@ const {
 
 const FOCUS_THICKNESS = tokens.md.sys.state.focusIndicator.thickness;
 // Focus indicator is a circular ring at the 40dp state-layer boundary.
-// We don't apply `focusIndicator.outerOffset`, so the ring stays inside the 40dp
-// circle. `TouchableRipple borderless` used to crop anything outside it; on web
-// it no longer does, since the touchable cannot clip without clipping the touch
-// target. Native still clips. Check both when revisiting the offset.
+// We don't apply `focusIndicator.outerOffset`, keeping the ring inside the
+// 40dp circle: whether TouchableRipple clips content past that boundary
+// depends on platform and ripple mode, so staying inside it avoids relying
+// on any of that.
 const FOCUS_RING_SIZE = STATE_LAYER_SIZE;
 const FOCUS_RING_RADIUS = STATE_LAYER_SIZE / 2;
 
@@ -252,7 +252,14 @@ const Checkbox = ({
       disabled={disabled}
       {...accessibilityProps}
       testID={testID}
-      hitSlop={rest.hitSlop ?? (disabled ? undefined : CHECKBOX_HIT_SLOP)}
+      hitSlop={
+        rest.hitSlop !== undefined
+          ? rest.hitSlop
+          : disabled
+            ? undefined
+            : CHECKBOX_HIT_SLOP
+      }
+      borderRadius={FOCUS_RING_RADIUS}
       style={[
         styles.tapTarget,
         Platform.OS === 'web' ? webNoOutline : undefined,

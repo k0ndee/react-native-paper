@@ -117,8 +117,13 @@ const RadioButtonIOS = ({
             testID={testID}
             theme={theme}
             hitSlop={
-              rest.hitSlop ?? (disabled ? undefined : RADIO_BUTTON_HIT_SLOP)
+              rest.hitSlop !== undefined
+                ? rest.hitSlop
+                : disabled
+                  ? undefined
+                  : RADIO_BUTTON_HIT_SLOP
             }
+            borderRadius={STATE_LAYER_SIZE / 2}
           >
             <View style={{ opacity }}>
               <MaterialCommunityIcon

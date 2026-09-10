@@ -75,6 +75,30 @@ it('lets a caller-supplied hitSlop win even while disabled', async () => {
   expect(screen.getByTestId('icon-button').props.hitSlop).toBe(2);
 });
 
+it('computes hitSlop from explicit width/height rather than the button size', async () => {
+  await render(
+    <IconButton testID="icon-button" icon="camera" width={20} height={20} />
+  );
+
+  // (48 - 20) / 2 on every side
+  // eslint-disable-next-line no-restricted-syntax
+  expect(screen.getByTestId('icon-button').props.hitSlop).toEqual({
+    top: 14,
+    bottom: 14,
+    left: 14,
+    right: 14,
+  });
+});
+
+it('drops hitSlop when explicit width/height already meet the 48dp minimum', async () => {
+  await render(
+    <IconButton testID="icon-button" icon="camera" width={48} height={48} />
+  );
+
+  // eslint-disable-next-line no-restricted-syntax
+  expect(screen.getByTestId('icon-button').props.hitSlop).toBeUndefined();
+});
+
 it('renders icon change animated', async () => {
   const tree = (await render(<IconButton icon="camera" animated />)).toJSON();
 

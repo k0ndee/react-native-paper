@@ -250,6 +250,10 @@ exports[`renders filled TextInput with TextInput.Icon accessories 1`] = `
                 {
                   "overflow": "hidden",
                 },
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
                 undefined,
               ],
             ]
@@ -459,6 +463,10 @@ exports[`renders filled TextInput with TextInput.Icon accessories 1`] = `
                 },
                 {
                   "overflow": "hidden",
+                },
+                {
+                  "height": undefined,
+                  "width": undefined,
                 },
                 undefined,
               ],
@@ -766,6 +774,10 @@ exports[`renders filled TextInput with TextInput.Icon accessories when error is 
                 {
                   "overflow": "hidden",
                 },
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
                 undefined,
               ],
             ]
@@ -975,6 +987,10 @@ exports[`renders filled TextInput with TextInput.Icon accessories when error is 
                 },
                 {
                   "overflow": "hidden",
+                },
+                {
+                  "height": undefined,
+                  "width": undefined,
                 },
                 undefined,
               ],
@@ -1460,6 +1476,10 @@ exports[`renders outlined TextInput with TextInput.Icon accessories 1`] = `
                 {
                   "overflow": "hidden",
                 },
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
                 undefined,
               ],
             ]
@@ -1669,6 +1689,10 @@ exports[`renders outlined TextInput with TextInput.Icon accessories 1`] = `
                 },
                 {
                   "overflow": "hidden",
+                },
+                {
+                  "height": undefined,
+                  "width": undefined,
                 },
                 undefined,
               ],
@@ -1956,6 +1980,10 @@ exports[`renders outlined TextInput with TextInput.Icon accessories when error i
                 {
                   "overflow": "hidden",
                 },
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
                 undefined,
               ],
             ]
@@ -2165,6 +2193,10 @@ exports[`renders outlined TextInput with TextInput.Icon accessories when error i
                 },
                 {
                   "overflow": "hidden",
+                },
+                {
+                  "height": undefined,
+                  "width": undefined,
                 },
                 undefined,
               ],

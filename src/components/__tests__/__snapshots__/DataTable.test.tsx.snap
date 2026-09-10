@@ -776,6 +776,10 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -914,6 +918,10 @@ exports[`DataTable.Pagination renders data table pagination 1`] = `
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],
@@ -1112,6 +1120,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -1250,6 +1262,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],
@@ -1390,6 +1406,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -1528,6 +1548,10 @@ exports[`DataTable.Pagination renders data table pagination with fast-forward bu
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],
@@ -1726,6 +1750,10 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -1864,6 +1892,10 @@ exports[`DataTable.Pagination renders data table pagination with label 1`] = `
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],
@@ -2360,6 +2392,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -2498,6 +2534,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],
@@ -2638,6 +2678,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
               {
                 "overflow": "hidden",
               },
+              {
+                "height": undefined,
+                "width": undefined,
+              },
               undefined,
             ],
           ]
@@ -2776,6 +2820,10 @@ exports[`DataTable.Pagination renders data table pagination with options select 
               },
               {
                 "overflow": "hidden",
+              },
+              {
+                "height": undefined,
+                "width": undefined,
               },
               undefined,
             ],

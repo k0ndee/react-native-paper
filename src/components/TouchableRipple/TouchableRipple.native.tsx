@@ -20,43 +20,6 @@ import hasTouchHandler from '../../utils/hasTouchHandler';
 const ANDROID_VERSION_LOLLIPOP = 21;
 const ANDROID_VERSION_PIE = 28;
 
-/**
- * The underlay fills the touchable absolutely and has no radius of its own, so
- * it paints square corners over a rounded one. A clipping ancestor used to hide
- * that, and those ancestors have to stop clipping to reach into the `hitSlop`.
- */
-const getUnderlayShape = (style: StyleProp<ViewStyle>): ViewStyle => {
-  const flat = StyleSheet.flatten(style);
-
-  if (!flat) {
-    return {};
-  }
-
-  const {
-    borderRadius,
-    borderTopLeftRadius,
-    borderTopRightRadius,
-    borderBottomLeftRadius,
-    borderBottomRightRadius,
-    borderTopStartRadius,
-    borderTopEndRadius,
-    borderBottomStartRadius,
-    borderBottomEndRadius,
-  } = flat;
-
-  return {
-    borderRadius,
-    borderTopLeftRadius,
-    borderTopRightRadius,
-    borderBottomLeftRadius,
-    borderBottomRightRadius,
-    borderTopStartRadius,
-    borderTopEndRadius,
-    borderBottomStartRadius,
-    borderBottomEndRadius,
-  };
-};
-
 export type Props = PressableProps & {
   borderless?: boolean;
   background?: PressableAndroidRippleConfig;
@@ -72,6 +35,21 @@ export type Props = PressableProps & {
   style?: StyleProp<ViewStyle>;
   ref?: React.Ref<View>;
   theme?: ThemeProp;
+  borderRadius?: number;
+  borderTopLeftRadius?: number;
+  borderTopRightRadius?: number;
+  borderBottomLeftRadius?: number;
+  borderBottomRightRadius?: number;
+  borderTopStartRadius?: number;
+  borderTopEndRadius?: number;
+  borderBottomStartRadius?: number;
+  borderBottomEndRadius?: number;
+  /**
+   * Web-only: widens the touch target back out past the touchable's own
+   * border. Accepted here too so both platforms share one `Props` type; has
+   * no effect on native, where `hitSlop` isn't offset from inside the border.
+   */
+  borderWidth?: number;
 };
 
 const TouchableRipple = ({
@@ -84,9 +62,32 @@ const TouchableRipple = ({
   children,
   theme: themeOverrides,
   hitSlop,
+  borderRadius,
+  borderTopLeftRadius,
+  borderTopRightRadius,
+  borderBottomLeftRadius,
+  borderBottomRightRadius,
+  borderTopStartRadius,
+  borderTopEndRadius,
+  borderBottomStartRadius,
+  borderBottomEndRadius,
+  // consumed so it does not reach the underlying Pressable; web-only, no
+  // native effect
+  borderWidth: _borderWidth,
   ref,
   ...rest
 }: Props) => {
+  const underlayShape: ViewStyle = {
+    borderRadius,
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius,
+    borderTopStartRadius,
+    borderTopEndRadius,
+    borderBottomStartRadius,
+    borderBottomEndRadius,
+  };
   const theme = useInternalTheme(themeOverrides);
   const { rippleEffectEnabled } = React.useContext<Settings>(SettingsContext);
 
@@ -153,7 +154,7 @@ const TouchableRipple = ({
             <View
               style={[
                 styles.underlay,
-                getUnderlayShape(style),
+                underlayShape,
                 { backgroundColor: calculatedUnderlayColor },
               ]}
             />
