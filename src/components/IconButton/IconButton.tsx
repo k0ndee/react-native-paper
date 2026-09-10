@@ -86,9 +86,7 @@ export type Props = Omit<
   height?: number;
   /**
    * Radius of every corner of the button. Defaults to a circle (half of the
-   * button's size). Read as a plain prop rather than out of `style`, since
-   * `style` may be an animated value on the UI thread that a synchronous
-   * `StyleSheet.flatten` cannot see.
+   * button's size).
    */
   borderRadius?: number;
   borderTopLeftRadius?: number;

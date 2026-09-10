@@ -62,7 +62,6 @@ it('renders Checkbox with custom testID', async () => {
 it('expands hitSlop up to the 48dp minimum when enabled', async () => {
   await render(<Checkbox testID="checkbox" status="unchecked" />);
 
-  // (48 - 40) / 2 on every side
   // eslint-disable-next-line no-restricted-syntax
   expect(screen.getByTestId('checkbox').props.hitSlop).toEqual({
     top: 4,

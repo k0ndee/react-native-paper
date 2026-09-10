@@ -22,9 +22,9 @@ export type Props = PressableProps & {
   /**
    * Whether to render the ripple outside the view bounds.
    *
-   * On web the ripple is bounded by its own container, so this no longer clips
-   * the touchable's content. The touchable cannot clip without clipping the
-   * touch target, so children needing a rounded shape carry the radius
+   * On web the ripple is bounded by its own container regardless of this prop.
+   * The touchable never clips its content, since clipping would also clip the
+   * touch target, so children needing a rounded shape must carry the radius
    * themselves.
    */
   borderless?: boolean;
@@ -97,9 +97,7 @@ export type Props = PressableProps & {
   /**
    * Width of the touchable's own border, if it draws one. Web-only: the touch
    * target's absolute offsets start inside the border, not the visible outer
-   * edge, so this widens the target back out to it. Read as a plain prop
-   * rather than out of `style`, since `style` can be a function of press
-   * state instead of a plain object to read a value off.
+   * edge, so this widens the target back out to it.
    */
   borderWidth?: number;
 };
@@ -219,15 +217,6 @@ const TouchableRipple = ({
           borderTopRightRadius: style.borderTopRightRadius,
           borderBottomRightRadius: style.borderBottomRightRadius,
           borderBottomLeftRadius: style.borderBottomLeftRadius,
-          // The touchable cannot clip, it would clip the touch target too, so
-          // the ripple is contained here. This container is inset to the
-          // touchable and copies its radii, so it clips to the same shape.
-          //
-          // Always, not `centered ? 'visible' : 'hidden'` as before. A ripple
-          // that escaped used to be caught by whichever ancestor clipped, and
-          // those ancestors have to stop. ToggleButton hit this: it passes
-          // `borderless={false}` to IconButton, which spreads it over its own,
-          // so the Surface was holding the ripple in.
           overflow: 'hidden',
         });
 

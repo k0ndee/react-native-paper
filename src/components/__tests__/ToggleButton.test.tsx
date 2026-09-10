@@ -43,7 +43,6 @@ describe('ToggleButton.Row', () => {
       </ToggleButton.Row>
     );
 
-    // (48 - 42) / 2 on every edge with no neighbour
     // eslint-disable-next-line no-restricted-syntax
     expect(screen.getByTestId('first').props.hitSlop).toEqual({
       top: 3,

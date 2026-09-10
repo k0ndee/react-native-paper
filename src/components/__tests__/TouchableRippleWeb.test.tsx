@@ -20,9 +20,9 @@ const TouchableRipple: typeof TouchableRippleType =
 
 const TOUCHABLE = 'touchable';
 
-// `children` admits raw text nodes since a host element can render one, but
-// the touchable's own children never do; this makes that assumption explicit
-// to the type checker instead of leaving `children[0]` typed as `TestNode`.
+// Host elements can render raw text children; the touchable's own children
+// never do. This narrows the type instead of leaving `children[0]` typed as
+// `TestNode` at every call site.
 const asElement = (node: TestInstance | string): TestInstance => {
   if (typeof node === 'string') {
     throw new Error('Expected an element, not a text node');
@@ -30,18 +30,22 @@ const asElement = (node: TestInstance | string): TestInstance => {
   return node;
 };
 
-// The target has no testID of its own (it would be identical, and thus
-// ambiguous, on every instance) and no role, so instead of querying for it
-// directly, it's addressed by position: it is always the touchable's first
-// host child when rendered, and is simply absent (not a hidden sibling)
-// otherwise.
+// The target has no testID (a hardcoded one would collide across instances)
+// and no accessible role (it's `aria-hidden`), so it's matched by that marker
+// instead of a user-visible query.
 const getTarget = () => {
   const children = screen.getByTestId(TOUCHABLE).children;
-  return children.length > 1 ? asElement(children[0]) : null;
+  return (
+    children.find(
+      (child): child is TestInstance =>
+        typeof child !== 'string' &&
+        // eslint-disable-next-line no-restricted-syntax
+        !!child.props['aria-hidden']
+    ) ?? null
+  );
 };
 
-// Throws instead of returning null, so tests that expect a target don't need
-// a non-null assertion to use it.
+// Throws so tests that expect a target don't need a non-null assertion.
 const requireTarget = () => {
   const target = getTarget();
   if (target === null) {
@@ -57,12 +61,16 @@ const styleOf = (node: TestInstance) => {
 };
 
 describe('TouchableRipple (web)', () => {
-  it('does not render a touch target when there is no hitSlop', async () => {
-    // No minimum is enforced here: the primitive does not measure, so with no
-    // caller-supplied `hitSlop` there is nothing to expand into and no target
-    // to render.
+  it.each([
+    { when: 'there is no hitSlop', props: { onPress: () => {} } },
+    { when: 'there are no touch handlers', props: { hitSlop: 4 } },
+    {
+      when: 'it is disabled',
+      props: { hitSlop: 4, onPress: () => {}, disabled: true },
+    },
+  ])('does not render a touch target when $when', async ({ props }) => {
     await render(
-      <TouchableRipple onPress={() => {}} testID={TOUCHABLE}>
+      <TouchableRipple testID={TOUCHABLE} {...props}>
         <Text>Button</Text>
       </TouchableRipple>
     );
@@ -89,64 +97,27 @@ describe('TouchableRipple (web)', () => {
     expect(second.props.children).toBe('child-marker');
   });
 
-  it('does not render a touch target when there are no touch handlers', async () => {
+  it.each([
+    {
+      name: 'sizes the target from a numeric hitSlop',
+      hitSlop: 6 as const,
+      expected: { top: -6, bottom: -6, left: -6, right: -6 },
+    },
+    {
+      name: 'sizes the target from a per-edge hitSlop, defaulting unset edges to zero',
+      hitSlop: { top: 4, left: 8 },
+      expected: { top: -4, bottom: -0, left: -8, right: -0 },
+    },
+  ])('$name', async ({ hitSlop, expected }) => {
     await render(
-      <TouchableRipple hitSlop={4} testID={TOUCHABLE}>
-        <Text>Not a control</Text>
-      </TouchableRipple>
-    );
-
-    expect(getTarget()).toBeNull();
-  });
-
-  it('does not render a touch target when disabled', async () => {
-    await render(
-      <TouchableRipple
-        disabled
-        hitSlop={4}
-        onPress={() => {}}
-        testID={TOUCHABLE}
-      >
-        <Text>Button</Text>
-      </TouchableRipple>
-    );
-
-    expect(getTarget()).toBeNull();
-  });
-
-  it('lets a caller-supplied hitSlop size the target', async () => {
-    await render(
-      <TouchableRipple hitSlop={6} onPress={() => {}} testID={TOUCHABLE}>
+      <TouchableRipple hitSlop={hitSlop} onPress={() => {}} testID={TOUCHABLE}>
         <Text>Button</Text>
       </TouchableRipple>
     );
 
     expect(styleOf(requireTarget())).toEqual({
       position: 'absolute',
-      top: -6,
-      bottom: -6,
-      left: -6,
-      right: -6,
-    });
-  });
-
-  it('accepts a per-edge hitSlop', async () => {
-    await render(
-      <TouchableRipple
-        hitSlop={{ top: 4, left: 8 }}
-        onPress={() => {}}
-        testID={TOUCHABLE}
-      >
-        <Text>Button</Text>
-      </TouchableRipple>
-    );
-
-    expect(styleOf(requireTarget())).toEqual({
-      position: 'absolute',
-      top: -4,
-      bottom: -0,
-      left: -8,
-      right: -0,
+      ...expected,
     });
   });
 
@@ -183,11 +154,7 @@ describe('TouchableRipple (web)', () => {
       </TouchableRipple>
     );
 
-    // eslint-disable-next-line no-restricted-syntax
-    const { style: rawStyle } = screen.getByTestId(TOUCHABLE).props;
-    const style = Array.isArray(rawStyle)
-      ? Object.assign({}, ...rawStyle.flat())
-      : rawStyle;
+    const style = styleOf(screen.getByTestId(TOUCHABLE));
 
     // check we have the touchable's own style first, or the absence below passes
     // against any empty object

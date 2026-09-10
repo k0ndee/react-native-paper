@@ -49,7 +49,6 @@ it('renders disabled icon button', async () => {
 it('expands hitSlop up to the 48dp minimum for a button smaller than that', async () => {
   await render(<IconButton testID="icon-button" icon="camera" />);
 
-  // (48 - 40) / 2 on every side, for the default 24dp icon plus 8dp padding
   // eslint-disable-next-line no-restricted-syntax
   expect(screen.getByTestId('icon-button').props.hitSlop).toEqual({
     top: 4,
@@ -80,7 +79,6 @@ it('computes hitSlop from explicit width/height rather than the button size', as
     <IconButton testID="icon-button" icon="camera" width={20} height={20} />
   );
 
-  // (48 - 20) / 2 on every side
   // eslint-disable-next-line no-restricted-syntax
   expect(screen.getByTestId('icon-button').props.hitSlop).toEqual({
     top: 14,

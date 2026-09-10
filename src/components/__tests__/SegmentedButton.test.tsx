@@ -526,8 +526,6 @@ describe('hitSlop', () => {
       />
     );
 
-    // (48 - (2 * 9dp default padding + 18dp icon)) / 2 top/bottom, none
-    // horizontally
     // eslint-disable-next-line no-restricted-syntax
     expect(screen.getByTestId('walking-button').props.hitSlop).toEqual({
       top: 6,
