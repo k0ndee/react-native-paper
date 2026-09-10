@@ -3,8 +3,8 @@ import { Platform, View } from 'react-native';
 import { describe, expect, it } from '@jest/globals';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
-import { getTheme } from '../../core/theming';
 import { render, screen } from '../../test-utils';
+import { DarkTheme, LightTheme } from '../../theme/schemes';
 import Button from '../Button/Button';
 import IconButton from '../IconButton/IconButton';
 import type { ColorScheme } from '../Toolbar/tokens';
@@ -150,7 +150,7 @@ it('renders docked Toolbar with vibrant colorScheme', async () => {
     </>
   );
 
-  const theme = getTheme();
+  const theme = LightTheme;
   expect(screen.getByTestId('toolbar-vibrant')).toHaveStyle({
     backgroundColor: theme.colors.primaryContainer,
   });
@@ -215,7 +215,7 @@ it('recolors an IconButton nested inside a View, not just direct children', asyn
     </Toolbar>
   );
 
-  const theme = getTheme();
+  const theme = LightTheme;
   expect(
     screen.getByText('magnify', { includeHiddenElements: true })
   ).toHaveStyle({
@@ -227,15 +227,13 @@ it('recolors a Button nested inside a View, not just direct children', async () 
   await render(
     <Toolbar colorScheme="vibrant">
       <View>
-        <Button testID="wrapped" onPress={() => {}}>
-          Done
-        </Button>
+        <Button onPress={() => {}}>Done</Button>
       </View>
     </Toolbar>
   );
 
-  const theme = getTheme();
-  expect(screen.getByTestId('wrapped-text')).toHaveStyle({
+  const theme = LightTheme;
+  expect(screen.getByText('Done')).toHaveStyle({
     color: theme.colors.onPrimaryContainer,
   });
 });
@@ -262,11 +260,11 @@ it('gives a selected IconButton child the selected container color', async () =>
     </>
   );
 
-  const theme = getTheme();
-  expect(screen.getByTestId('standard-selected-container')).toHaveStyle({
+  const theme = LightTheme;
+  expect(screen.getByTestId('standard-selected').parent).toHaveStyle({
     backgroundColor: theme.colors.secondaryContainer,
   });
-  expect(screen.getByTestId('vibrant-selected-container')).toHaveStyle({
+  expect(screen.getByTestId('vibrant-selected').parent).toHaveStyle({
     backgroundColor: theme.colors.surfaceContainer,
   });
 });
@@ -284,8 +282,8 @@ it('gives a disabled, selected IconButton child the disabled treatment instead o
     </Toolbar>
   );
 
-  const theme = getTheme();
-  expect(screen.getByTestId('disabled-selected-container')).not.toHaveStyle({
+  const theme = LightTheme;
+  expect(screen.getByTestId('disabled-selected').parent).not.toHaveStyle({
     backgroundColor: theme.colors.secondaryContainer,
   });
 });
@@ -303,7 +301,7 @@ it("leaves a selected IconButton child's explicit containerColor untouched", asy
     </Toolbar>
   );
 
-  expect(screen.getByTestId('explicit-container')).toHaveStyle({
+  expect(screen.getByTestId('explicit').parent).toHaveStyle({
     backgroundColor: 'red',
   });
 });
@@ -312,23 +310,19 @@ it("defaults a mode-less Button child's textColor to the toolbar's content color
   await render(
     <>
       <Toolbar>
-        <Button testID="standard" onPress={() => {}}>
-          Done
-        </Button>
+        <Button onPress={() => {}}>Standard</Button>
       </Toolbar>
       <Toolbar colorScheme="vibrant">
-        <Button testID="vibrant" onPress={() => {}}>
-          Done
-        </Button>
+        <Button onPress={() => {}}>Vibrant</Button>
       </Toolbar>
     </>
   );
 
-  const theme = getTheme();
-  expect(screen.getByTestId('standard-text')).toHaveStyle({
+  const theme = LightTheme;
+  expect(screen.getByText('Standard')).toHaveStyle({
     color: theme.colors.onSurfaceVariant,
   });
-  expect(screen.getByTestId('vibrant-text')).toHaveStyle({
+  expect(screen.getByText('Vibrant')).toHaveStyle({
     color: theme.colors.onPrimaryContainer,
   });
 });
@@ -336,14 +330,14 @@ it("defaults a mode-less Button child's textColor to the toolbar's content color
 it('recolors a Button child with an explicit mode="text", same as no mode', async () => {
   await render(
     <Toolbar colorScheme="vibrant">
-      <Button testID="text-mode" mode="text" onPress={() => {}}>
+      <Button mode="text" onPress={() => {}}>
         Done
       </Button>
     </Toolbar>
   );
 
-  const theme = getTheme();
-  expect(screen.getByTestId('text-mode-text')).toHaveStyle({
+  const theme = LightTheme;
+  expect(screen.getByText('Done')).toHaveStyle({
     color: theme.colors.onPrimaryContainer,
   });
 });
@@ -364,23 +358,23 @@ it('leaves a Button child with a more opinionated mode uncolored', async () => {
 it("leaves a Button child's explicit textColor/buttonColor untouched", async () => {
   await render(
     <Toolbar colorScheme="vibrant">
-      <Button testID="explicit-text" textColor="red" onPress={() => {}}>
-        Done
+      <Button textColor="red" onPress={() => {}}>
+        Explicit text
       </Button>
       <Button
         testID="explicit-button-color"
         buttonColor="blue"
         onPress={() => {}}
       >
-        Done
+        Explicit button
       </Button>
     </Toolbar>
   );
 
-  expect(screen.getByTestId('explicit-text-text')).toHaveStyle({
+  expect(screen.getByText('Explicit text')).toHaveStyle({
     color: 'red',
   });
-  expect(screen.getByTestId('explicit-button-color-container')).toHaveStyle({
+  expect(screen.getByTestId('explicit-button-color').parent).toHaveStyle({
     backgroundColor: 'blue',
   });
 });
@@ -399,8 +393,8 @@ const toHex = (rgba: unknown) => {
 };
 
 describe('color resolution across light/dark themes', () => {
-  const light = getTheme(false);
-  const dark = getTheme(true);
+  const light = LightTheme;
+  const dark = DarkTheme;
 
   it.each([
     ['standard', 'light', 'container', '#F3EDF7'],
