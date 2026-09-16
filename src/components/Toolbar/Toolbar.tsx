@@ -212,7 +212,7 @@ const Toolbar = ({
           // It's set here and not on `Surface` on purpose: `Surface` just
           // wraps this `View` and has no size of its own, so it hugs
           // whatever size we give this `View`. Setting an explicit
-          // width/height directly on `Surface` used to leave a stale shadow
+          // width/height directly on `Surface` leaves a stale shadow
           // "ghost" on iOS whenever `floating`'s `orientation` flipped the axis.
           isDocked && { height: thickness },
           !isDocked &&
