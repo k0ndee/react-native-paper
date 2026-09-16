@@ -210,7 +210,6 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 10,
-    // Centres the 20dp glyph within the 40dp state layer.
     margin: (STATE_LAYER_SIZE - 20) / 2,
   },
   dot: {

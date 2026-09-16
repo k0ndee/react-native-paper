@@ -20,9 +20,6 @@ const TouchableRipple: typeof TouchableRippleType =
 
 const TOUCHABLE = 'touchable';
 
-// Host elements can render raw text children; the touchable's own children
-// never do. This narrows the type instead of leaving `children[0]` typed as
-// `TestNode` at every call site.
 const asElement = (node: TestInstance | string): TestInstance => {
   if (typeof node === 'string') {
     throw new Error('Expected an element, not a text node');
@@ -30,9 +27,6 @@ const asElement = (node: TestInstance | string): TestInstance => {
   return node;
 };
 
-// The target has no testID (a hardcoded one would collide across instances)
-// and no accessible role (it's `aria-hidden`), so it's matched by that marker
-// instead of a user-visible query.
 const getTarget = () => {
   const children = screen.getByTestId(TOUCHABLE).children;
   return (
@@ -45,7 +39,6 @@ const getTarget = () => {
   );
 };
 
-// Throws so tests that expect a target don't need a non-null assertion.
 const requireTarget = () => {
   const target = getTarget();
   if (target === null) {
@@ -79,8 +72,6 @@ describe('TouchableRipple (web)', () => {
   });
 
   it('renders the touch target before the children so it cannot cover them', async () => {
-    // It hit-tests, so as the last sibling it covers anything interactive inside
-    // the touchable, e.g. a pressable List.Item with a control in `right`.
     await render(
       <TouchableRipple hitSlop={4} onPress={() => {}} testID={TOUCHABLE}>
         <Text>child-marker</Text>
@@ -122,10 +113,6 @@ describe('TouchableRipple (web)', () => {
   });
 
   it('extends the target past a border, since absolute offsets start inside it', async () => {
-    // Offsets on a position: absolute child are relative to the parent's
-    // padding edge, inside its border, not its visible outer edge. Without
-    // adding the border back in, the target would fall short of `hitSlop`
-    // past what's actually visible.
     await render(
       <TouchableRipple
         hitSlop={2}
@@ -156,8 +143,6 @@ describe('TouchableRipple (web)', () => {
 
     const style = styleOf(screen.getByTestId(TOUCHABLE));
 
-    // check we have the touchable's own style first, or the absence below passes
-    // against any empty object
     expect(style).toMatchObject({ position: 'relative' });
     expect(style.overflow).toBeUndefined();
   });

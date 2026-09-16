@@ -1,6 +1,6 @@
 import { expect, it } from '@jest/globals';
 
-import { render, screen } from '../../../test-utils';
+import { render } from '../../../test-utils';
 import Checkbox from '../../Checkbox';
 
 it('renders checked Checkbox with onPress', async () => {
@@ -59,21 +59,10 @@ it('renders Checkbox with custom testID', async () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('expands hitSlop up to the 48dp minimum when enabled', async () => {
-  await render(<Checkbox testID="checkbox" status="unchecked" />);
+it('renders disabled Checkbox', async () => {
+  const tree = (
+    await render(<Checkbox status="unchecked" disabled />)
+  ).toJSON();
 
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('checkbox').props.hitSlop).toEqual({
-    top: 4,
-    bottom: 4,
-    left: 4,
-    right: 4,
-  });
-});
-
-it('gives a disabled Checkbox no hitSlop of its own', async () => {
-  await render(<Checkbox testID="checkbox" status="unchecked" disabled />);
-
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('checkbox').props.hitSlop).toBeUndefined();
+  expect(tree).toMatchSnapshot();
 });

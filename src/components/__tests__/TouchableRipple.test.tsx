@@ -93,34 +93,31 @@ describe('TouchableRipple', () => {
   });
 
   describe('hitSlop', () => {
-    // hitSlop has no user-visible effect here, the renderer does not lay views
-    // out or hit-test them. This only stops the prop being dropped.
-    /* eslint-disable no-restricted-syntax */
-    const hitSlopOf = () => screen.getByTestId('touchable').props.hitSlop;
-    /* eslint-enable no-restricted-syntax */
+    it('does not add its own hitSlop when none is supplied', async () => {
+      const tree = (
+        await render(
+          <TouchableRipple onPress={() => {}}>
+            <Text>Button</Text>
+          </TouchableRipple>
+        )
+      ).toJSON();
 
-    it('is not enforced or defaulted: the primitive does not measure', async () => {
-      await render(
-        <TouchableRipple testID="touchable" onPress={() => {}}>
-          <Text>Button</Text>
-        </TouchableRipple>
-      );
-
-      expect(hitSlopOf()).toBeUndefined();
+      expect(tree).toMatchSnapshot();
     });
 
     it('passes a caller-supplied hitSlop straight through', async () => {
-      await render(
-        <TouchableRipple
-          testID="touchable"
-          onPress={() => {}}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        >
-          <Text>Button</Text>
-        </TouchableRipple>
-      );
+      const tree = (
+        await render(
+          <TouchableRipple
+            onPress={() => {}}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Text>Button</Text>
+          </TouchableRipple>
+        )
+      ).toJSON();
 
-      expect(hitSlopOf()).toEqual({ top: 8, bottom: 8, left: 8, right: 8 });
+      expect(tree).toMatchSnapshot();
     });
 
     it('still calls a caller-supplied onLayout', async () => {

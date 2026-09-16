@@ -276,9 +276,6 @@ const IconButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    // No `overflow: 'hidden'`. An ancestor that clips also clips the touch
-    // target, which is why the hitSlop this component used to pass never
-    // applied. The overlay and the touchable clip themselves instead.
     margin: 6,
   },
   touchable: {

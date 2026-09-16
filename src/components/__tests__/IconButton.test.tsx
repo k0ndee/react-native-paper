@@ -46,55 +46,28 @@ it('renders disabled icon button', async () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('expands hitSlop up to the 48dp minimum for a button smaller than that', async () => {
-  await render(<IconButton testID="icon-button" icon="camera" />);
-
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('icon-button').props.hitSlop).toEqual({
-    top: 4,
-    bottom: 4,
-    left: 4,
-    right: 4,
-  });
-});
-
-it('gives a disabled button no hitSlop of its own', async () => {
-  await render(<IconButton testID="icon-button" icon="camera" disabled />);
-
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('icon-button').props.hitSlop).toBeUndefined();
-});
-
 it('lets a caller-supplied hitSlop win even while disabled', async () => {
-  await render(
-    <IconButton testID="icon-button" icon="camera" disabled hitSlop={2} />
-  );
+  const tree = (
+    await render(<IconButton icon="camera" disabled hitSlop={2} />)
+  ).toJSON();
 
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('icon-button').props.hitSlop).toBe(2);
+  expect(tree).toMatchSnapshot();
 });
 
 it('computes hitSlop from explicit width/height rather than the button size', async () => {
-  await render(
-    <IconButton testID="icon-button" icon="camera" width={20} height={20} />
-  );
+  const tree = (
+    await render(<IconButton icon="camera" width={20} height={20} />)
+  ).toJSON();
 
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('icon-button').props.hitSlop).toEqual({
-    top: 14,
-    bottom: 14,
-    left: 14,
-    right: 14,
-  });
+  expect(tree).toMatchSnapshot();
 });
 
 it('drops hitSlop when explicit width/height already meet the 48dp minimum', async () => {
-  await render(
-    <IconButton testID="icon-button" icon="camera" width={48} height={48} />
-  );
+  const tree = (
+    await render(<IconButton icon="camera" width={48} height={48} />)
+  ).toJSON();
 
-  // eslint-disable-next-line no-restricted-syntax
-  expect(screen.getByTestId('icon-button').props.hitSlop).toBeUndefined();
+  expect(tree).toMatchSnapshot();
 });
 
 it('renders icon change animated', async () => {

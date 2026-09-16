@@ -7,12 +7,10 @@ import type { Insets } from 'react-native';
 const MIN_INTERACTIVE_SIZE = 48;
 
 /**
- * Slop needed to bring a fixed-size element up to the 48dp minimum
- * interactive target, expanding outward rather than resizing. Pass the
- * element's own rendered width and/or height; omit an axis that is already
- * big enough on its own (e.g. a pill that grows with its label) to opt it out
- * of slop entirely. Returns `undefined` when there is nothing to add, so that
- * case does not create a new object on every call.
+ * Hit slop needed to bring a fixed-size element up to the 48dp minimum
+ * interactive target, expanding outward rather than resizing. Returns
+ * `undefined` when there is nothing to add, so that case does not create a new
+ * object on every call.
  * @see https://developer.android.com/develop/ui/compose/accessibility/api-defaults
  */
 const getMinInteractiveSizeHitSlop = ({

@@ -146,7 +146,6 @@ RadioButtonIOS.displayName = 'RadioButton.IOS';
 const styles = StyleSheet.create({
   container: {
     borderRadius: STATE_LAYER_SIZE / 2,
-    // Centres the 24dp checkmark within the 40dp state layer.
     padding: (STATE_LAYER_SIZE - CHECKMARK_SIZE) / 2,
   },
 });

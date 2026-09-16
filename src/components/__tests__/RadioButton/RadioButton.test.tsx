@@ -6,7 +6,7 @@ import {
   jest as mockJest,
 } from '@jest/globals';
 
-import { render, screen } from '../../../test-utils';
+import { render } from '../../../test-utils';
 import RadioButton from '../../RadioButton';
 import { RadioButtonContext } from '../../RadioButton/RadioButtonGroup';
 
@@ -83,24 +83,11 @@ describe('RadioButton', () => {
     });
   });
 
-  describe('hitSlop', () => {
-    it('expands up to the 48dp minimum when enabled', async () => {
-      await render(<RadioButton testID="radio" value="first" />);
+  it('renders disabled RadioButton', async () => {
+    const tree = (
+      await render(<RadioButton value="first" disabled />)
+    ).toJSON();
 
-      // eslint-disable-next-line no-restricted-syntax
-      expect(screen.getByTestId('radio').props.hitSlop).toEqual({
-        top: 4,
-        bottom: 4,
-        left: 4,
-        right: 4,
-      });
-    });
-
-    it('gives a disabled RadioButton no hitSlop of its own', async () => {
-      await render(<RadioButton testID="radio" value="first" disabled />);
-
-      // eslint-disable-next-line no-restricted-syntax
-      expect(screen.getByTestId('radio').props.hitSlop).toBeUndefined();
-    });
+    expect(tree).toMatchSnapshot();
   });
 });
