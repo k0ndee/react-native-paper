@@ -29,14 +29,6 @@ export const resolveElevation = ({
 }): Elevation =>
   isDocked ? ToolbarTokens.elevation.docked : ToolbarTokens.elevation.floating;
 
-/**
- * Leading/trailing padding + inter-item gap for the content row/column,
- * from spec defaults (`contentContainerStyle` can override). `docked`'s
- * content row is a fixed band (see `Toolbar.tsx`'s `thickness`), so
- * it only pads horizontally to leave room for taller children like a
- * `Button` label; `floating` has no such fixed height, so it pads every
- * side.
- */
 export const getSpacing = ({
   variant,
 }: {

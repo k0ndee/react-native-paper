@@ -10,11 +10,6 @@ export const resolveColors = (colorScheme: ColorScheme) =>
     ? ToolbarTokens.vibrantColors
     : ToolbarTokens.standardColors;
 
-/**
- * Resolve an `IconButton`'s icon color and, if `selected`, its container
- * color. Unselected has no container override, it's the same role as the
- * toolbar's own background, so it just blends in.
- */
 export const resolveIconColors = ({
   theme,
   colorScheme,
@@ -34,7 +29,6 @@ export const resolveIconColors = ({
     : { iconColor: theme.colors[roles.icon] };
 };
 
-/** Resolve a `Button` child's label color (`Button` has no `selected` state, so there's just one). */
 export const resolveLabelColor = ({
   theme,
   colorScheme,

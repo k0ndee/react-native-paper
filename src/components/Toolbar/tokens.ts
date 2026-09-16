@@ -33,15 +33,9 @@ const elevation = {
   floating: 3,
 } as const satisfies Record<string, Elevation>;
 
-// Color roles from https://m3.material.io/components/toolbars/specs, for the
-// toolbar's own `container` and for its mode-less children: `IconButton`
-// (`icon`, `buttonContainer`) and `Button` (`label`). If an `IconButton` or
-// `Button` has a `mode` (filled, outlined, etc.), it colors itself instead
-// (see `ToolbarColorContext`). The `selected*` roles only apply to
-// `IconButton`, `Button` has no selected state. An unselected `IconButton`
-// doesn't get a `buttonContainer` override either, since that role is the
-// same color as the toolbar's `container`, so it just blends in with no
-// visible pill.
+// Color roles for the toolbar's `container` and its mode-less `IconButton`/`Button`
+// children. With `mode` IconButton/Button colors itself instead (see `ToolbarColorContext`).
+// `selected*` only applies to `IconButton`, unselected ones skip `buttonContainer`.
 const standardColors = {
   container: 'surfaceContainer',
   buttonContainer: 'surfaceContainer',
