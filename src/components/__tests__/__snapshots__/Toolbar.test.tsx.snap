@@ -243,6 +243,7 @@ exports[`defaults a mode-less IconButton child's iconColor to the toolbar's cont
 
 exports[`extends the docked container into the bottom safe-area inset 1`] = `
 <View
+  collapsable={false}
   pointerEvents="box-none"
   style={
     [
@@ -4128,6 +4129,7 @@ exports[`renders Toolbar with default props 1`] = `
 
 exports[`renders Toolbar with docked variant 1`] = `
 <View
+  collapsable={false}
   pointerEvents="box-none"
   style={
     [
@@ -4864,6 +4866,7 @@ exports[`renders Toolbar with vertical orientation 1`] = `
 exports[`renders docked Toolbar with vibrant colorScheme 1`] = `
 <>
   <View
+    collapsable={false}
     pointerEvents="box-none"
     style={
       [
@@ -5238,6 +5241,7 @@ exports[`renders docked Toolbar with vibrant colorScheme 1`] = `
     </View>
   </View>
   <View
+    collapsable={false}
     pointerEvents="box-none"
     style={
       [

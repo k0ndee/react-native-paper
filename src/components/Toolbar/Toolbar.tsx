@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native';
 
+import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ToolbarTokens } from './tokens';
@@ -232,16 +233,15 @@ const Toolbar = ({
   }
 
   return (
-    <View
+    <Animated.View
       {...rest}
       ref={ref}
       pointerEvents="box-none"
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-      style={[styles.dockedContainer, style as StyleProp<ViewStyle>]}
+      style={[styles.dockedContainer, style]}
       testID={testID}
     >
       {pill}
-    </View>
+    </Animated.View>
   );
 };
 

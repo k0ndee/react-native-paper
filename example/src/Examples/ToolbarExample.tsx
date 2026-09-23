@@ -158,7 +158,7 @@ const ToolbarExample = () => {
           pointerEvents="box-none"
           style={
             isVertical
-              ? [styles.verticalAnchor, { right: insets.right + 16 }]
+              ? [styles.verticalAnchor, { right: insets.right + 24 }]
               : [styles.horizontalAnchor, { bottom: insets.bottom + 16 }]
           }
         >
