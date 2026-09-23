@@ -173,7 +173,6 @@ exports[`DataTable.Cell renders data table cell children without wrapping text c
             "width": 40,
           },
           undefined,
-          undefined,
         ],
       ]
     }

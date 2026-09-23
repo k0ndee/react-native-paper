@@ -711,7 +711,6 @@ exports[`should have maxFontSizeMultiplier set to 1.5 by default 1`] = `
               "width": 40,
             },
             undefined,
-            undefined,
           ],
         ]
       }

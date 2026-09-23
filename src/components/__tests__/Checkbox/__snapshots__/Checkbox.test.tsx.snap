@@ -622,7 +622,6 @@ exports[`renders disabled Checkbox 1`] = `
           "width": 40,
         },
         undefined,
-        undefined,
       ],
     ]
   }
